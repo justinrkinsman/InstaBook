@@ -6,7 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/catalog');
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -23,6 +23,8 @@ mongoose.set('strictQuery', true) //This may cause problems
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(express.static(__dirname + '/public'))
 
 app.use(logger('dev'));
 app.use(express.json());

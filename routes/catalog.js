@@ -12,20 +12,21 @@ router.get('/', function(req, res, next) {
 })
 
 router.get('/homepage', function(req, res, next) {
-    /*if (!req.user) {
+    if (!req.user) {
       res.redirect('/login')
-    }*/
-    const requestUrl = `http://localhost:3000/api/homepage`
+    }
+    /*const requestUrl = `http://localhost:3000/api/homepage`
     fetch(requestUrl)
     .then(response => response.json())
     .then(data => {
         if (!req.user) {
             return res.render('index.pug', { title: "InstaBook", posts: data, user: null })
         }else{
-            return res.render('index.pug', { title: "InstaBook", posts: data, user: req.user})
+            return res.render('index.pug', { title: "InstaBook", posts: data, user: req.user.first_name})
         }
-      })
-    //res.render('index.pug', {title: "InstaBook", user: req.user.first_name})
+      })*/
+      //return res.redirect('/login')
+    res.render('index.pug', {title: "InstaBook", user: req.user.first_name})
   });
   
   /* GET login page. */
