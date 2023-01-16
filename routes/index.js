@@ -1,33 +1,49 @@
 var express = require('express');
 var router = express.Router();
-const fetch = (...args) =>
-  import('node-fetch').then(({default: fetch}) => fetch(...args))
 const { DateTime } = require('luxon')
+
+const User = require("../models/user")
 const Post = require('../models/post')
-const User = require('../models/user')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  return res.redirect('/homepage')
+/// GET APIs ///
+// GET posts for home page
+router.get('/api/homepage', (req, res) => {
+    Post.find({})./*sort({db_timestamp: -1})*/then((post_count) => {res.json(post_count)})
 })
 
-router.get('/api/homepage', function(req, res, next) {
-  /*if (!req.user) {
-    res.redirect('/login')
-  }*/
-  /*const requestUrl = `http://localhost:3000/api/homepage`
-  fetch(requestUrl)
-  .then(response => response.json())
-  .then(data => {
-      return res.render('index.pug', { title: "InstaBook" })
-    })*/
-  //res.render('index.pug', {title: "InstaBook", user: req.user.first_name})
-  Post.find({})./*sort({db_timestamp: -1})*/then((post_count) => {res.json(post_count)})
-});
+/// POST APIs ///
+// POST new post
+router.post('/api/posts', (req, res) => {
+    const date = new Date()
+    const newTimestamp = DateTime.fromJSDate(date).toFormat("MMMM d yyyy h:mm a")
+    postDetail = {
+        body: req.body.body,
+        author: req.body.author,
+        comments: [],
+        likes: 0,
+        timestamp: newTimestamp,
+        db_timestamp: date
+    }
 
-/* GET login page. */
-router.get('/login', function(req, res, next) {
-  res.render('login.pug', {title: "Login"})
+    let post = new Post(postDetail)
+
+    post.save(function (err) {
+        return
+    })
+    res.redirect('/')
 })
 
-module.exports = router;
+// POST send friend request
+router.post('/api/user/:id', (req, res) => {
+    User.updateOne( { "_id" : req.params.id }, { $push: { "friends_list.sent_requests": 'Hello'}},
+        function(err, docs) {
+            if (err) {
+                console.log(err)
+            }else{
+                console.log('Update User :', docs)
+            }
+        })
+    return res.send(`It works brah`)
+})
+
+module.exports = router
