@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+
+    h1 Create New Post 
+    form(action='/new-post' method='POST' id='new-post-form')
+        div.form-group
+            label(for='post_body') Post Content: 
+            textarea#post_body.form-control(type='text', placeholder='Your message text here' name='body')
+        button.btn.btn-primary(type='submit' ) Submit
+        a(href="/")
+                p Cancel
+    if errors 
+        ul 
+            for error in errors 
+                li!= error.msg

@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+    a(href='/') Back to home page
+    h1 Sign Up Here
+    p #{info}
+    form(action="" method='POST')
+        div.form-group 
+            label(for='username') Username: 
+            input#username.form-control(type='text', name='username')
+            label(for='first_name') First Name: 
+            input#first_name.form-control(type='text', name='first_name')
+            label(for='last_name') Last Name: 
+            input#last_name.form-control(type='text', name='last_name')
+            label(for='password') Password: 
+            input#password.form-control(type='password', name='password')
+            label(for='confirm_password') Confirm Password: 
+            input#confirm_password.form-control(type='password', name='confirm_password') 
+        button.btn.btn-primary(type='submit') Submit
+    if errors 
+        ul 
+            for error in errors 
+                li!= error.msg
