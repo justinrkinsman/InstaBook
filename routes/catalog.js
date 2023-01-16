@@ -14,7 +14,7 @@ router.get('/homepage', function(req, res, next) {
   if (!req.user) {
     res.redirect('/login')
   }
-  /*const requestUrl = `http://localhost:3000/api/homepage`
+  const requestUrl = `http://localhost:3000/api/homepage`
   fetch(requestUrl)
   .then(response => response.json())
   .then(data => {
@@ -23,8 +23,8 @@ router.get('/homepage', function(req, res, next) {
     }else{
       return res.render('index.pug', { title: "InstaBook", posts: data, user: req.user.username });
     }
-  })*/
-  res.render('index.pug', {title: "InstaBook", user: req.user.first_name})
+  })
+  //res.render('index.pug', {title: "InstaBook", user: req.user.first_name})
 });
 
 /* GET new post page */
