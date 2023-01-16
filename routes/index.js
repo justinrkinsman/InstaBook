@@ -13,11 +13,11 @@ router.get('/api/homepage', (req, res) => {
 
 /// POST APIs ///
 // POST new post
-router.post('/api/posts', (req, res) => {
+router.post('/api/new-post', (req, res) => {
     const date = new Date()
     const newTimestamp = DateTime.fromJSDate(date).toFormat("MMMM d yyyy h:mm a")
     postDetail = {
-        body: req.body.body,
+        body: req.body.content,
         author: req.body.author,
         comments: [],
         likes: 0,
@@ -30,7 +30,7 @@ router.post('/api/posts', (req, res) => {
     post.save(function (err) {
         return
     })
-    res.redirect('/')
+    res.redirect('/api/homepage')
 })
 
 // POST send friend request

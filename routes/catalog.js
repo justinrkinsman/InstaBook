@@ -33,24 +33,21 @@ router.get('/new-post', function(req, res, next) {
 })
 
 /* POST new post */
-router.post('/new-post', function(req, res, next) {
-  const date = new Date()
-  const newTimestamp = DateTime.fromJSDate(date).toFormat("MMMM d yyyy h:mm a")
-  postDetail = {
-    body: req.body.body,
-    author: req.body.author,
-    comments: [],
-    likes: 0,
-    timestamp: newTimestamp,
-    db_timestamp: date
-  }
-
-  let post = new Post(postDetail)
-
-  post.save(function (err) {
-    return
+router.post('/new-post', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/new-post`
+  fetch(requestUrl, {
+    method: 'POST',
+    // Try adding this later mode: 'cors'
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      "content": req.body.post_body,
+      "author": req.user.username
+    })
   })
-  res.redirect('/')
+  .then(response => response.json())
+  .then(data => {
+    return res.redirect('/')
+  })
 })
 
 /* GET login page. */
