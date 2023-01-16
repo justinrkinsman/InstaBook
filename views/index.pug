@@ -3,6 +3,9 @@ extends layout
 block content
   h1 #{title}
   p Welcome to #{title}, #{user}
-  p #{posts}
+  - let str = JSON.stringify(posts)
+  - let parsed = JSON.parse(str)
+  each post in parsed
+    p #{post.body}
   a(href='/new-post') New Post
   a(href='/logout') Logout

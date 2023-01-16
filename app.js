@@ -14,7 +14,8 @@ const bcrypt = require('bcryptjs')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
-var catalogRouter = require('./routes/catalog');
+const indexRouter = require('./routes/index')
+var catalog = require('./routes/catalog');
 var usersRouter = require('./routes/users');
 
 const User = require('./models/user')
@@ -91,7 +92,8 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.use('/', catalogRouter);
+app.use('/', indexRouter)
+app.use('/', catalog);
 app.use('/users', usersRouter);
 
 app.post(
