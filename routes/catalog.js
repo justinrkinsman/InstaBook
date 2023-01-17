@@ -76,13 +76,31 @@ router.post('/posts/:id/like-post', (req, res, next) => {
 
 /* GET delete post page */
 router.get('/posts/:id/delete-post', (req, res, next) => {
-  res.render('delete-post.pug', {title: "Delete Post"})
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/delete-post`
+  fetch(requestUrl)
+  .then(response => response.json())
+  .then(data => {
+    res.render('delete-post.pug', {title: "Delete Post", post: data})
+  })
 })
 
 /* POST delete post page */
-/*router.post('/posts/:id/delete-post', (req, res, next) => {
-  
-})*/
+router.post('/posts/:id/delete-post', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}`
+  fetch(requestUrl, {
+    method: 'DELETE',
+    //Try adding this later - mode: 'cors'
+    headers: { 'Content-Type': 'application/json' },
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success', data)
+  })
+  .catch((error) => {
+    console.log('Error', error)
+  })
+  res.redirect('/')
+})
 
 /* GET login page. */
 router.get('/login', function(req, res, next) {

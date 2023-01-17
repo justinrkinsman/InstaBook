@@ -3,6 +3,13 @@ extends layout
 block content 
 
     h1 Are you sure you want to delete this post?
+    - let str = JSON.stringify(post)
+    - let parsed = JSON.parse(str)
+    each post in parsed 
+        div.post-layout 
+            p #{post.body} 
+            p #{post.timestamp} 
+            p #{post.author}
     form(action='' method='POST' id='delete-post-form')
         div.form-group 
             button.btn.btn-primary(type='submit') Yes

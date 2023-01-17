@@ -14,6 +14,11 @@ router.get('/api/homepage', (req, res) => {
     .then((post_count) => {res.json(post_count)})
 })
 
+// GET delete page
+router.get('/api/posts/:id/delete-post', (req, res) => {
+    Post.find({_id: req.params.id}).then((found_post) => res.json(found_post))
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {
