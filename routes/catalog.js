@@ -102,9 +102,14 @@ router.post('/posts/:id/delete-post', (req, res, next) => {
   res.redirect('/')
 })
 
-/* GET comment page */
+/* GET new comment page */
 router.get('/posts/:id/new-comment', (req, res, next) => {
   res.render('new-comment.pug', {title: 'New Comment'})
+})
+
+/* GET all comments for post */
+router.get('/posts/:id/comments', (req, res, next) => {
+  res.render('comments.pug', {title: 'Comments'})
 })
 
 /* POST comment page */
