@@ -51,8 +51,28 @@ router.post('/new-post', (req, res, next) => {
   })
 })
 
+/* GET like post*/
+/*router.get('/posts/:id/like-post', (req, res, next) => {
+  res.redirect('/')
+})*/
+
 /* POST like post */
-router.post('/post/:id/like-post')
+router.post('/posts/:id/like-post', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/like-post`
+  fetch(requestUrl, {
+    method: 'PUT',
+    // Try adding this later mode: 'cors'
+    headers: { 'Content-Type': 'application/json' },
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Sucess', data)
+  })
+  .catch((error) => {
+    console.log('Error', error)
+  })
+  res.redirect('/')
+})
 
 /* GET delete post page */
 router.get('/posts/:id/delete-post', (req, res, next) => {

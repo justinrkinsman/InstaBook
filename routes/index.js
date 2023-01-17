@@ -68,7 +68,7 @@ router.put('/api/posts/:id/like-post', (req, res) => {
             console.log('Update User :', docs)
         }
     })
-    return res.send('It works brah')
+    return res.redirect('/api/homepage')
 })
 
 /// DELETE APIs ///
