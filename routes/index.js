@@ -57,6 +57,9 @@ router.post('/api/user/:id', (req, res) => { //replace req.params.id with req.us
     return res.send(`It works brah`)
 })
 
+// POST like post
+router.post('/api/post')
+
 /// PUT APIs ///
 // PUT like post
 router.put('/api/posts/:id/like-post', (req, res) => {
@@ -74,13 +77,20 @@ router.put('/api/posts/:id/like-post', (req, res) => {
 /// DELETE APIs ///
 // DELETE post
 router.delete('/api/posts/:id', (req, res) => {
-    Comment.deleteMany({ post: id }, function(err, results) {
+    /*Comment.deleteMany({ post: id ---THIS NEEDS TO BE CHANGED}, function(err, results) {
         if (err) {
             console.log(err)
         }else{
-            console.log('Deleted comments: ', result)
+            console.log('Deleted comments: ', results)
+        }*/
+    Post.findByIdAndDelete(req.params.id, (err, docs) => {
+        if (err) {
+            console.log(err)
+        }else{
+            console.log('Deleted: ', docs)
         }
     })
+    res.json({ deleted: req.params.id })
 })
 
 module.exports = router
