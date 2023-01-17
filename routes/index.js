@@ -20,6 +20,14 @@ router.get('/api/posts/:id/delete-post', (req, res) => {
     Post.find({_id: req.params.id}).then((found_post) => res.json(found_post))
 })
 
+// GET comments list for post
+router.get('/api/posts/:id/comments', (req, res) => {
+    Comment.find({post: req.params.id})
+    .sort({db_timestamp: -1})
+    .populate('user')
+    .then((found_comments) => {res.json(found_comments)})
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {

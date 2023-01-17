@@ -3,3 +3,16 @@ extends layout
 block content   
 
     h1 Comments
+    - let str = JSON.stringify(comments)
+    - let parsed = JSON.parse(str)
+    if parsed.length > 0
+        a(href=`/`)
+            p Go Back
+        each comment in parsed
+            a(href=`/` class='link-to-comment')
+                div.comment-layout
+                    p #{comment.body}
+                    p #{comment.timestamp}
+                    p #{comment.user.username}
+    else
+        p No Comments

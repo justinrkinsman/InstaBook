@@ -109,7 +109,12 @@ router.get('/posts/:id/new-comment', (req, res, next) => {
 
 /* GET all comments for post */
 router.get('/posts/:id/comments', (req, res, next) => {
-  res.render('comments.pug', {title: 'Comments'})
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/comments`
+    fetch(requestUrl)
+    .then(response => response.json())
+    .then(async data => {
+        return res.render('comments.pug', {title: "Comments", comments: data})
+    })
 })
 
 /* POST comment page */
