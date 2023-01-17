@@ -38,7 +38,7 @@ router.post('/api/new-post', (req, res) => {
 
 // POST send friend request
 router.post('/api/user/:id', (req, res) => { //replace req.params.id with req.user.id. Replace manually filled in id with req.params.id
-    User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {"friends_list.sent_requests": '63c15a981a05260474bc9959'}},
+    User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {"friends_list.received_requests": req.user}},
         function(err, docs) {
             if (err) {
                 console.log(err)
@@ -46,7 +46,7 @@ router.post('/api/user/:id', (req, res) => { //replace req.params.id with req.us
                 console.log('Update User :', docs)
             }
         })
-    User.findByIdAndUpdate('63c15a981a05260474bc9959', {_id: '63c15a981a05260474bc9959', $push: {"friends_list.received_requests": req.params.id}},
+    User.findByIdAndUpdate(req.user, {_id: req.user, $push: {"friends_list.sent_requests": req.params.id}},
         function(err, docs) {
             if (err) {
                 console.log(err)

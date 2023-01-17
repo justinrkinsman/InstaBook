@@ -17,5 +17,6 @@ block content
       p No Comments
     p #{post.likes} Likes
     p #{post.timestamp}
+    a(href=`/posts/${post._id}/delete-post`) Delete Post
   a(href='/new-post') New Post
   a(href='/logout') Logout
