@@ -51,10 +51,18 @@ router.post('/new-post', (req, res, next) => {
   })
 })
 
+/* POST like post */
+router.post('/post/:id/like-post')
+
 /* GET delete post page */
 router.get('/posts/:id/delete-post', (req, res, next) => {
   res.render('delete-post.pug', {title: "Delete Post"})
 })
+
+/* POST delete post page */
+/*router.post('/posts/:id/delete-post', (req, res, next) => {
+  
+})*/
 
 /* GET login page. */
 router.get('/login', function(req, res, next) {

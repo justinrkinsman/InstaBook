@@ -57,4 +57,30 @@ router.post('/api/user/:id', (req, res) => { //replace req.params.id with req.us
     return res.send(`It works brah`)
 })
 
+/// PUT APIs ///
+// PUT like post
+router.put('/api/posts/:id/like-post', (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $inc: {"likes": 1}},
+    function(err, docs) {
+        if (err) {
+            console.log(err)
+        }else{
+            console.log('Update User :', docs)
+        }
+    })
+    return res.send('It works brah')
+})
+
+/// DELETE APIs ///
+// DELETE post
+router.delete('/api/posts/:id', (req, res) => {
+    Comment.deleteMany({ post: id }, function(err, results) {
+        if (err) {
+            console.log(err)
+        }else{
+            console.log('Deleted comments: ', result)
+        }
+    })
+})
+
 module.exports = router

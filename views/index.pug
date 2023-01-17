@@ -18,6 +18,8 @@ block content
     p #{post.likes} Likes
     p #{post.timestamp}
     a(href=`/posts/${post._id}/delete-post`) Delete Post
-  
+    form(action=`/posts/${post._id}/like-post` method='POST')
+      div.form-group 
+        button.btn.btn-primary(type='submit') Like this post
   a(href='/new-post') New Post
   a(href='/logout') Logout
