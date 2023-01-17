@@ -12,7 +12,7 @@ block content
     else
       p #{post.author.username} 
     if post.comments.length > 0
-      p #{post.comments} 
+      a(href='/') View all #{post.comments.length} comments 
     else 
       p No Comments
     p #{post.likes} Likes
