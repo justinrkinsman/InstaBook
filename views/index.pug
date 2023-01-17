@@ -7,7 +7,10 @@ block content
   - let parsed = JSON.parse(str)
   each post in parsed
     p #{post.body}
-    p #{post.author} 
+    if (post.author === null)
+      p user not found
+    else
+      p #{post.author.username} 
     if post.comments.length > 0
       p #{post.comments} 
     else 

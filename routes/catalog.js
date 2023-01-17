@@ -4,6 +4,7 @@ const fetch = (...args) =>
   import('node-fetch').then(({default: fetch}) => fetch(...args))
 const { DateTime } = require('luxon')
 const Post = require('../models/post')
+const User = require('../models/user')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -41,7 +42,7 @@ router.post('/new-post', (req, res, next) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       "content": req.body.post_body,
-      "author": req.user.username
+      "author": req.user
     })
   })
   .then(response => response.json())

@@ -8,7 +8,10 @@ const Post = require('../models/post')
 /// GET APIs ///
 // GET posts for home page
 router.get('/api/homepage', (req, res) => {
-    Post.find({})./*sort({db_timestamp: -1})*/then((post_count) => {res.json(post_count)})
+    Post.find({})
+    .populate('author')
+    .sort({db_timestamp: -1})
+    .then((post_count) => {res.json(post_count)})
 })
 
 /// POST APIs ///
