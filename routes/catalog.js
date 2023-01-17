@@ -107,6 +107,20 @@ router.get('/posts/:id/new-comment', (req, res, next) => {
   res.render('new-comment.pug', {title: 'New Comment'})
 })
 
+/* POST comment page */
+router.post('/posts/:id/new-comment', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/comments`
+  fetch(requestUrl, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({"body": req.body.comment, "user": req.user.username})
+  })
+  .then(response => response.json())
+  .then(data => {
+    return res.redirect('/')
+  })
+})
+
 /* GET login page. */
 router.get('/login', function(req, res, next) {
   res.render('login.pug', {title: "Login"})

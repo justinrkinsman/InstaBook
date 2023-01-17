@@ -4,6 +4,7 @@ const { DateTime } = require('luxon')
 
 const User = require("../models/user")
 const Post = require('../models/post')
+const Comment = require('../models/comment')
 
 /// GET APIs ///
 // GET posts for home page
@@ -39,6 +40,41 @@ router.post('/api/new-post', (req, res) => {
         return
     })
     res.redirect('/api/homepage')
+})
+
+// POST new comment
+router.post('/api/posts/:id/comments', async (req, res) => {
+    const date = new Date()
+    newTimestamp = DateTime.fromJSDate(date).toFormat('MMMM d yyyy h:mm a')
+
+    const userId = await User.findOne({username: req.body.user})
+
+    commentDetail = {
+        body: req.body.body,
+        timestamp: newTimestamp,
+        db_timestamp: date,
+        user: userId,
+        post: req.params.id
+    }
+
+    let comment = new Comment(commentDetail)
+
+    comment.save(function (err) {
+        if (err) {
+            console.log(err)
+            return
+        }
+    })
+
+    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {comments: comment}},
+        function(err, docs) {
+            if (err) {
+                console.log(err)
+            }else{
+                console.log('Update Post :', docs)
+            }
+        })
+    res.redirect(`/api/homepage`)
 })
 
 // POST send friend request
