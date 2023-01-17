@@ -7,5 +7,12 @@ block content
   - let parsed = JSON.parse(str)
   each post in parsed
     p #{post.body}
+    p #{post.author} 
+    if post.comments.length > 0
+      p #{post.comments} 
+    else 
+      p No Comments
+    p #{post.likes} Likes
+    p #{post.timestamp}
   a(href='/new-post') New Post
   a(href='/logout') Logout
