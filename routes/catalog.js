@@ -102,6 +102,11 @@ router.post('/posts/:id/delete-post', (req, res, next) => {
   res.redirect('/')
 })
 
+/* GET comment page */
+router.get('/posts/:id/new-comment', (req, res, next) => {
+  res.render('new-comment.pug', {title: 'New Comment'})
+})
+
 /* GET login page. */
 router.get('/login', function(req, res, next) {
   res.render('login.pug', {title: "Login"})

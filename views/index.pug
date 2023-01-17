@@ -21,10 +21,10 @@ block content
     form(action=`/posts/${post._id}/like-post` method='POST')
       div.form-group 
         button.btn.btn-primary(type='submit') Like this post
-  ul
-    li
-      a(href='/comment') Comment
-    li
-      a(href='/new-post') New Post
-    li
-      a(href='/logout') Logout
+    ul
+      li
+        a(href=`/posts/${post._id}/new-comment`) Comment
+      li
+        a(href='/new-post') New Post
+      li
+        a(href='/logout') Logout

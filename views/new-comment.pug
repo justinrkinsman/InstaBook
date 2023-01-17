@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+
+    h1 Add Comment 
+    form(action='' method='POST' id='new-comment-form')
+        div.form-group 
+            label(for='comment') Enter Comment: 
+            textarea#comment.form-control(type='text', maxlength=100 name='comment' )
+        button.btn.btn-primary(type='submit' ) Submit
+        a(href=`/`)
+                p Cancel
+    if errors 
+        ul 
+            for error in errors 
+                li!= error.msg
