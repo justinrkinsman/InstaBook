@@ -156,9 +156,6 @@ router.get('/failed-login', function(req, res, next) {
   res.render('failure.pug', {title: 'Login Attempt Failed'})
 })
 
-
-
 /* POST send friend request*/
-
 
 module.exports = router;

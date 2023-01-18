@@ -13,7 +13,7 @@ block content
             if (user.friends_list)
                 if (user._id.toString() === current_user.friends_list.current_friends.toString())
                     p Friend 
-                if (user._id.toString() === current_user.friends_list.received_requests.toString() || user._id === current_user.friends_list.sent_requests.toString())
+                else if (user._id.toString() === current_user.friends_list.received_requests.toString() || user._id === current_user.friends_list.sent_requests.toString())
                     p Friend Request Pending
                 else 
                     a(href='/') Add friend
