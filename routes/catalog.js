@@ -147,7 +147,7 @@ router.get('/users', function(req, res, next) {
   fetch(requestUrl)
   .then(response => response.json())
   .then(data => {
-      return res.render('user-index.pug', { title: "Users Index", users: data/*, user: req.user.username*/ });
+    return res.render('user-index.pug', { title: "Users Index", users: data, user: req.user._id });
   })
 })
 

@@ -31,6 +31,7 @@ router.get('/api/posts/:id/comments', (req, res) => {
 // GET list of users
 router.get('/api/users', (req, res) => {
     User.find({})
+    .populate('friends_list.current_friends')
     .sort({last_name: 1})
     .then((user_count) => {res.json(user_count)})
 })

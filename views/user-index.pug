@@ -8,4 +8,9 @@ block content
     each user in parsed 
         h3 #{user.last_name}, #{user.first_name} 
         p #{user.username} 
-         
+        if (user.friends_list.current_friends)
+            - let friendStr = JSON.stringify(user.friends_list.current_friends)
+            - let friendParsed = JSON.parse(friendStr)
+            each friend in friendParsed
+                p #{friend.friends_list.current_friends}
+                p #{user.friends_list.current_friends[0]}
