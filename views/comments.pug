@@ -9,10 +9,11 @@ block content
         a(href=`/`)
             p Go Back
         each comment in parsed
-            a(href=`/` class='link-to-comment')
-                div.comment-layout
-                    p #{comment.body}
-                    p #{comment.timestamp}
-                    p #{comment.user.username}
+            div.comment-layout
+                p #{comment.body}
+                p #{comment.timestamp}
+                p #{comment.user.username}
+            a(href='/') Edit Comment 
+            a(href='/') Delete Comment
     else
         p No Comments
