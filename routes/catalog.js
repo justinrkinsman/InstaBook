@@ -141,6 +141,11 @@ router.get('/signup', function(req, res, next) {
   res.render('signup.pug', {title: "Sign Up"})
 })
 
+/* GET user index page */
+router.get('/users', function(req, res, next) {
+  res.render('user-index.pug', {title: 'Users Index'})
+})
+
 /* GET failed login page */
 router.get('/failed-login', function(req, res, next) {
   res.render('failure.pug', {title: 'Login Attempt Failed'})
