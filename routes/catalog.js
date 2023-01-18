@@ -143,7 +143,12 @@ router.get('/signup', function(req, res, next) {
 
 /* GET user index page */
 router.get('/users', function(req, res, next) {
-  res.render('user-index.pug', {title: 'Users Index'})
+  const requestUrl = `http://localhost:3000/api/users`
+  fetch(requestUrl)
+  .then(response => response.json())
+  .then(data => {
+      return res.render('user-index.pug', { title: "Users Index", users: data/*, user: req.user.username*/ });
+  })
 })
 
 /* GET failed login page */

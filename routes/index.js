@@ -28,6 +28,13 @@ router.get('/api/posts/:id/comments', (req, res) => {
     .then((found_comments) => {res.json(found_comments)})
 })
 
+// GET list of users
+router.get('/api/users', (req, res) => {
+    User.find({})
+    .sort({last_name: 1})
+    .then((user_count) => {res.json(user_count)})
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {

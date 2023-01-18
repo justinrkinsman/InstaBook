@@ -2,4 +2,10 @@ extends layout
 
 block content 
     a(href='/') Back to home page
-    h1 This is the users page
+    h1 Users
+    - let str = JSON.stringify(users)
+    - let parsed = JSON.parse(str)
+    each user in parsed 
+        h3 #{user.last_name}, #{user.first_name} 
+        p #{user.username} 
+         
