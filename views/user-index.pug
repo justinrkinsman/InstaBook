@@ -7,10 +7,13 @@ block content
     - let str = JSON.stringify(users)
     - let parsed = JSON.parse(str)
     each user in parsed 
-        h3 #{user.last_name}, #{user.first_name} 
-        p #{user.username} 
-        if (user.friends_list)
-            if (user._id.toString() === current_user.friends_list.current_friends.toString())
-                p Friend 
-            if (user._id.toString() === current_user.friends_list.received_requests.toString() || user._id === current_user.friends_list.sent_requests.toString())
-                p Friend Request Pending
+        div(class='user-cards')
+            h3 #{user.last_name}, #{user.first_name} 
+            p #{user.username} 
+            if (user.friends_list)
+                if (user._id.toString() === current_user.friends_list.current_friends.toString())
+                    p Friend 
+                if (user._id.toString() === current_user.friends_list.received_requests.toString() || user._id === current_user.friends_list.sent_requests.toString())
+                    p Friend Request Pending
+                else 
+                    a(href='/') Add friend
