@@ -94,8 +94,8 @@ router.post('/api/posts/:id/comments', async (req, res) => {
 })
 
 // POST send friend request
-router.post('/api/user/:id', (req, res) => { //replace req.params.id with req.user.id. Replace manually filled in id with req.params.id
-    User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {"friends_list.received_requests": '63c15a55d75b655101d0a253'}},
+router.post('/api/user/:id', (req, res) => { 
+    User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {"friends_list.received_requests": req.user._id}},
         function(err, docs) {
             if (err) {
                 console.log(err)
@@ -103,7 +103,7 @@ router.post('/api/user/:id', (req, res) => { //replace req.params.id with req.us
                 console.log('Update User :', docs)
             }
         })
-    User.findByIdAndUpdate('63c15a55d75b655101d0a253', {_id: '63c15a55d75b655101d0a253', $push: {"friends_list.sent_requests": req.params.id}},
+    User.findByIdAndUpdate(req.user._id, {_id: req.user._id, $push: {"friends_list.sent_requests": req.params.id}},
         function(err, docs) {
             if (err) {
                 console.log(err)
@@ -111,7 +111,7 @@ router.post('/api/user/:id', (req, res) => { //replace req.params.id with req.us
                 console.log('Update User :', docs)
             }
         })
-    return res.send(`It works brah`)
+    return res.redirect(`/api/users`)
 })
 
 // POST like post

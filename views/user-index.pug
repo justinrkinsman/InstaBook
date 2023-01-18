@@ -2,7 +2,7 @@ extends layout
 
 block content 
     a(href='/') Back to home page
-    p Welcome, #{current_user}
+    p Welcome, #{current_user.username}
     h1 Users
     - let str = JSON.stringify(users)
     - let parsed = JSON.parse(str)
@@ -16,6 +16,6 @@ block content
                 else if (user._id.toString() === current_user.friends_list.received_requests.toString() || user._id === current_user.friends_list.sent_requests.toString())
                     p Friend Request Pending
                 else 
-                    form(action=`/api/user/${user._id}` method='POST')
+                    form(action=`/user/${user._id}` method='POST')
                         div.form-group 
                             button.btn.btn-primary(type='submit') Add Friend
