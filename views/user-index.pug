@@ -16,4 +16,6 @@ block content
                 else if (user._id.toString() === current_user.friends_list.received_requests.toString() || user._id === current_user.friends_list.sent_requests.toString())
                     p Friend Request Pending
                 else 
-                    a(href='/') Add friend
+                    form(action=`/api/user/${user._id}` method='POST')
+                        div.form-group 
+                            button.btn.btn-primary(type='submit') Add Friend
