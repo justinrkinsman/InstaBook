@@ -132,9 +132,8 @@ router.put('/api/posts/:id/like-post', (req, res) => {
 })
 
 // PUT accept friend request
-router.put(`/api/users/:id`, (req, res) => { //req.params.id will be the received user's id. Req.user will be the logged in user
-    //req.params.id
-    User.findByIdAndUpdate('63c15ab11a05260474bc9967', {_id: '63c15ab11a05260474bc9967', $push: {"friends_list.current_friends": '63c15a981a05260474bc9959'}, $pull: {"friends_list.sent_requests": '63c15a981a05260474bc9959'}},
+router.put(`/api/users/:id`, (req, res) => {
+    User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {"friends_list.current_friends": req.body.user_id}, $pull: {"friends_list.sent_requests": req.body.user_id}},
         function(err, docs) {
             if (err) {
                 console.log(err)
@@ -142,8 +141,7 @@ router.put(`/api/users/:id`, (req, res) => { //req.params.id will be the receive
                 console.log('Update User :', docs)
             }
         })
-    ///req.user
-    User.findByIdAndUpdate('63c15a981a05260474bc9959', {_id: '63c15a981a05260474bc9959', $push: {"friends_list.current_friends": '63c15ab11a05260474bc9967'}, $pull: {"friends_list.received_requests": '63c15ab11a05260474bc9967'}},
+    User.findByIdAndUpdate(req.body.user_id, {_id: req.body.user_id, $push: {"friends_list.current_friends": req.params.id}, $pull: {"friends_list.received_requests": req.params.id}},
         function(err, docs) {
             if (err) {
                 console.log(err)
@@ -151,7 +149,7 @@ router.put(`/api/users/:id`, (req, res) => { //req.params.id will be the receive
                 console.log('Update User :', docs)
             }
         })
-    return res.send(`It works brah`)
+    return res.redirect(`/api/users`)
 })
 
 /// DELETE APIs ///

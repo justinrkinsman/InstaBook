@@ -18,7 +18,9 @@ block content
                     p Friend Request Pending
             for friend in current_user.friends_list.received_requests    
                 if (user._id.toString() === friend.toString()) 
-                    p Accept Friend Request (make this a form later)
+                    form(action=`/users/${user._id}/accept-friend` method='POST')
+                        div.form-group 
+                            button.btn.btn-primary(type='submit') Accept Friend Request
             - let friendStr = JSON.stringify(current_user.friends_list.current_friends)
             - let receivedStr = JSON.stringify(current_user.friends_list.received_requests)
             - let sentStr = JSON.stringify(current_user.friends_list.sent_requests)
