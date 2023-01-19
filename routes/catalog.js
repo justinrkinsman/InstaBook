@@ -157,7 +157,22 @@ router.get('/failed-login', function(req, res, next) {
 })
 
 /* POST send friend request*/
-
+router.post('/users/:id', function(req, res, next) {
+  const requestUrl = `http://localhost:3000/api/users/${req.params.id}`
+  fetch(requestUrl, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({"user_id": req.user._id})
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Sucess', data)
+  })
+  .catch((error) => {
+    console.log('Error', error)
+  })
+  res.redirect('/users')
+})
 
 
 module.exports = router;
