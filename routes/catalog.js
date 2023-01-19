@@ -22,7 +22,7 @@ router.get('/homepage', function(req, res, next) {
     if (!req.user) {
       return res.render('index.pug', { title: "InstaBook", posts: data, user: null })
     }else{
-      return res.render('index.pug', { title: "InstaBook", posts: data, user: req.user.username });
+      return res.render('index.pug', { title: "InstaBook", posts: data, user: req.user });
     }
   })
   //res.render('index.pug', {title: "InstaBook", user: req.user.first_name})

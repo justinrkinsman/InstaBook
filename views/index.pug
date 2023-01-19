@@ -2,32 +2,33 @@ extends layout
 
 block content
   h1 #{title}
-  p Welcome to #{title}, #{user}
+  p Welcome to #{title}, #{user.username}
   - let str = JSON.stringify(posts)
   - let parsed = JSON.parse(str)
+  - let friendStr = JSON.stringify(user.friends_list.current_friends)
   each post in parsed
-    p #{post.body}
-    if (post.author === null)
-      p user not found
-    else
-      p #{post.author.username} 
-    if post.comments.length > 0
-      a(href=`posts/${post._id}/comments`) 
-        p View all #{post.comments.length} comments 
-    else 
-      p No Comments
-    p #{post.likes} Likes
-    p #{post.timestamp}
-    a(href=`/posts/${post._id}/delete-post`) Delete Post
-    form(action=`/posts/${post._id}/like-post` method='POST')
-      div.form-group 
-        button.btn.btn-primary(type='submit') Like this post
-    ul
-      li
+    - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
+      p #{post.body}
+      if (post.author === null)
+        p user not found
+      else
+        p #{post.author.username} 
+      if post.comments.length > 0
+        a(href=`posts/${post._id}/comments`) 
+          p View all #{post.comments.length} comments 
+      else 
+        p No Comments
+      p #{post.likes} Likes
+      p #{post.timestamp}
+      a(href=`/posts/${post._id}/delete-post`) Delete Post
+      form(action=`/posts/${post._id}/like-post` method='POST')
+        div.form-group 
+          button.btn.btn-primary(type='submit') Like this post
         a(href=`/posts/${post._id}/new-comment`) Comment
-      li
-        a(href='/new-post') New Post
-      li
-        a(href='/logout') Logout
-      li 
-        a(href='/users') User Index
+  ul
+    li
+      a(href='/new-post') New Post
+    li
+      a(href='/logout') Logout
+    li 
+      a(href='/users') User Index
