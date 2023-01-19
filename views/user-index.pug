@@ -11,14 +11,15 @@ block content
             h3 #{user.last_name}, #{user.first_name} 
             p #{user.username} 
             if (user.friends_list)
-                if (user._id.toString() === current_user.friends_list.current_friends.toString())
-                    p Friend 
+                for friend in current_user.friends_list.current_friends 
+                    if (user._id.toString() === friend.toString())
+                        p Friend 
                 for friend in current_user.friends_list.sent_requests
                     if (user._id.toString() === friend.toString())
                         p Friend Request Pending
                 for friend in current_user.friends_list.received_requests    
                     if (user._id.toString() === friend.toString()) 
                         p Accept Friend Request (make this a form later)
-                form(action=`/users/${user._id}` method='POST')
+            form(action=`/users/${user._id}` method='POST')
                     div.form-group 
                         button.btn.btn-primary(type='submit') Add Friend
