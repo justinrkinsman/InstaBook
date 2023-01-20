@@ -45,6 +45,11 @@ router.get('/api/user/:id', async (req, res) => {
     res.json(data)
 })
 
+// GET edit post page
+router.get('/api/posts/:id/edit-post', (req, res) => {
+    Post.find({_id: req.params.id}).then((found_post) => {res.json(found_post)})
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {

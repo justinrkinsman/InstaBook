@@ -1,5 +1,18 @@
 extends layout 
 
-block content 
-
-    h1 Edit Post
+block content   
+    h1 Edit Post 
+    - let str = JSON.stringify(post)
+    - let parsed = JSON.parse(str)
+    each post in parsed
+        form(action='' method='POST' id='edit-post-form')
+            div.form-group
+                textarea#post_body.form-control(type='text', name='body')
+                    | #{post.body}
+            button.btn.btn-primary(type='submit' ) Submit
+            a(href=`/admin/post/${post._id}`)
+                p Cancel
+        if errors 
+            ul 
+                for error in errors 
+                    li!= error.msg

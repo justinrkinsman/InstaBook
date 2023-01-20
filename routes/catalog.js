@@ -204,7 +204,12 @@ router.post('/users/:id/accept-friend', function(req, res, next) {
 
 /* GET edit post page */
 router.get('/posts/:id/edit-post', (req, res) => {
-  res.render('edit-post.pug', {title: 'Edit Post'})
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/edit-post`
+  fetch(requestUrl)
+  .then(response => response.json())
+  .then(data => {
+    res.render('edit-post.pug', {title: 'Edit Post', post: data})
+  })
 })
 
 module.exports = router;
