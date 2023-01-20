@@ -37,9 +37,11 @@ router.get('/api/users', (req, res) => {
 })
 
 // GET page for individual user
-router.get('/api/user/:id', (req, res) => {
-    User.find({_id: req.params.id})
-    .then((found_user) => {res.json(found_user)})
+router.get('/api/user/:id', async (req, res) => {
+    const data = {}
+    await User.find({_id: req.params.id}).then((found_user) => {data[0] = found_user})
+    await Post.find({author: req.params.id}).then((found_posts) => {data[1] = found_posts})
+    res.json(data)
 })
 
 /// POST APIs ///

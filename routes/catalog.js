@@ -157,7 +157,7 @@ router.get('/user/:id', (req, res, next) => {
   fetch(requestUrl)
   .then(response => response.json())
   .then(data => {
-    return res.render('user.pug', { user: data})
+    return res.render('user.pug', { user: data[0], posts: data[1] })
   })
 })
 

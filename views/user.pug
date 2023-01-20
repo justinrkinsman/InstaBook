@@ -11,3 +11,9 @@ each user_info in parsed
         block content
             h1 User
                 h2 #{user_info.username}
+                p #{user_info.first_name} #{user_info.last_name}
+                - let postStr = JSON.stringify(posts)
+                - let postParsed = JSON.parse(postStr)
+                each post in postParsed 
+                    p #{post.body} 
+                    p #{post.timestamp}
