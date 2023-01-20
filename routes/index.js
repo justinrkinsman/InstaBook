@@ -36,6 +36,12 @@ router.get('/api/users', (req, res) => {
     .then((user_count) => {res.json(user_count)})
 })
 
+// GET page for individual user
+router.get('/api/user/:id', (req, res) => {
+    User.find({_id: req.params.id})
+    .then((found_user) => {res.json(found_user)})
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {

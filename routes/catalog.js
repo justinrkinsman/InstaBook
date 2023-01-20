@@ -153,7 +153,12 @@ router.get('/users', function(req, res, next) {
 
 /* GET individual user page */
 router.get('/user/:id', (req, res, next) => {
-  res.render('user.pug', {title: 'User: put username here', user: req.params.id})
+  const requestUrl = `http://localhost:3000/api/user/${req.params.id}`
+  fetch(requestUrl)
+  .then(response => response.json())
+  .then(data => {
+    return res.render('user.pug', { user: data})
+  })
 })
 
 /* GET failed login page */

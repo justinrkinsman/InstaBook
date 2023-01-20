@@ -1,6 +1,13 @@
-extends layout 
+- let str = JSON.stringify(user)
+- let parsed = JSON.parse(str) 
+each user_info in parsed
 
-block content 
-
-    h1 User
-    h2 #{user}
+    doctype html
+    html
+    head
+        title #{user_info.username}'s Profile
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        block content
+            h1 User
+                h2 #{user_info.username}
