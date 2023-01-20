@@ -164,12 +164,13 @@ router.put(`/api/users/:id`, (req, res) => {
 /// DELETE APIs ///
 // DELETE post
 router.delete('/api/posts/:id', (req, res) => {
-    /*Comment.deleteMany({ post: id ---THIS NEEDS TO BE CHANGED}, function(err, results) {
+    Comment.deleteMany({ post: req.params.id}, function(err, results) {
         if (err) {
             console.log(err)
         }else{
             console.log('Deleted comments: ', results)
-        }*/
+        }
+    })
     Post.findByIdAndDelete(req.params.id, (err, docs) => {
         if (err) {
             console.log(err)
