@@ -25,6 +25,7 @@ router.get('/api/posts/:id/comments', (req, res) => {
     Comment.find({post: req.params.id})
     .sort({db_timestamp: -1})
     .populate('user')
+    .populate('post')
     .then((found_comments) => {res.json(found_comments)})
 })
 
