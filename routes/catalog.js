@@ -230,4 +230,14 @@ router.post('/posts/:id/edit-post', (req, res) => {
   res.redirect('/')
 })
 
+/* GET edit comment page */
+router.get('/comment/:id/edit-comment', (req, res) => {
+  const requestUrl = `http://localhost:3000/api/comment/${req.params.id}/edit-comment`
+  fetch(requestUrl)
+  .then(response => response.json())
+  .then(data => {
+    res.render('edit-comment.pug', {title: 'Edit Comment', comment: data})
+  })
+})
+
 module.exports = router;

@@ -50,6 +50,11 @@ router.get('/api/posts/:id/edit-post', (req, res) => {
     Post.find({_id: req.params.id}).then((found_post) => {res.json(found_post)})
 })
 
+// GET edit comment page
+router.get('/api/comment/:id/edit-comment', (req, res) => {
+    Comment.find({_id: req.params.id}).then((found_comment) => {res.json(found_comment)})
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {

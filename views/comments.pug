@@ -14,7 +14,7 @@ block content
                 p #{comment.timestamp}
                 p #{comment.user.username}
             if (comment.user._id.toString() === current_user._id.toString())
-                a(href='/') Edit Comment 
+                a(href=`/comment/${comment._id}/edit-comment`) Edit Comment 
             if ((comment.user._id.toString() === current_user._id.toString()) || comment.post.author.toString() === current_user._id.toString() )
                 a(href='/') Delete Comment
     else

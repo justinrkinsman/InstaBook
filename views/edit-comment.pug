@@ -1,0 +1,18 @@
+extends layout 
+
+block content   
+    h1 Edit Comment 
+    - let str = JSON.stringify(comment)
+    - let parsed = JSON.parse(str)
+    each comment in parsed
+        form(action='' method='POST' id='edit-comment-form')
+            label(for='comment_body') Body: 
+            textarea#comment_body.form-control(type='text', name='body')
+                | #{comment.body}
+            button.btn.btn-primary(type='submit' ) Submit
+            a(href="/")
+                p Cancel
+        if errors 
+            ul 
+                for error in errors 
+                    li!= error.msg
