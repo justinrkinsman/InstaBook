@@ -8,8 +8,9 @@ block content
     - let parsed = JSON.parse(str)
     each user in parsed 
         div(class='user-cards')
-            h3 #{user.last_name}, #{user.first_name} 
-            p #{user.username} 
+            a(href=`/user/${user._id}`)
+                h3 #{user.last_name}, #{user.first_name} 
+                p #{user.username} 
             for friend in current_user.friends_list.current_friends 
                 if (user._id.toString() === friend.toString())
                     p Friend 

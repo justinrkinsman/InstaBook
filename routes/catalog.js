@@ -151,6 +151,11 @@ router.get('/users', function(req, res, next) {
   })
 })
 
+/* GET individual user page */
+router.get('/user/:id', (req, res, next) => {
+  res.render('user.pug', {title: 'User: put username here', user: req.params.id})
+})
+
 /* GET failed login page */
 router.get('/failed-login', function(req, res, next) {
   res.render('failure.pug', {title: 'Login Attempt Failed'})
