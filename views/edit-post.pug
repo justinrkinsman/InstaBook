@@ -10,7 +10,7 @@ block content
                 textarea#post_body.form-control(type='text', name='body')
                     | #{post.body}
             button.btn.btn-primary(type='submit' ) Submit
-            a(href=`/admin/post/${post._id}`)
+            a(href=`/`)
                 p Cancel
         if errors 
             ul 

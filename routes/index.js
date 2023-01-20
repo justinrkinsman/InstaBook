@@ -166,6 +166,19 @@ router.put(`/api/users/:id`, (req, res) => {
     return res.redirect(`/api/users`)
 })
 
+// PUT Edit Post
+router.put('/api/posts/:id/edit-post', (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, body: req.body.body},
+        async function (err, docs) {
+            if (err) {
+                console.log(err)
+            }else{
+                console.log('Update Post :', docs)
+            }
+        })
+    res.redirect('/api/posts')
+})
+
 /// DELETE APIs ///
 // DELETE post
 router.delete('/api/posts/:id', (req, res) => {

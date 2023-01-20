@@ -212,4 +212,22 @@ router.get('/posts/:id/edit-post', (req, res) => {
   })
 })
 
+/* POST edit post page */
+router.post('/posts/:id/edit-post', (req, res) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/edit-post`
+  fetch(requestUrl, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({body: req.body.body})
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Sucess', data)
+  })
+  .catch((error) => {
+    console.log('Error', error)
+  })
+  res.redirect('/')
+})
+
 module.exports = router;
