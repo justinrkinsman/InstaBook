@@ -240,4 +240,22 @@ router.get('/comment/:id/edit-comment', (req, res) => {
   })
 })
 
+/* POST edit comment page */
+router.post(`/comment/:id/edit-comment`, (req, res) => {
+  const requestUrl = `http://localhost:3000/api/comment/${req.params.id}/edit-comment`
+  fetch(requestUrl, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({body: req.body.body})
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Sucess', data)
+  })
+  .catch((error) => {
+    console.log('Error', error)
+  })
+  res.redirect('/')
+})
+
 module.exports = router;

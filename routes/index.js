@@ -184,6 +184,19 @@ router.put('/api/posts/:id/edit-post', (req, res) => {
     res.redirect('/api/posts')
 })
 
+// PUT Edit Comment
+router.put('/api/comment/:id/edit-comment', (req, res) => {
+    Comment.findByIdAndUpdate(req.params.id, {_id: req.params.id, body: req.body.body},
+        async function (err, docs) {
+            if (err) {
+                console.log(err)
+            }else{
+                console.log('Update Post :', docs)
+            }
+        })
+    res.redirect('api/posts')
+})
+
 /// DELETE APIs ///
 // DELETE post
 router.delete('/api/posts/:id', (req, res) => {
