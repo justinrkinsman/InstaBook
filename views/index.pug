@@ -22,7 +22,7 @@ block content
       p #{post.timestamp}
       if (post.author._id.toString() === user._id.toString())
         a(href=`/posts/${post._id}/delete-post`) Delete Post
-        a(href=`/`) Edit Post
+        a(href=`/posts/${post._id}/edit-post`) Edit Post
       form(action=`/posts/${post._id}/like-post` method='POST')
         div.form-group 
           button.btn.btn-primary(type='submit') Like this post

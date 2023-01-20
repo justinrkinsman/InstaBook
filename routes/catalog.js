@@ -202,4 +202,9 @@ router.post('/users/:id/accept-friend', function(req, res, next) {
   res.redirect('/users')
 })
 
+/* GET edit post page */
+router.get('/posts/:id/edit-post', (req, res) => {
+  res.render('edit-post.pug', {title: 'Edit Post'})
+})
+
 module.exports = router;
