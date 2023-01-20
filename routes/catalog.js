@@ -258,4 +258,32 @@ router.post(`/comment/:id/edit-comment`, (req, res) => {
   res.redirect('/')
 })
 
+/* GET delete comment page */
+router.get('/posts/:postId/comment/:id/delete-comment', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.postId}/comment/${req.params.id}/delete-comment`
+  fetch(requestUrl)
+  .then(response => response.json())
+  .then(data => {
+    res.render('delete-comment.pug', {title: "Delete Comment", comments: data})
+  })
+})
+
+/* POST delete comment page */
+router.post('/posts/:postId/comment/:id/delete-comment', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.postId}/comment/${req.params.id}/delete-comment`
+  fetch(requestUrl, {
+    method: 'DELETE',
+    //Try adding this later - mode: 'cors'
+    headers: { 'Content-Type': 'application/json' },
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success', data)
+  })
+  .catch((error) => {
+    console.log('Error', error)
+  })
+  res.redirect('/')
+})
+
 module.exports = router;

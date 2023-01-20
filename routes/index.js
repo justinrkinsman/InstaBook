@@ -55,6 +55,11 @@ router.get('/api/comment/:id/edit-comment', (req, res) => {
     Comment.find({_id: req.params.id}).then((found_comment) => {res.json(found_comment)})
 })
 
+// GET delete comment page
+router.get('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
+    Comment.find({_id: req.params.id}).then((found_comment) => {res.json(found_comment)})
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {
@@ -216,5 +221,26 @@ router.delete('/api/posts/:id', (req, res) => {
     })
     res.json({ deleted: req.params.id })
 })
+
+// DELETE comment
+router.delete('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
+    Comment.findByIdAndDelete(req.params.id, (err, docs) => {
+        if (err) {
+            console.log(err)
+        }else{
+            console.log('Deleted: ', docs)
+        }
+    })
+    Post.findByIdAndUpdate(req.params.postId, {_id: req.params.postId, $pull: {"comments": req.params.id}},
+        function (err, docs) {
+            if (err) {
+                console.log(err)
+            }else{
+                console.log('Update Post :', docs)
+            }
+        })
+        res.json({ delete: req.params.id })
+    })
+    
 
 module.exports = router
