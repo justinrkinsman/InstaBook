@@ -7,6 +7,19 @@ const Post = require('../models/post')
 const Comment = require('../models/comment')
 const ImageModel = require('../models/image')
 
+// Multer object creation
+const multer = require('multer')
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+
+const upload = multer({ storage: storage })
+
 /// GET APIs ///
 // GET posts for home page
 router.get('/api/homepage', (req, res) => {
@@ -61,7 +74,7 @@ router.get('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
     Comment.find({_id: req.params.id}).then((found_comment) => {res.json(found_comment)})
 })
 
-// GET images
+// GET images   THIS WILL BE REMOVED LATER
 router.get('/photos', (req, res) => {
     ImageModel.find({}, (err, items) => {
         if (err) {
@@ -155,8 +168,24 @@ router.post('/api/users/:id', (req, res) => {
 router.post('/api/post')
 
 // POST new photo THIS WILL BE MERGED WITH UPLOAD POST LATER
-router.post('/api/photo', (req, res) => {
+router.post('/photos', upload.single('image'), (req, res, next) => {
 
+    let obj = {
+        name: req.body.name,
+        desc: req.body.desc,
+        img: {
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            contentType: 'image/png'
+        }
+    }
+    ImageModel.create(obj, (err, item) => {
+        if (err) {
+            console.log(err)
+        }else{
+            //item.save()
+            res.redirect('/')
+        }
+    })
 })
 
 /// PUT APIs ///
