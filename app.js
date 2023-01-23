@@ -36,6 +36,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.set('view engine', 'ejs')
 
+// Multer object creation
+const multer = require('multer')
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage })
+
 passport.use(
   new LocalStrategy((username, password, done) => {
     User.findOne({ username: username.toLowerCase()}, (err, user) => {
