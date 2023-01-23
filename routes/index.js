@@ -5,6 +5,7 @@ const { DateTime } = require('luxon')
 const User = require("../models/user")
 const Post = require('../models/post')
 const Comment = require('../models/comment')
+const ImageModel = require('../models/image')
 
 /// GET APIs ///
 // GET posts for home page
@@ -58,6 +59,18 @@ router.get('/api/comment/:id/edit-comment', (req, res) => {
 // GET delete comment page
 router.get('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
     Comment.find({_id: req.params.id}).then((found_comment) => {res.json(found_comment)})
+})
+
+// GET images
+router.get('/photos', (req, res) => {
+    ImageModel.find({}, (err, items) => {
+        if (err) {
+            console.log(err)
+            res.status(500).send('An error occurred', err)
+        }else{
+            res.render('photos.pug', {title: 'Photos'/*, items: items */})
+        }
+    })
 })
 
 /// POST APIs ///
@@ -140,6 +153,11 @@ router.post('/api/users/:id', (req, res) => {
 
 // POST like post
 router.post('/api/post')
+
+// POST new photo THIS WILL BE MERGED WITH UPLOAD POST LATER
+router.post('/api/photo', (req, res) => {
+
+})
 
 /// PUT APIs ///
 // PUT like post

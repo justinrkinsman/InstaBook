@@ -19,6 +19,7 @@ var catalog = require('./routes/catalog');
 var usersRouter = require('./routes/users');
 
 const User = require('./models/user')
+const ImageModel = require('./models/image')
 
 var app = express();
 
@@ -43,7 +44,7 @@ const storage = multer.diskStorage({
     cb(null, 'public/uploads/')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    cb(null, file.fieldname + '-' + Date.now())
   }
 })
 
