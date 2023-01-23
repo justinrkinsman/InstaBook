@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const { DateTime } = require('luxon')
+let fs = require('fs')
+let path = require('path')
 
 const User = require("../models/user")
 const Post = require('../models/post')
@@ -174,7 +176,7 @@ router.post('/photos', upload.single('image'), (req, res, next) => {
         name: req.body.name,
         desc: req.body.desc,
         img: {
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            data: fs.readFileSync(path.join(__dirname, "..", 'public', 'uploads', req.file.filename)),
             contentType: 'image/png'
         }
     }
