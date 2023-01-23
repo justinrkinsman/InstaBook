@@ -83,7 +83,7 @@ router.get('/photos', (req, res) => {
             console.log(err)
             res.status(500).send('An error occurred', err)
         }else{
-            res.render('photos.pug', {title: 'Photos'/*, items: items */})
+            res.render('photos.ejs', { items: items })
         }
     })
 })
