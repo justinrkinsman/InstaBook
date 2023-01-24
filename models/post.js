@@ -8,6 +8,7 @@ const PostSchema = new Schema({
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
     likes: { type: Number },
+    liked_users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     timestamp: { type: String, required: true },
     db_timestamp: { type: Date, required: true },
     image: { type: Schema.Types.ObjectId, ref: 'Image' }
