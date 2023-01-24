@@ -11,3 +11,8 @@ a {
   border: 1px solid black;
   padding: 5px;
 }
+
+img {
+  height: 200px;
+  width: auto;
+}

@@ -10,7 +10,7 @@ const PostSchema = new Schema({
     likes: { type: Number },
     timestamp: { type: String, required: true },
     db_timestamp: { type: Date, required: true }
-    //image: {type: }
+    image: { type: Schema.Types.ObjectId, ref: 'Image' }
 })
 
 PostSchema.virtual("formatted_timestamp").get(function () {

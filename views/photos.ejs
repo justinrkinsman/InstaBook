@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <title>Image Uploading</title>
 </head>
  
 <body>
-    <h1>To Upload Image on mongoDB</h1>
-    <hr>
     <div>
         <form action="/" method="POST" enctype="multipart/form-data">
             <div>
@@ -33,9 +32,7 @@
             </div>
         </form>
     </div>
- 
-    <hr>
- 
+
     <h1>Uploaded Images</h1>
     <div>
         <% items.forEach(function(image) { %>
