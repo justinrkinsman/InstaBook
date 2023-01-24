@@ -48,7 +48,7 @@ router.get('/new-post', function(req, res, next) {
 
 /* POST new post */
 router.post('/new-post', upload.single('image'), (req, res, next) => {
-  if (req.body.image.length === 0) {
+  //if (req.body.image.length === 0) {
     const requestUrl = `http://localhost:3000/api/new-post`
     fetch(requestUrl, {
       method: 'POST',
@@ -63,7 +63,7 @@ router.post('/new-post', upload.single('image'), (req, res, next) => {
     .then(data => {
       return res.redirect('/')
     })
-  }else{
+  /*}else{
     const requestUrl =`http://localhost:3000/api/new-photo`
     fetch(requestUrl, {
       method: 'POST',
@@ -79,7 +79,7 @@ router.post('/new-post', upload.single('image'), (req, res, next) => {
     .then(data => {
       return res.redirect('/')
     })
-  }
+  }*/
 })
 
 /*router.post('/new-post', (req, res, next) => {
@@ -323,6 +323,26 @@ router.post('/posts/:postId/comment/:id/delete-comment', (req, res, next) => {
     console.log('Error', error)
   })
   res.redirect('/')
+})
+
+router.post('/photos', upload.single('image'), (req, res, next) => {
+
+  let obj = {
+      name: req.body.name,
+      desc: req.body.desc,
+      img: {
+          data: fs.readFileSync(path.join(__dirname, "..", 'public', 'uploads', req.file.filename)),
+          contentType: 'image/png'
+      }
+  }
+  ImageModel.create(obj, (err, item) => {
+      if (err) {
+          console.log(err)
+      }else{
+          //item.save()
+          res.redirect('/')
+      }
+  })
 })
 
 module.exports = router;
