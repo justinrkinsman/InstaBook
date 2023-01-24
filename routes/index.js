@@ -77,7 +77,7 @@ router.get('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
 })
 
 // GET images   THIS WILL BE REMOVED LATER
-router.get('/photos', (req, res) => {
+/*router.get('/photos', (req, res) => {
     ImageModel.find({}, (err, items) => {
         if (err) {
             console.log(err)
@@ -86,7 +86,7 @@ router.get('/photos', (req, res) => {
             res.render('photos.ejs', { items: items })
         }
     })
-})
+})*/
 
 /// POST APIs ///
 // POST new post
@@ -170,30 +170,12 @@ router.post('/api/users/:id', (req, res) => {
 router.post('/api/post')
 
 // POST new photo THIS WILL BE MERGED WITH UPLOAD POST LATER
-router.post('/photos', upload.single('image'), (req, res, next) => {
 
-    let obj = {
-        name: req.body.name,
-        desc: req.body.desc,
-        img: {
-            data: fs.readFileSync(path.join(__dirname, "..", 'public', 'uploads', req.file.filename)),
-            contentType: 'image/png'
-        }
-    }
-    ImageModel.create(obj, (err, item) => {
-        if (err) {
-            console.log(err)
-        }else{
-            //item.save()
-            res.redirect('/')
-        }
-    })
-})
 
 /// PUT APIs ///
 // PUT like post
 router.put('/api/posts/:id/like-post', (req, res) => {
-    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $inc: {"likes": 1}},
+    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $inc: {"likes": 1}, $push: {'liked_users': req.body.current_user}},
     function(err, docs) {
         if (err) {
             console.log(err)

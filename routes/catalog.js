@@ -102,6 +102,7 @@ router.post('/posts/:id/like-post', (req, res, next) => {
     method: 'PUT',
     // Try adding this later mode: 'cors'
     headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({"current_user": req.user._id})
   })
   .then(response => response.json())
   .then(data => {
@@ -325,7 +326,7 @@ router.post('/posts/:postId/comment/:id/delete-comment', (req, res, next) => {
   res.redirect('/')
 })
 
-router.post('/photos', upload.single('image'), (req, res, next) => {
+/*router.post('/photos', upload.single('image'), (req, res, next) => {
 
   let obj = {
       name: req.body.name,
@@ -343,6 +344,6 @@ router.post('/photos', upload.single('image'), (req, res, next) => {
           res.redirect('/')
       }
   })
-})
+})*/
 
 module.exports = router;
