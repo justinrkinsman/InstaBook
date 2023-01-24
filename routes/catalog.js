@@ -6,6 +6,19 @@ const { DateTime } = require('luxon')
 const Post = require('../models/post')
 const User = require('../models/user')
 
+// Multer object creation
+const multer = require('multer')
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+
+const upload = multer({ storage: storage })
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   return res.redirect('/homepage')
@@ -34,29 +47,48 @@ router.get('/new-post', function(req, res, next) {
 })
 
 /* POST new post */
-/*router.post('/new-post', (req, res, next) => {
-  const requestUrl = `http://localhost:3000/api/new-post`
-  fetch(requestUrl, {
-    method: 'POST',
-    // Try adding this later mode: 'cors'
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      "content": req.body.post_body,
-      "author": req.user
+router.post('/new-post', upload.single('image'), (req, res, next) => {
+  if (req.body.image.length === 0) {
+    const requestUrl = `http://localhost:3000/api/new-post`
+    fetch(requestUrl, {
+      method: 'POST',
+      // Try adding this later mode: 'cors'
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "content": req.body.post_body,
+        "author": req.user
+      })
     })
-  })
-  .then(response => response.json())
-  .then(data => {
-    return res.redirect('/')
-  })
-})*/
-router.post('/new-post', (req, res, next) => {
+    .then(response => response.json())
+    .then(data => {
+      return res.redirect('/')
+    })
+  }else{
+    const requestUrl =`http://localhost:3000/api/new-photo`
+    fetch(requestUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        'content': req.body.post_body,
+        "author": req.user,
+        "image": req.body.image,
+        "file": req.file.filename
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      return res.redirect('/')
+    })
+  }
+})
+
+/*router.post('/new-post', (req, res, next) => {
   if (req.body.image.length === 0) {
     res.redirect('/')
   }else{
     res.redirect('/login')
   }
-})
+})*/
 
 /* GET like post*/
 /*router.get('/posts/:id/like-post', (req, res, next) => {
