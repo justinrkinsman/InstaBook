@@ -114,6 +114,25 @@ router.post('/posts/:id/like-post', (req, res, next) => {
   res.redirect('/')
 })
 
+/* POST unlike post */
+router.post('/posts/:id/unlike-post', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/unlike-post`
+  fetch(requestUrl, {
+    method: 'PUT',
+    // Try adding this later mode: 'cors'
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({"current_user": req.user._id})
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Sucess', data)
+  })
+  .catch((error) => {
+    console.log('Error', error)
+  })
+  res.redirect('/')
+})
+
 /* GET delete post page */
 router.get('/posts/:id/delete-post', (req, res, next) => {
   const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/delete-post`

@@ -186,6 +186,19 @@ router.put('/api/posts/:id/like-post', (req, res) => {
     return res.redirect('/api/homepage')
 })
 
+// PUT unlike post
+router.put('/api/posts/:id/unlike-post', (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $inc: {"likes": -1}, $pull: {'liked_users': req.body.current_user}},
+    function(err, docs) {
+        if (err) {
+            console.log(err)
+        }else{
+            console.log('Update User :', docs)
+        }
+    })
+    return res.redirect('/api/homepage')
+})
+
 // PUT accept friend request
 router.put(`/api/users/:id`, (req, res) => {
     User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {"friends_list.current_friends": req.body.user_id}, $pull: {"friends_list.sent_requests": req.body.user_id}},
