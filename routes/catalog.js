@@ -34,7 +34,7 @@ router.get('/new-post', function(req, res, next) {
 })
 
 /* POST new post */
-router.post('/new-post', (req, res, next) => {
+/*router.post('/new-post', (req, res, next) => {
   const requestUrl = `http://localhost:3000/api/new-post`
   fetch(requestUrl, {
     method: 'POST',
@@ -49,6 +49,13 @@ router.post('/new-post', (req, res, next) => {
   .then(data => {
     return res.redirect('/')
   })
+})*/
+router.post('/new-post', (req, res, next) => {
+  if (req.body.image.length === 0) {
+    res.redirect('/')
+  }else{
+    res.redirect('/login')
+  }
 })
 
 /* GET like post*/

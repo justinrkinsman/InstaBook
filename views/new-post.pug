@@ -7,8 +7,8 @@ block content
         div.form-group
             label(for='post_body') Post Content: 
             textarea#post_body.form-control(type='text', placeholder='Your message text here' name='post_body')
-        input(type='file', name='imageupload')
-        input(type='submit', name='uploadimage', value='Upload Image')
+            input#image.form-control(type='file', name='image')
+            input(type='submit', name='uploadimage', value='Upload Image')
         button.btn.btn-primary(type='submit') Submit
         a(href="/")
                 p Cancel
