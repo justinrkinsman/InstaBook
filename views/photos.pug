@@ -8,3 +8,7 @@ block content
             input(type='submit', name='uploadimage', value='Upload Image')
     h2 Uploaded Images 
         p #{items}
+        - let str = JSON.stringify(str)
+        - let parsed = JSON.parse(str)
+        each item in parsed 
+        img(src=`data:image/${image.img.contentType}`)

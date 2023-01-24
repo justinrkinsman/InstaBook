@@ -25,7 +25,7 @@ block content
             - let friendStr = JSON.stringify(current_user.friends_list.current_friends)
             - let receivedStr = JSON.stringify(current_user.friends_list.received_requests)
             - let sentStr = JSON.stringify(current_user.friends_list.sent_requests)
-                - if (!(friendStr.includes(user._id.toString())) && !(receivedStr.includes(user._id.toString())) && !(sentStr.includes(user._id.toString())))
+                - if (!(friendStr.includes(user._id.toString())) && !(receivedStr.includes(user._id.toString())) && !(sentStr.includes(user._id.toString())) && current_user._id.toString() !== user._id.toString())
                     form(action=`/users/${user._id}` method='POST')
                         div.form-group 
                             button.btn.btn-primary(type='submit') Add Friend
