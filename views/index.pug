@@ -23,10 +23,16 @@ block content
       if (post.author._id.toString() === user._id.toString())
         a(href=`/posts/${post._id}/delete-post`) Delete Post
         a(href=`/posts/${post._id}/edit-post`) Edit Post
-      form(action=`/posts/${post._id}/like-post` method='POST')
-        div.form-group 
-          button.btn.btn-primary(type='submit') Like this post
-        a(href=`/posts/${post._id}/new-comment`) Comment
+      - let likedUsers = JSON.stringify(post.liked_users)
+        - if (likedUsers.includes(user._id.toString()))
+          form(action=`/posts/${post._id}/like-post` method='POST')
+            div.form-group 
+              button.btn.btn-primary(type='submit') Unlike
+        - else 
+          form(action=`/posts/${post._id}/like-post` method='POST')
+            div.form-group 
+              button.btn.btn-primary(type='submit') Like This Post
+      a(href=`/posts/${post._id}/new-comment`) Comment
   ul
     li
       a(href='/new-post') New Post
