@@ -13,11 +13,6 @@ each user_info in parsed
                 h2 #{user_info.username}
                 p #{user_info.first_name} #{user_info.last_name}
                 p #{user_info.friends_list.current_friends.length} Friends
-                - let postStr = JSON.stringify(posts)
-                - let postParsed = JSON.parse(postStr)
-                each post in postParsed 
-                    p #{post.body} 
-                    p #{post.timestamp}
             for friend in current_user.friends_list.current_friends 
                 if (user_info._id.toString() === friend.toString())
                     p Friend 
@@ -36,3 +31,10 @@ each user_info in parsed
                     form(action=`/users/${user_info._id}` method='POST')
                         div.form-group 
                             button.btn.btn-primary(type='submit') Add Friend
+            h2 Posts
+            - let postStr = JSON.stringify(posts)
+            - let postParsed = JSON.parse(postStr)
+                each post in postParsed 
+                    div.user-post-layout
+                        p #{post.body} 
+                        p #{post.timestamp}
