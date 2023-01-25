@@ -5,6 +5,7 @@ var express = require('express');
 const session = require('cookie-session')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
+const BasicStrategy = require('passport-http').BasicStrategy
 const FacebookStrategy = require('passport-facebook')
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -73,6 +74,16 @@ passport.use(
   })
 )
 
+passport.use(new BasicStrategy(
+  function(username, password, done) {
+    User.findOne({ username: "guest_user" }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      return done(null, user)
+    })
+  }
+))
+
 passport.serializeUser(function(user, done) {
   done(null, user.id)
 })
@@ -123,6 +134,14 @@ app.post(
   passport.authenticate("local", {
     successRedirect: '/',
     failureRedirect: '/failed-login'
+  })
+)
+
+app.get(
+  '/guest_login',
+  passport.authenticate("basic", {
+    successRedirect: '/',
+    faiilureRedirect: '/login'
   })
 )
 

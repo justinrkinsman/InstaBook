@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: lightgray;
 }
 
 a {
@@ -15,4 +16,9 @@ a {
 img {
   height: 200px;
   width: auto;
+}
+
+button {
+  background-color: cornflowerblue;
+  border: 0px;
 }
