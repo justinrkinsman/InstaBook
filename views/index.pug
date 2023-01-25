@@ -1,6 +1,13 @@
 extends layout
 
 block content
+  ul
+    li
+      a(href='/new-post') New Post
+    li
+      a(href='/logout') Logout
+    li 
+      a(href='/users') User Index
   h1 #{title}
   h3 Welcome to #{title}, #{user.username}
   - let str = JSON.stringify(posts)
@@ -11,8 +18,10 @@ block content
       div.post-card.body
         p.post-body #{post.body}
         div.post-card-info
-          a(href=`/user/${post.author._id}`) #{post.author.username}
-          p #{post.timestamp}
+          div.post-author-timestamp
+            a(href=`/user/${post.author._id}`) 
+              p #{post.author.username}
+            p #{post.timestamp}
           if post.comments.length > 0
             a(href=`posts/${post._id}/comments`) 
               p View all #{post.comments.length} comments 
@@ -33,31 +42,28 @@ block content
       div.post-card.body
         p.post-body #{post.body}
         div.post-card.info
-          a(href=`/user/${post.author._id}`) #{post.author.username}
-          p #{post.timestamp}
+          div.post-author-timestamp
+            a(href=`/user/${post.author._id}`) 
+              p #{post.author.username}
+            p #{post.timestamp}
           if post.comments.length > 0
             a(href=`posts/${post._id}/comments`) 
               p View all #{post.comments.length} comments 
           else 
             p No Comments
           p #{post.likes} Likes
-          if (post.author._id.toString() === user._id.toString())
-            a(href=`/posts/${post._id}/delete-post`) Delete Post
-            a(href=`/posts/${post._id}/edit-post`) Edit Post
           - let likedUsers = JSON.stringify(post.liked_users)
-            - if (likedUsers.includes(user._id.toString()))
-              form(action=`/posts/${post._id}/unlike-post` method='POST')
-                div.form-group 
-                  button.btn.btn-primary(type='submit') Unlike
-            - else 
-              form(action=`/posts/${post._id}/like-post` method='POST')
-                div.form-group 
-                  button.btn.btn-primary(type='submit') Like This Post
-          a(href=`/posts/${post._id}/new-comment`) Comment
-  ul
-    li
-      a(href='/new-post') New Post
-    li
-      a(href='/logout') Logout
-    li 
-      a(href='/users') User Index
+            div.post-interaction
+              - if (likedUsers.includes(user._id.toString()))
+                form(action=`/posts/${post._id}/unlike-post` method='POST')
+                  div.form-group 
+                    button.btn.btn-primary(type='submit') Unlike
+              - else 
+                form(action=`/posts/${post._id}/like-post` method='POST')
+                  div.form-group 
+                    button.btn.btn-primary(type='submit') Like This Post
+              a(href=`/posts/${post._id}/new-comment`) Comment
+            if (post.author._id.toString() === user._id.toString())
+              div.post-edit-delete
+                a(href=`/posts/${post._id}/delete-post`) Delete Post
+                a(href=`/posts/${post._id}/edit-post`) Edit Post

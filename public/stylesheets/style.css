@@ -50,9 +50,11 @@ fieldset {
 
 .post-card.info {
   border: none;
+  border-top: 1px solid black;
   display: flex;
   flex-direction: column;
   gap: 0px;
+  padding-top: 0px;
 }
 
 .post-card.body {
@@ -63,4 +65,19 @@ fieldset {
 
 .info > * {
   margin: 0px;
+}
+
+.post-author-timestamp {
+  display: flex;
+  gap: 10px;
+}
+
+.post-edit-delete {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.post-edit-delete > a {
+  color: red
 }
