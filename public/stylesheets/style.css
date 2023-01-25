@@ -22,3 +22,19 @@ button {
   background-color: cornflowerblue;
   border: 0px;
 }
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.form-group {
+  display: flex;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
