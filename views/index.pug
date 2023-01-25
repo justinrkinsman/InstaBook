@@ -11,7 +11,7 @@ block content
       div.post-card.body
         p.post-body #{post.body}
         div.post-card-info
-          p #{post.author.username} 
+          a(href=`/user/${post.author._id}`) #{post.author.username}
           p #{post.timestamp}
           if post.comments.length > 0
             a(href=`posts/${post._id}/comments`) 
@@ -33,7 +33,7 @@ block content
       div.post-card.body
         p.post-body #{post.body}
         div.post-card.info
-          p #{post.author.username} 
+          a(href=`/user/${post.author._id}`) #{post.author.username}
           p #{post.timestamp}
           if post.comments.length > 0
             a(href=`posts/${post._id}/comments`) 

@@ -61,6 +61,6 @@ fieldset {
   align-items: flex-start;
 }
 
-.info > p {
+.info > * {
   margin: 0px;
 }
