@@ -38,3 +38,29 @@ fieldset {
   display: flex;
   flex-direction: column;
 }
+
+.post-card {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.post-body {
+  font-size: 20px;
+}
+
+.post-card.info {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.post-card.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.info > p {
+  margin: 0px;
+}

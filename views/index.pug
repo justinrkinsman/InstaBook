@@ -2,60 +2,58 @@ extends layout
 
 block content
   h1 #{title}
-  p Welcome to #{title}, #{user.username}
+  h3 Welcome to #{title}, #{user.username}
   - let str = JSON.stringify(posts)
   - let parsed = JSON.parse(str)
   - let friendStr = JSON.stringify(user.friends_list.current_friends)
   each post in parsed
     - if (user.username.toString() === "guest_user")
-      p #{post.body}
-      if (post.author === null)
-        p user not found
-      else
-        p #{post.author.username} 
-      if post.comments.length > 0
-        a(href=`posts/${post._id}/comments`) 
-          p View all #{post.comments.length} comments 
-      else 
-        p No Comments
-      p #{post.likes} Likes
-      p #{post.timestamp}
-      - let likedUsers = JSON.stringify(post.liked_users)
-        - if (likedUsers.includes(user._id.toString()))
-          form(action=`/posts/${post._id}/unlike-post` method='POST')
-            div.form-group 
-              button.btn.btn-primary(type='submit') Unlike
-        - else 
-          form(action=`/posts/${post._id}/like-post` method='POST')
-            div.form-group 
-              button.btn.btn-primary(type='submit') Like This Post
-      a(href=`/posts/${post._id}/new-comment`) Comment
+      div.post-card.body
+        p.post-body #{post.body}
+        div.post-card-info
+          p #{post.author.username} 
+          p #{post.timestamp}
+          if post.comments.length > 0
+            a(href=`posts/${post._id}/comments`) 
+              p View all #{post.comments.length} comments 
+          else 
+            p No Comments
+          p #{post.likes} Likes
+          - let likedUsers = JSON.stringify(post.liked_users)
+            - if (likedUsers.includes(user._id.toString()))
+              form(action=`/posts/${post._id}/unlike-post` method='POST')
+                div.form-group 
+                  button.btn.btn-primary(type='submit') Unlike
+            - else 
+              form(action=`/posts/${post._id}/like-post` method='POST')
+                div.form-group 
+                  button.btn.btn-primary(type='submit') Like This Post
+          a(href=`/posts/${post._id}/new-comment`) Comment
     - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
-      p #{post.body}
-      if (post.author === null)
-        p user not found
-      else
-        p #{post.author.username} 
-      if post.comments.length > 0
-        a(href=`posts/${post._id}/comments`) 
-          p View all #{post.comments.length} comments 
-      else 
-        p No Comments
-      p #{post.likes} Likes
-      p #{post.timestamp}
-      if (post.author._id.toString() === user._id.toString())
-        a(href=`/posts/${post._id}/delete-post`) Delete Post
-        a(href=`/posts/${post._id}/edit-post`) Edit Post
-      - let likedUsers = JSON.stringify(post.liked_users)
-        - if (likedUsers.includes(user._id.toString()))
-          form(action=`/posts/${post._id}/unlike-post` method='POST')
-            div.form-group 
-              button.btn.btn-primary(type='submit') Unlike
-        - else 
-          form(action=`/posts/${post._id}/like-post` method='POST')
-            div.form-group 
-              button.btn.btn-primary(type='submit') Like This Post
-      a(href=`/posts/${post._id}/new-comment`) Comment
+      div.post-card.body
+        p.post-body #{post.body}
+        div.post-card.info
+          p #{post.author.username} 
+          p #{post.timestamp}
+          if post.comments.length > 0
+            a(href=`posts/${post._id}/comments`) 
+              p View all #{post.comments.length} comments 
+          else 
+            p No Comments
+          p #{post.likes} Likes
+          if (post.author._id.toString() === user._id.toString())
+            a(href=`/posts/${post._id}/delete-post`) Delete Post
+            a(href=`/posts/${post._id}/edit-post`) Edit Post
+          - let likedUsers = JSON.stringify(post.liked_users)
+            - if (likedUsers.includes(user._id.toString()))
+              form(action=`/posts/${post._id}/unlike-post` method='POST')
+                div.form-group 
+                  button.btn.btn-primary(type='submit') Unlike
+            - else 
+              form(action=`/posts/${post._id}/like-post` method='POST')
+                div.form-group 
+                  button.btn.btn-primary(type='submit') Like This Post
+          a(href=`/posts/${post._id}/new-comment`) Comment
   ul
     li
       a(href='/new-post') New Post
