@@ -81,3 +81,13 @@ fieldset {
 .post-edit-delete > a {
   color: red
 }
+
+.user-cards > p {
+  text-decoration: none;
+}
+
+.comment-layout {
+  border: 1px solid black;
+  margin-bottom: 10px;
+  padding: 5px;
+}
