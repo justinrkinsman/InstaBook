@@ -2,27 +2,23 @@ extends layout
 
 block content 
     a(href='/') Back to home page
-    h1 Sign Up Here
     p #{info}
     form(action="" method='POST')
         div.form-group 
             fieldset 
+                img.text-logo(src="https://see.fontimg.com/api/renderfont4/JRzmB/eyJyIjoiZnMiLCJoIjo1MywidyI6MTAwMCwiZnMiOjUzLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiIzgyOEMzMCIsInQiOjF9/SW5zdGFCb29r/brilliant-mastaka.png" alt="Instagram fonts")
+                h3.sign-up-text Sign up to see photos and videos from your friends.
                 div.field
-                    label(for='username') Username: 
-                    input#username.form-control(type='text', name='username')
+                    input#first_name.form-control(type='text', name='first_name', placeholder='First Name')
                 div.field
-                    label(for='first_name') First Name: 
-                    input#first_name.form-control(type='text', name='first_name')
+                    input#last_name.form-control(type='text', name='last_name', placeholder="Last Name")
                 div.field
-                    label(for='last_name') Last Name: 
-                    input#last_name.form-control(type='text', name='last_name')
+                    input#username.form-control(type='text', name='username', placeholder='Username')
                 div.field
-                    label(for='password') Password: 
-                    input#password.form-control(type='password', name='password')
+                    input#password.form-control(type='password', name='password', placeholder="Password")
                 div.field
-                    label(for='confirm_password') Confirm Password: 
-                    input#confirm_password.form-control(type='password', name='confirm_password') 
-                button.btn.btn-primary(type='submit') Submit
+                    input#confirm_password.form-control(type='password', name='confirm_password', placeholder="Confirm Password") 
+                button.btn.btn-primary(type='submit') Sign up
     if errors 
         ul 
             for error in errors 

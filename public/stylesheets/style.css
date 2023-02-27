@@ -33,6 +33,10 @@ body {
   padding: 20px;
 }
 
+.sign-up-text {
+  color: gray
+}
+
 a {
   color: #00B7FF;
 }
