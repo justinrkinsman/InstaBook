@@ -9,11 +9,28 @@ body {
   width: auto;
 }
 
-.login-screen {
+.login-screen, .login-form, .form-group {
   display: flex;
   flex-direction: column;
   justify-items: center;
-  align-items: flex-end;
+  align-items: center;
+}
+
+.form-group {
+  gap: 20px;
+}
+
+.form-group>fieldset {
+  flex: 1;
+  padding: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  padding: 20px;
 }
 
 a {
