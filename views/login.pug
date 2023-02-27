@@ -1,28 +1,30 @@
 extends layout
 
 block content
-    img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png")
-    img.text-logo(src="https://see.fontimg.com/api/renderfont4/lg58V/eyJyIjoiZnMiLCJoIjo1MywidyI6MTAwMCwiZnMiOjUzLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiIzgyOEMzMCIsInQiOjF9/SW5zdGFCb29r/baillesimpsondemo.png" alt="Instagram fonts")
-    h1 Login
-    form(action="" method='POST')
-        div.form-group 
-            fieldset 
-                div.field
-                    label(for='username') Username: 
-                    input#username.form-control(type='text', name='username')
-                div.field
-                    label(for='password') Password: 
-                    input#password.form-control(type='password', name='password')
-                button.btn.btn-primary(type='submit') Submit
-    if errors 
-        ul 
-            for error in errors 
-                li!= error.msg
-    h2 Not Signed Up: 
-    ul
-        a(href='/signup') 
-            li Sign Up
-        a(href='/')
-            li Sign in with Facebook (Coming soon...)
-        a(href='/guest_login') 
-            li Proceed as Guest
+    div.login-screen
+        img.text-logo(src="https://see.fontimg.com/api/renderfont4/JRzmB/eyJyIjoiZnMiLCJoIjo1MywidyI6MTAwMCwiZnMiOjUzLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiIzgyOEMzMCIsInQiOjF9/SW5zdGFCb29r/brilliant-mastaka.png" alt="Instagram fonts")
+        h1 Login
+        form(action="" method='POST')
+            div.form-group 
+                fieldset 
+                    div.field
+                        label(for='username') Username: 
+                        input#username.form-control(type='text', name='username')
+                    div.field
+                        label(for='password') Password: 
+                        input#password.form-control(type='password', name='password')
+                    button.btn.btn-primary(type='submit') Submit
+        if errors 
+            ul 
+                for error in errors 
+                    li!= error.msg
+        h2 Not Signed Up: 
+        ul
+            a(href='/signup') 
+                li Sign Up
+            a(href='/')
+                li Sign in with Facebook (Coming soon...)
+            a(href='/guest_login') 
+                li Proceed as Guest
+
+        <!--logo img tag: img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png")-->

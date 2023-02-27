@@ -1,12 +1,19 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: lightgray;
+  background-color: white;
 }
 
 .text-logo {
   height: 40px;
   width: auto;
+}
+
+.login-screen {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: flex-end;
 }
 
 a {
