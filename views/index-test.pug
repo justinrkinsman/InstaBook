@@ -52,12 +52,12 @@ block content
                                 img(src='icons/comment-outline.png')
                             img.icon(src='icons/send-outline.png')
                             img.icon(src='icons/bookmark-outline.png')
+                        p #{post.likes} Likes
                         if post.comments.length > 0
                             a(href=`posts/${post._id}/comments`) 
                             p View all #{post.comments.length} comments 
                         else 
                             p No Comments
-                        p #{post.likes} Likes
                 - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
                     div.post-card.body
                         div.post-card-poster
@@ -81,13 +81,13 @@ block content
                             a(href=`/posts/${post._id}/new-comment`)
                                 img(src='icons/comment-outline.png')
                             img.icon(src='icons/send-outline.png')
-                            img.icon(src='icons/bookmark-outline.png')
+                            //img.icon(src='icons/bookmark-outline.png')
+                        p #{post.likes} Likes
                         if post.comments.length > 0
                             a(href=`posts/${post._id}/comments`) 
                                 p View all #{post.comments.length} comments 
                         else 
-                            p No Comments
-                        p #{post.likes} Likes                                    
+                            p No Comments                                    
                             if (post.author._id.toString() === user._id.toString())
                                 div.post-edit-delete
                                     a(href=`/posts/${post._id}/delete-post`) Delete Post
