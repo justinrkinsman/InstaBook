@@ -80,6 +80,19 @@ a {
   padding: 5px;
 }
 
+.profile-header {
+  display: flex;
+}
+
+.profile-user-stats, .profile-posts {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-user-stats-name, .profile-user-stats-count  {
+  display: flex;
+}
+
 img {
   height: 200px;
   width: auto;
@@ -173,8 +186,13 @@ a>img{
   padding: 5px;
 }
 
-.user-post-layout {
+.profile-post-layout {
   margin-top: 10px;
-  border: 1px solid black;
   padding: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.profile-posts-grid {
+  border: 1px solid black;
 }

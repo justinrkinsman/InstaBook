@@ -9,32 +9,41 @@ each user_info in parsed
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
         block content
-            img(src='/icons/account-circle-outline.png')
-            h2 #{user_info.username}
-            p #{user_info.first_name} #{user_info.last_name}
-            p #{user_info.friends_list.current_friends.length} Friends
-            for friend in current_user.friends_list.current_friends 
-                if (user_info._id.toString() === friend.toString())
-                    p Friend 
-            for friend in current_user.friends_list.sent_requests
-                if (user_info._id.toString() === friend.toString())
-                    p Friend Request Pending
-            for friend in current_user.friends_list.received_requests    
-                if (user_info._id.toString() === friend.toString()) 
-                    form(action=`/users/${user_info._id}/accept-friend` method='POST')
-                        div.form-group 
-                            button.btn.btn-primary(type='submit') Accept Friend Request
-            - let friendStr = JSON.stringify(current_user.friends_list.current_friends)
-            - let receivedStr = JSON.stringify(current_user.friends_list.received_requests)
-            - let sentStr = JSON.stringify(current_user.friends_list.sent_requests)
-                - if (!(friendStr.includes(user_info._id.toString())) && !(receivedStr.includes(user_info._id.toString())) && !(sentStr.includes(user_info._id.toString())) && (current_user._id.toString() != user_info._id.toString()))
-                    form(action=`/users/${user_info._id}` method='POST')
-                        div.form-group 
-                            button.btn.btn-primary(type='submit') Add Friend
-            h2 Posts
-            - let postStr = JSON.stringify(posts)
-            - let postParsed = JSON.parse(postStr)
-                each post in postParsed 
-                    div.user-post-layout
-                        p #{post.body} 
-                        p #{post.timestamp}
+            div.profile-header
+                img(src='/icons/account-circle-outline.png')
+                div.profile-user-stats
+                    div.profile-user-stats-name
+                        h2 #{user_info.username}
+                        // create button here for editing profile if it is yours
+                    div.profile-user-stats-count 
+                        //p #{user_info.post_count} Posts  create field in Users database for post count 
+                        p #{user_info.friends_list.current_friends.length} Friends
+                    p #{user_info.first_name} #{user_info.last_name}
+                    //p #{user_info.bio} create field for Bio
+                for friend in current_user.friends_list.current_friends 
+                    if (user_info._id.toString() === friend.toString())
+                        p Friend 
+                for friend in current_user.friends_list.sent_requests
+                    if (user_info._id.toString() === friend.toString())
+                        p Friend Request Pending
+                for friend in current_user.friends_list.received_requests    
+                    if (user_info._id.toString() === friend.toString()) 
+                        form(action=`/users/${user_info._id}/accept-friend` method='POST')
+                            div.form-group 
+                                button.btn.btn-primary(type='submit') Accept Friend Request
+                - let friendStr = JSON.stringify(current_user.friends_list.current_friends)
+                - let receivedStr = JSON.stringify(current_user.friends_list.received_requests)
+                - let sentStr = JSON.stringify(current_user.friends_list.sent_requests)
+                    - if (!(friendStr.includes(user_info._id.toString())) && !(receivedStr.includes(user_info._id.toString())) && !(sentStr.includes(user_info._id.toString())) && (current_user._id.toString() != user_info._id.toString()))
+                        form(action=`/users/${user_info._id}` method='POST')
+                            div.form-group 
+                                button.btn.btn-primary(type='submit') Add Friend
+            div.profile-posts 
+                h2 Posts
+                div.profile-post-layout
+                    - let postStr = JSON.stringify(posts)
+                    - let postParsed = JSON.parse(postStr)
+                        each post in postParsed
+                            div.profile-posts-grid
+                                p #{post.body} 
+                                p #{post.timestamp}
