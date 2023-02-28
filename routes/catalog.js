@@ -33,9 +33,9 @@ router.get('/homepage', function(req, res, next) {
   .then(response => response.json())
   .then(data => {
     if (!req.user) {
-      return res.render('index-test.pug', { title: "InstaBook", posts: data, user: null })
+      return res.render('index.pug', { title: "InstaBook", posts: data, user: null })
     }else{
-      return res.render('index-test.pug', { title: "InstaBook", posts: data, user: req.user });
+      return res.render('index.pug', { title: "InstaBook", posts: data, user: req.user });
     }
   })
   //res.render('index.pug', {title: "InstaBook", user: req.user.first_name})
