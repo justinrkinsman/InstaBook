@@ -86,7 +86,7 @@ img {
 }
 
 button {
-  background-color: cornflowerblue;
+  background-color: white;
   border: 0px;
 }
 
@@ -113,6 +113,15 @@ fieldset {
 
 .post-body {
   font-size: 20px;
+}
+
+.post-card-poster {
+  display: flex;
+  align-items: center;
+}
+
+.post-card-poster>img {
+  height: 20px;
 }
 
 .post-card.info {
