@@ -4,6 +4,11 @@ body {
   background-color: white;
 }
 
+/*Add this to body 
+  padding: 0px;
+  margin: 0px;
+  border: 0px;*/
+
 .text-logo {
   height: 40px;
   width: auto;
@@ -45,6 +50,21 @@ body {
 
 .incorrect-password-notice {
   color: red;
+}
+
+.homepage-body {
+  padding: 0px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+/*delete this later */
+.homepage-left, .homepage-right {
+  background-color: grey;
+}
+
+.homepage-left {
+  border-right: 1px solid black
 }
 
 a {
