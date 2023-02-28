@@ -88,10 +88,10 @@ block content
                                 p View all #{post.comments.length} comments 
                         else 
                             p No Comments                                    
-                            if (post.author._id.toString() === user._id.toString())
-                                div.post-edit-delete
-                                    a(href=`/posts/${post._id}/delete-post`) Delete Post
-                                    a(href=`/posts/${post._id}/edit-post`) Edit Post
+                        if (post.author._id.toString() === user._id.toString())
+                            div.post-edit-delete
+                                a(href=`/posts/${post._id}/delete-post`) Delete Post
+                                a(href=`/posts/${post._id}/edit-post`) Edit Post
         div.homepage-right 
             // Add 'Users You Might Know' feature
             // a(href='/new-post') New Post
