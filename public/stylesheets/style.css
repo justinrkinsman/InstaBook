@@ -58,11 +58,6 @@ body {
   grid-template-columns: 1fr 2fr 1fr;
 }
 
-/*delete this later */
-.homepage-left, .homepage-right {
-  background-color: grey;
-}
-
 .homepage-left {
   border-right: 1px solid black
 }
