@@ -1,0 +1,85 @@
+extends layout
+
+block content
+    div.homepage-body   
+        div.homepage-left   
+            img.text-logo(src="https://see.fontimg.com/api/renderfont4/JRzmB/eyJyIjoiZnMiLCJoIjo1MywidyI6MTAwMCwiZnMiOjUzLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiIzgyOEMzMCIsInQiOjF9/SW5zdGFCb29r/brilliant-mastaka.png" alt="Instagram fonts")
+            div.homepage-left-link
+                img.icon(src="icons/home-outline.png")
+                p Home
+            div.homepage-left-link
+                img.icon(src='icons/magnify.png')
+                p Search
+            div.homepage-left-link  
+                img.icon(src='icons/send-outline.png')
+                p Messages
+            div.homepage-left-link  
+                img.icon(src='icons/heart-outline.png')
+                p Notifications
+            div.homepage-left-link  
+                img.icon(src='icons/plus-box-outline.png')
+                p Create
+            div.homepage-left-link  
+                img.icon(src='icons/account-circle-outline.png')
+                p Profile
+            a(href='/logout') Logout
+        div.homepage-center 
+            - let str = JSON.stringify(posts)
+            - let parsed = JSON.parse(str)
+            - let friendStr = JSON.stringify(user.friends_list.current_friends)
+            each post in parsed
+                - if (user.username.toString() === "guest_user")
+                    div.post-card.body
+                        p.post-body #{post.body}
+                        div.post-card-info
+                            div.post-author-timestamp
+                                a(href=`/user/${post.author._id}`) 
+                                    p #{post.author.username}
+                                p #{post.timestamp}
+                            if post.comments.length > 0
+                                a(href=`posts/${post._id}/comments`) 
+                                p View all #{post.comments.length} comments 
+                            else 
+                                p No Comments
+                            p #{post.likes} Likes
+                            - let likedUsers = JSON.stringify(post.liked_users)
+                                - if (likedUsers.includes(user._id.toString()))
+                                    form(action=`/posts/${post._id}/unlike-post` method='POST')
+                                        div.form-group 
+                                            button.btn.btn-primary(type='submit') Unlike
+                                - else 
+                                    form(action=`/posts/${post._id}/like-post` method='POST')
+                                        div.form-group 
+                                            button.btn.btn-primary(type='submit') Like This Post
+                            a(href=`/posts/${post._id}/new-comment`) Comment
+                - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
+                    div.post-card.body
+                        p.post-body #{post.body}
+                        div.post-card.info
+                            div.post-author-timestamp
+                                a(href=`/user/${post.author._id}`) 
+                                    p #{post.author.username}
+                                p #{post.timestamp}
+                            if post.comments.length > 0
+                                a(href=`posts/${post._id}/comments`) 
+                                    p View all #{post.comments.length} comments 
+                            else 
+                                p No Comments
+                            p #{post.likes} Likes
+                            - let likedUsers = JSON.stringify(post.liked_users)
+                                div.post-interaction
+                                    - if (likedUsers.includes(user._id.toString()))
+                                        form(action=`/posts/${post._id}/unlike-post` method='POST')
+                                            div.form-group 
+                                                button.btn.btn-primary(type='submit') Unlike
+                                    - else 
+                                        form(action=`/posts/${post._id}/like-post` method='POST')
+                                            div.form-group 
+                                                button.btn.btn-primary(type='submit') Like This Post
+                                    a(href=`/posts/${post._id}/new-comment`) Comment
+                                if (post.author._id.toString() === user._id.toString())
+                                    div.post-edit-delete
+                                        a(href=`/posts/${post._id}/delete-post`) Delete Post
+                                        a(href=`/posts/${post._id}/edit-post`) Edit Post
+        div.homepage-right 
+            p Right
