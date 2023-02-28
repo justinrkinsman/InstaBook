@@ -43,6 +43,10 @@ body {
   align-items: center;
 }
 
+.incorrect-password-notice {
+  color: red;
+}
+
 a {
   color: #00B7FF;
 }

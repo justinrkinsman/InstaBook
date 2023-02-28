@@ -2,20 +2,25 @@ extends layout
 
 block content 
 
-    h1 please log in
-    h2 Incorrect Username or Password
-    form(action='/login' method="POST")
-        div.failedLogin
-            label(for='username') Username: 
-            input#name.form-control(type='text' placeholder='username' name='username')
-            label(for='password') Password: 
-            input#password.form-control(type='password' name='password')
-            button Log in
-    h2 Not Signed Up: 
-    ul
-        a(href='/signup') 
-            li Sign Up
-        a(href='/')
-            li Sign in with Facebook
-        a(href='/') 
-            li Proceed as Guest
+    div.login-screen
+        form(action="" method='POST')
+            div.form-group 
+                fieldset.login-form
+                    img.text-logo(src="https://see.fontimg.com/api/renderfont4/JRzmB/eyJyIjoiZnMiLCJoIjo1MywidyI6MTAwMCwiZnMiOjUzLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiIzgyOEMzMCIsInQiOjF9/SW5zdGFCb29r/brilliant-mastaka.png" alt="Instagram fonts") 
+                    div.field
+                        input#username.form-control(type='text', name='username' placeholder='Username')
+                    div.field
+                        input#password.form-control(type='password', name='password' placeholder="Password")
+                    button.btn.btn-primary(type='submit') Log in
+                fieldset.sign-up-link
+                    p.incorrect-password-notice Sorry, your password was incorrect. Please
+                        br
+                        | double-check your password.
+                    p Don't have an account? 
+                        a(href='/signup') Sign Up
+        if errors 
+            ul 
+                for error in errors 
+                    li!= error.msg
+        
+        a(href='/guest_login') Proceed as Guest
