@@ -27,7 +27,7 @@ each user_info in parsed
             - let friendStr = JSON.stringify(current_user.friends_list.current_friends)
             - let receivedStr = JSON.stringify(current_user.friends_list.received_requests)
             - let sentStr = JSON.stringify(current_user.friends_list.sent_requests)
-                - if (!(friendStr.includes(user_info._id.toString())) && !(receivedStr.includes(user_info._id.toString())) && !(sentStr.includes(user_info._id.toString())))
+                - if (!(friendStr.includes(user_info._id.toString())) && !(receivedStr.includes(user_info._id.toString())) && !(sentStr.includes(user_info._id.toString())) && (current_user._id.toString() != user_info._id.toString()))
                     form(action=`/users/${user_info._id}` method='POST')
                         div.form-group 
                             button.btn.btn-primary(type='submit') Add Friend
