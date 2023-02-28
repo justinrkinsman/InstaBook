@@ -37,6 +37,12 @@ body {
   color: gray
 }
 
+.sign-up-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 a {
   color: #00B7FF;
 }
