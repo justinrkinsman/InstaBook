@@ -67,6 +67,15 @@ body {
   border-right: 1px solid black
 }
 
+.homepage-left-link {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  height: 25px;
+}
+
 a {
   color: #00B7FF;
 }
