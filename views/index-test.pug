@@ -37,12 +37,6 @@ block content
                             p #{post.timestamp}
                         p.post-body #{post.body}
                         div.post-card-info
-                            if post.comments.length > 0
-                                a(href=`posts/${post._id}/comments`) 
-                                p View all #{post.comments.length} comments 
-                            else 
-                                p No Comments
-                            p #{post.likes} Likes
                             - let likedUsers = JSON.stringify(post.liked_users)
                                 - if (likedUsers.includes(user._id.toString()))
                                     form(action=`/posts/${post._id}/unlike-post` method='POST')
@@ -54,6 +48,12 @@ block content
                                         div.form-group 
                                             button.btn.btn-primary(type='submit')
                                                 img.icon(src='icons/heart-outline.png')
+                            if post.comments.length > 0
+                                a(href=`posts/${post._id}/comments`) 
+                                p View all #{post.comments.length} comments 
+                            else 
+                                p No Comments
+                            p #{post.likes} Likes
                             a(href=`/posts/${post._id}/new-comment`) Comment
                 - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
                     div.post-card.body
@@ -64,24 +64,24 @@ block content
                             p #{post.timestamp}
                         p.post-body #{post.body}
                         div.post-card.info
+                            - let likedUsers = JSON.stringify(post.liked_users)
+                            - if (likedUsers.includes(user._id.toString()))
+                                form(action=`/posts/${post._id}/unlike-post` method='POST')
+                                    div.form-group 
+                                        button.btn.btn-primary(type='submit')
+                                            img.icon(src='icons/heart-outline.png')
+                            - else 
+                                form(action=`/posts/${post._id}/like-post` method='POST')
+                                    div.form-group 
+                                        button.btn.btn-primary(type='submit')
+                                            img.icon(src='icons/heart-outline.png')
                             if post.comments.length > 0
                                 a(href=`posts/${post._id}/comments`) 
                                     p View all #{post.comments.length} comments 
                             else 
                                 p No Comments
                             p #{post.likes} Likes
-                            - let likedUsers = JSON.stringify(post.liked_users)
                                 div.post-interaction
-                                    - if (likedUsers.includes(user._id.toString()))
-                                        form(action=`/posts/${post._id}/unlike-post` method='POST')
-                                            div.form-group 
-                                                button.btn.btn-primary(type='submit')
-                                                    img.icon(src='icons/heart-outline.png')
-                                    - else 
-                                        form(action=`/posts/${post._id}/like-post` method='POST')
-                                            div.form-group 
-                                                button.btn.btn-primary(type='submit')
-                                                    img.icon(src='icons/heart-outline.png')
                                     a(href=`/posts/${post._id}/new-comment`) Comment
                                 if (post.author._id.toString() === user._id.toString())
                                     div.post-edit-delete

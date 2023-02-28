@@ -120,10 +120,6 @@ fieldset {
   align-items: center;
 }
 
-.post-card-poster>img {
-  height: 20px;
-}
-
 .post-card.info {
   border: none;
   border-top: 1px solid black;
