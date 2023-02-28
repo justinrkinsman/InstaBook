@@ -36,7 +36,7 @@ block content
                                 p #{post.author.username}
                             p #{post.timestamp}
                         p.post-body #{post.body}
-                        div.post-card-info
+                        div.post-card-interaction
                             - let likedUsers = JSON.stringify(post.liked_users)
                                 - if (likedUsers.includes(user._id.toString()))
                                     form(action=`/posts/${post._id}/unlike-post` method='POST')
@@ -48,13 +48,15 @@ block content
                                         div.form-group 
                                             button.btn.btn-primary(type='submit')
                                                 img.icon(src='icons/heart-outline.png')
-                            if post.comments.length > 0
-                                a(href=`posts/${post._id}/comments`) 
-                                p View all #{post.comments.length} comments 
-                            else 
-                                p No Comments
-                            p #{post.likes} Likes
-                            a(href=`/posts/${post._id}/new-comment`) Comment
+                            a(href=`/posts/${post._id}/new-comment`)
+                                img(src='icons/comment-outline.png')
+                            img.icon(src='icons/send-outline.png')
+                        if post.comments.length > 0
+                            a(href=`posts/${post._id}/comments`) 
+                            p View all #{post.comments.length} comments 
+                        else 
+                            p No Comments
+                        p #{post.likes} Likes
                 - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
                     div.post-card.body
                         div.post-card-poster
@@ -63,7 +65,7 @@ block content
                                 p #{post.author.username}
                             p #{post.timestamp}
                         p.post-body #{post.body}
-                        div.post-card.info
+                        div.post-card-interaction
                             - let likedUsers = JSON.stringify(post.liked_users)
                             - if (likedUsers.includes(user._id.toString()))
                                 form(action=`/posts/${post._id}/unlike-post` method='POST')
@@ -75,17 +77,18 @@ block content
                                     div.form-group 
                                         button.btn.btn-primary(type='submit')
                                             img.icon(src='icons/heart-outline.png')
-                            if post.comments.length > 0
-                                a(href=`posts/${post._id}/comments`) 
-                                    p View all #{post.comments.length} comments 
-                            else 
-                                p No Comments
-                            p #{post.likes} Likes
-                                div.post-interaction
-                                    a(href=`/posts/${post._id}/new-comment`) Comment
-                                if (post.author._id.toString() === user._id.toString())
-                                    div.post-edit-delete
-                                        a(href=`/posts/${post._id}/delete-post`) Delete Post
-                                        a(href=`/posts/${post._id}/edit-post`) Edit Post
+                            a(href=`/posts/${post._id}/new-comment`)
+                                img(src='icons/comment-outline.png')
+                            img.icon(src='icons/send-outline.png')
+                        if post.comments.length > 0
+                            a(href=`posts/${post._id}/comments`) 
+                                p View all #{post.comments.length} comments 
+                        else 
+                            p No Comments
+                        p #{post.likes} Likes                                    
+                            if (post.author._id.toString() === user._id.toString())
+                                div.post-edit-delete
+                                    a(href=`/posts/${post._id}/delete-post`) Delete Post
+                                    a(href=`/posts/${post._id}/edit-post`) Edit Post
         div.homepage-right 
             // Add 'Users You Might Know' feature
