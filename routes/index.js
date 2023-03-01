@@ -57,7 +57,7 @@ router.get('/api/users', (req, res) => {
 router.get('/api/user/:id', async (req, res) => {
     const data = {}
     await User.find({_id: req.params.id}).then((found_user) => {data[0] = found_user})
-    await Post.find({author: req.params.id}).then((found_posts) => {data[1] = found_posts})
+    await Post.find({author: req.params.id}).sort({db_timestamp: -1}).then((found_posts) => {data[1] = found_posts})
     res.json(data)
 })
 
