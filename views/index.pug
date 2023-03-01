@@ -35,7 +35,8 @@ block content
                 - if (user.username.toString() === "guest_user")
                     div.post-card.body
                         div.post-card-poster
-                            img.icon(src='icons/account-circle-outline.png')
+                            a.username-link(href=`/user/${post.author._id}`)
+                                img.icon(src='icons/account-circle-outline.png')
                             a(href=`/user/${post.author._id}`) 
                                 p #{post.author.username}
                             p #{post.timestamp}
@@ -45,12 +46,12 @@ block content
                                 - if (likedUsers.includes(user._id.toString()))
                                     form(action=`/posts/${post._id}/unlike-post` method='POST')
                                         div.form-group 
-                                            button.btn.btn-primary(type='submit')
+                                            button.btn.btn-primary.heart-button(type='submit')
                                                 img.icon(src='icons/heart-outline.png')
                                 - else 
                                     form(action=`/posts/${post._id}/like-post` method='POST')
                                         div.form-group 
-                                            button.btn.btn-primary(type='submit')
+                                            button.btn.btn-primary.heart-button(type='submit')
                                                 img.icon(src='icons/heart-outline.png')
                             a(href=`/posts/${post._id}/new-comment`)
                                 img(src='icons/comment-outline.png')
@@ -65,8 +66,9 @@ block content
                 - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
                     div.post-card.body
                         div.post-card-poster
-                            img.icon(src='icons/account-circle-outline.png')
-                            a(href=`/user/${post.author._id}`) 
+                            a.username-link(href=`/user/${post.author._id}`)
+                                img.icon(src='icons/account-circle-outline.png')
+                            a.username-link(href=`/user/${post.author._id}`) 
                                 p #{post.author.username}
                             p #{post.timestamp}
                         p.post-body #{post.body}
@@ -75,12 +77,12 @@ block content
                             - if (likedUsers.includes(user._id.toString()))
                                 form(action=`/posts/${post._id}/unlike-post` method='POST')
                                     div.form-group 
-                                        button.btn.btn-primary(type='submit')
+                                        button.btn.btn-primary.heart-button(type='submit')
                                             img.icon(src='icons/heart-outline.png')
                             - else 
                                 form(action=`/posts/${post._id}/like-post` method='POST')
                                     div.form-group 
-                                        button.btn.btn-primary(type='submit')
+                                        button.btn.btn-primary.heart-button(type='submit')
                                             img.icon(src='icons/heart-outline.png')
                             a(href=`/posts/${post._id}/new-comment`)
                                 img(src='icons/comment-outline.png')

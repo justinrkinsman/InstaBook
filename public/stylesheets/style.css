@@ -87,7 +87,7 @@ body {
 }
 
 .homepage-left {
-  border-right: 1px solid rgba(0, 0, 0, .3);;
+  border-right: 1px solid rgba(0, 0, 0, .3);
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 200px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -192,8 +192,8 @@ fieldset {
 }
 
 .post-card {
-  border: 1px solid black;
   padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, .3);
 }
 
 .post-body {
@@ -203,11 +203,27 @@ fieldset {
 .post-card-poster {
   display: flex;
   align-items: center;
+  gap: 5px;
 }
 
 .post-card-interaction {
   display: flex;
-  
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.heart-button {
+  padding: 0px;
+}
+
+.comment-icon {
+  height: 300px;
+}
+
+.username-link {
+  text-decoration: none;
+  color: black;
 }
 
 a>img{
