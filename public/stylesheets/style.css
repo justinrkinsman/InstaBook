@@ -83,11 +83,11 @@ body {
   padding: 0px;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  margin-left: 250px;
+  margin-left: 300px;
 }
 
 .homepage-left {
-  border-right: 1px solid black;
+  border-right: 1px solid rgba(0, 0, 0, .3);;
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 200px; /* Set the width of the sidebar */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -95,7 +95,18 @@ body {
   top: 0; /* Stay at the top */
   left: 0;
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+  padding-top: 35px;
+  padding-left: 20px;
+  padding-right: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.homepage-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .homepage-center {
@@ -112,6 +123,20 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.homepage-left-link>img {
+  height: 30px;
+}
+
+.homepage-left-link>a, .logout-link {
+  font-size: 20px;
+  text-decoration: none;
+  color: black
+}
+
+a>.icon {
+  height: 30px;
 }
 
 .icon {
