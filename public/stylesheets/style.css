@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: white;
 }
@@ -82,16 +82,21 @@ body {
 .homepage-body {
   padding: 0px;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 2fr 1fr;
+  margin-left: 200px;
 }
 
 .homepage-left {
-  border-right: 1px solid black
+  border-right: 1px solid black;
+  position: fixed;
+  left: 0;
+  height: 100%;
 }
 
 .homepage-left-link {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .icon {
