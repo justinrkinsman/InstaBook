@@ -2,6 +2,7 @@ extends layout
 
 block content
     div.login-screen
+        img.insta-screenshot(src='images/insta_screenshot.png')
         form(action="" method='POST')
             div.form-group 
                 fieldset.login-form
@@ -10,15 +11,16 @@ block content
                         input#username.form-control(type='text', name='username' placeholder='Username')
                     div.field
                         input#password.form-control(type='password', name='password' placeholder="Password")
-                    button.btn.btn-primary(type='submit') Log in
+                    button.btn.btn-primary.login-btn(type='submit') Log in
                 fieldset.sign-up-link
                     p Don't have an account? 
                         a(href='/signup') Sign Up
-        if errors 
-            ul 
-                for error in errors 
-                    li!= error.msg
+                a(href='/guest_login') Proceed as Guest
+            if errors 
+                ul 
+                    for error in errors 
+                        li!= error.msg
         
-        a(href='/guest_login') Proceed as Guest
+        
 
         <!--logo img tag: img(src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png")-->

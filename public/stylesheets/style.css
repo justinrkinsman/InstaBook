@@ -14,11 +14,38 @@ body {
   width: auto;
 }
 
-.login-screen, .login-form, .form-group {
+.login-form, .form-group {
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
+}
+
+.failed-login-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-screen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.login-btn {
+  background-color: cornflowerblue;
+}
+
+.sign-up-btn {
+  background-color: cornflowerblue;
+}
+
+.insta-screenshot {
+  height: 500px;
 }
 
 .form-group {
