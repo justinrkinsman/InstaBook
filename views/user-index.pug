@@ -2,7 +2,6 @@ extends layout
 
 block content 
     a(href='/') Back to home page
-    p Welcome, #{current_user.username}
     h1 Users
     - let str = JSON.stringify(users)
     - let parsed = JSON.parse(str)
