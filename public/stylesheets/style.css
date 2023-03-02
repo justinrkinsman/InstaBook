@@ -242,6 +242,7 @@ fieldset {
 
 .heart-button {
   padding: 0px;
+  cursor: pointer;
 }
 
 .comment-icon {
