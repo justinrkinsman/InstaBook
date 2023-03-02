@@ -362,3 +362,11 @@ a>img{
 .post-content {
   border-bottom: 1px solid rgba(0, 0, 0, .3)
 }
+
+.new-post-form {
+  border-top: 1px solid rgba(0, 0, 0, .3)
+}
+
+.comment-interaction {
+  border-top: 1px solid rgba(0, 0, 0, .3)
+}
