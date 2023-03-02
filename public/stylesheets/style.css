@@ -317,3 +317,44 @@ a>img{
 .profile-posts-grid {
   border: 1px solid black;
 }
+
+.new-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-post-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.cancel-new-post {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-right: 10px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, .5)
+}
+
+.new-post-header {
+  border-bottom: 1px solid rgba(0, 0, 0, .3);
+  font-weight: normal;
+  font-size: 25px;
+}
+
+.new-post-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-post-submit {
+  background: cornflowerblue;
+}
