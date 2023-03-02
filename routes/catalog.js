@@ -175,7 +175,7 @@ router.get('/posts/:id/new-comment', (req, res, next) => {
     fetch(requestUrl)
     .then(response => response.json())
     .then(async data => {
-      return res.render('new-comment.pug', {title: "New Comment", comments: data[1], post: data[0], current_user: req.user})
+      return res.render('new-comment.pug', {title: "New Comment", comments: data[1], posts: data[0], current_user: req.user})
     })
 })
 

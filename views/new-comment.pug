@@ -2,7 +2,19 @@ extends layout
 
 block content 
 
-    h1 Add Comment 
+    - let str = JSON.stringify(posts)
+    - let parsedStr = JSON.parse(str)
+    each post in parsedStr
+        a(href='/') X
+        fieldset 
+            //user icon and user name div.somethingorother
+                a(href='/)
+                p #{post.author.username}
+            h1 #{post.body}
+            - let commentStr = JSON.stringify(comments)
+            - let parsedComment = JSON.parse(commentStr)
+            each comment in parsedComment 
+                p #{comment.body}
     form(action='' method='POST' id='new-comment-form')
         div.form-group 
             label(for='comment') Enter Comment: 
