@@ -7,14 +7,31 @@ block content
     each post in parsedStr
         a(href='/') X
         fieldset 
-            //user icon and user name div.somethingorother
-                a(href='/)
+            h1.post-content #{post.body}
+            div.comment-user
+                a(href='/')
+                    img.icon(src='/icons/account-circle-outline.png')
                 p #{post.author.username}
-            h1 #{post.body}
             - let commentStr = JSON.stringify(comments)
             - let parsedComment = JSON.parse(commentStr)
             each comment in parsedComment 
-                p #{comment.body}
+                div.commenter-info
+                    a(href='/')
+                        img.icon(src='/icons/account-circle-outline.png')
+                    p #{comment.user.username}
+                    p #{comment.body}
+            - let likedUsers = JSON.stringify(post.liked_users)
+                - if (likedUsers.includes(current_user._id.toString()))
+                    form(action=`/posts/${post._id}/unlike-post` method='POST')
+                        div.form-group 
+                            button.btn.btn-primary.heart-button(type='submit')
+                                img.icon(src='/icons/heart-outline.png')
+                - else 
+                    form(action=`/posts/${post._id}/like-post` method='POST')
+                        div.form-group 
+                            button.btn.btn-primary.heart-button(type='submit')
+                                img.icon(src='/icons/heart-outline.png')
+            p #{post.likes} Likes
     form(action='' method='POST' id='new-comment-form')
         div.form-group 
             label(for='comment') Enter Comment: 

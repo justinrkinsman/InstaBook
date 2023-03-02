@@ -358,3 +358,7 @@ a>img{
 .new-post-submit {
   background: cornflowerblue;
 }
+
+.post-content {
+  border-bottom: 1px solid rgba(0, 0, 0, .3)
+}

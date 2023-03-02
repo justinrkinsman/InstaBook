@@ -115,7 +115,7 @@ router.post('/posts/:id/like-post', (req, res, next) => {
   .catch((error) => {
     console.log('Error', error)
   })
-  res.redirect('/')
+  res.redirect('back')
 })
 
 /* POST unlike post */
@@ -134,7 +134,7 @@ router.post('/posts/:id/unlike-post', (req, res, next) => {
   .catch((error) => {
     console.log('Error', error)
   })
-  res.redirect('/')
+  res.redirect('back')
 })
 
 /* GET delete post page */
