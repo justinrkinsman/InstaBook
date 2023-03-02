@@ -370,3 +370,11 @@ a>img{
 .comment-interaction {
   border-top: 1px solid rgba(0, 0, 0, .3)
 }
+
+.commenter-info:hover {
+  background-color: rgba(0, 0, 0, .05);
+}
+
+.post-new-comment-btn {
+  background-color: cornflowerblue;
+}

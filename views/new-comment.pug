@@ -36,9 +36,8 @@ block content
             p #{post.timestamp}
             form.new-post-form(action='' method='POST' id='new-comment-form')
                 div.form-group 
-                    label(for='comment') Enter Comment: 
-                    textarea#comment.form-control(type='text', maxlength=100 name='comment' )
-                button.btn.btn-primary(type='submit' ) Post
+                    textarea#comment.form-control(type='text', maxlength=100 name='comment' placeholder='Add a comment...')
+                button.btn.btn-primary.post-new-comment-btn(type='submit' ) Post
             if errors 
                 ul 
                     for error in errors 
