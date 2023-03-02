@@ -170,27 +170,27 @@ router.post('/posts/:id/delete-post', (req, res, next) => {
   res.render('new-comment.pug', {title: 'New Comment'})
 })*/
 
-router.get('/posts/:id/new-comment', (req, res, next) => {
-  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/new-comment`
+router.get('/posts/:id/comments', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/comments`
     fetch(requestUrl)
     .then(response => response.json())
     .then(async data => {
-      return res.render('new-comment.pug', {title: "New Comment", comments: data[1], posts: data[0], current_user: req.user})
+      return res.render('comments.pug', {title: "New Comment", comments: data[1], posts: data[0], current_user: req.user})
     })
 })
 
 /* GET all comments for post */
-router.get('/posts/:id/comments', (req, res, next) => {
+/*router.get('/posts/:id/comments', (req, res, next) => {
   const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/comments`
     fetch(requestUrl)
     .then(response => response.json())
     .then(async data => {
         return res.render('comments.pug', {title: "Comments", comments: data, current_user: req.user})
     })
-})
+})*/
 
 /* POST comment page */
-router.post('/posts/:id/new-comment', (req, res, next) => {
+router.post('/posts/:id/comments', (req, res, next) => {
   const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/comments`
   fetch(requestUrl, {
     method: 'POST',

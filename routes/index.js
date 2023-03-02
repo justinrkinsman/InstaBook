@@ -37,15 +37,15 @@ router.get('/api/posts/:id/delete-post', (req, res) => {
 })
 
 // GET comments list for post
-router.get('/api/posts/:id/comments', (req, res) => {
+/*router.get('/api/posts/:id/comments', (req, res) => {
     Comment.find({post: req.params.id})
     .sort({db_timestamp: -1})
     .populate('user')
     .populate('post')
     .then((found_comments) => {res.json(found_comments)})
-})
+})*/
 
-router.get('/api/posts/:id/new-comment', async (req, res) => {
+router.get('/api/posts/:id/comments', async (req, res) => {
     const data = {}
     await Post.find({_id: req.params.id}).populate('author').then((post_count) => {data[0] = post_count})
     await Comment.find({post: req.params.id}).sort({db_timestamp: -1}).populate('user').then((comment_count) => {data[1] = comment_count})

@@ -1,21 +1,44 @@
 extends layout 
 
-block content   
+block content 
 
-    h1 Comments
-    - let str = JSON.stringify(comments)
-    - let parsed = JSON.parse(str)
-    if parsed.length > 0
-        a(href=`/`)
-            p Go Back
-        each comment in parsed
-            div.comment-layout
-                p #{comment.body}
-                p #{comment.timestamp}
-                p #{comment.user.username}
-                if (comment.user._id.toString() === current_user._id.toString())
-                    a(href=`/comment/${comment._id}/edit-comment`) Edit Comment 
-                if ((comment.user._id.toString() === current_user._id.toString()) || comment.post.author.toString() === current_user._id.toString() )
-                    a(href=`/posts/${comment.post._id}/comment/${comment._id}/delete-comment`) Delete Comment
-    else
-        p No Comments
+    - let str = JSON.stringify(posts)
+    - let parsedStr = JSON.parse(str)
+    each post in parsedStr
+        a(href='/') X
+        fieldset 
+            h1.post-content #{post.body}
+            div.comment-user
+                a(href='/')
+                    img.icon(src='/icons/account-circle-outline.png')
+                p #{post.author.username}
+            - let commentStr = JSON.stringify(comments)
+            - let parsedComment = JSON.parse(commentStr)
+            each comment in parsedComment 
+                div.commenter-info
+                    a(href='/')
+                        img.icon(src='/icons/account-circle-outline.png')
+                    p #{comment.user.username}
+                    p #{comment.body}
+            div.comment-interaction
+                - let likedUsers = JSON.stringify(post.liked_users)
+                    - if (likedUsers.includes(current_user._id.toString()))
+                        form(action=`/posts/${post._id}/unlike-post` method='POST')
+                            div.form-group 
+                                button.btn.btn-primary.heart-button(type='submit')
+                                    img.icon(src='/icons/heart-outline.png')
+                    - else 
+                        form(action=`/posts/${post._id}/like-post` method='POST')
+                            div.form-group 
+                                button.btn.btn-primary.heart-button(type='submit')
+                                    img.icon(src='/icons/heart-outline.png')
+            p #{post.likes} Likes
+            p #{post.timestamp}
+            form.new-post-form(action='' method='POST' id='new-comment-form')
+                div.form-group 
+                    textarea#comment.form-control(type='text', maxlength=100 name='comment' placeholder='Add a comment...')
+                button.btn.btn-primary.post-new-comment-btn(type='submit' ) Post
+            if errors 
+                ul 
+                    for error in errors 
+                        li!= error.msg
