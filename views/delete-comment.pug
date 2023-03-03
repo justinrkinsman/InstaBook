@@ -14,8 +14,8 @@ block content
                     p #{comment.timestamp} 
                     p #{comment.user}
             div.delete-confirmation
-                form(action='' method='POST' id='delete-comment-form')
+                form.delete-confirmation(action='' method='POST' id='delete-comment-form')
                     div.form-group 
-                        button.btn.btn-primary(type='submit') Delete
+                        button.btn.btn-primary.delete-confirmation-button.delete-button(type='submit') Delete
                     a(href='/')
                         button.delete-confirmation-button Cancel
