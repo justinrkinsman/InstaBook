@@ -454,6 +454,7 @@ a>img{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 20px;
   height: 40vh;
   width: 30vw;
 }
