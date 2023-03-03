@@ -320,7 +320,7 @@ a>img{
   border: 1px solid black;
 }
 
-.new-post {
+.new-post, .edit-post {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -330,7 +330,7 @@ a>img{
   width: 30vw;
 }
 
-.new-post-page {
+.new-post-page, .edit-post-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -339,7 +339,7 @@ a>img{
   background-color:rgba(0, 0, 0, .1)
 }
 
-.cancel-new-post {
+.cancel-new-post, .cancel-edit-post {
   position: fixed;
   top: 0;
   right: 0;
@@ -348,20 +348,20 @@ a>img{
   color: rgba(0, 0, 0, .5)
 }
 
-.new-post-header {
+.new-post-header, .edit-post-header {
   border-bottom: 1px solid rgba(0, 0, 0, .3);
   font-weight: normal;
   font-size: 25px;
 }
 
-.new-post-form {
+.new-post-form, .edit-post-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.new-post-submit {
+.new-post-submit, .edit-post-submit {
   background: cornflowerblue;
 }
 
