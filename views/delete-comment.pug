@@ -2,8 +2,8 @@ extends layout
 
 block content 
     div.delete-comment-page 
-        a.cancel-edit-post(href=`/posts/`) X 
-        fieldset.delete-comment-form
+        a.cancel-delete-comment(href=`/posts/`) X 
+        div.delete-comment-form
             h1 Delete?
             h3 Are you sure to want to delete?
             - let str = JSON.stringify(comments)
@@ -13,7 +13,9 @@ block content
                     p #{comment.body} 
                     p #{comment.timestamp} 
                     p #{comment.user}
-            form(action='' method='POST' id='delete-comment-form')
-                div.form-group 
-                    button.btn.btn-primary(type='submit') Delete
-                a(href='/') Cancel
+            div.delete-confirmation
+                form(action='' method='POST' id='delete-comment-form')
+                    div.form-group 
+                        button.btn.btn-primary(type='submit') Delete
+                    a(href='/')
+                        button.delete-confirmation-button Cancel

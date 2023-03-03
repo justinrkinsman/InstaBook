@@ -372,7 +372,7 @@ a>img{
   background-color:rgba(0, 0, 0, .1)
 }
 
-.cancel-new-post, .cancel-edit-post {
+.cancel-new-post, .cancel-edit-post, .cancel-delete-comment {
   position: fixed;
   top: 0;
   right: 0;
@@ -448,7 +448,7 @@ a>img{
   background-color: rgba(0, 0, 0, .1);
 }
 
-.delete-post-form {
+.delete-post-form, .delete-comment-form {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -477,7 +477,7 @@ a>img{
   color: rgb(211, 5, 5)
 }
 
-.edit-comment-page {
+.edit-comment-page, .delete-comment-page {
   background-color: rgba(0, 0, 0, .1);
   height: 100vh;
   display: flex;
@@ -504,4 +504,12 @@ a>img{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.delete-comment-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
