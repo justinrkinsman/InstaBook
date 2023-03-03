@@ -38,12 +38,15 @@ each friend in parsed
                         a.logout-link(href='/logout') Logout
                 div.user-page-right    
                     div.profile-header
-                        img(src='/icons/account-circle-outline.png')
+                        a(href=`/user/${friend._id}`)
+                            img.friends-list-user-profile-pic(src='/icons/account-circle-outline.png')
                         div.profile-user-stats
                             div.profile-user-stats-name
-                                h2 #{friend.username}
+                                a.friends-list-user(href=`/user/${friend._id}`)
+                                    h2 #{friend.username}
                                 // create button here for editing profile if it is yours
-                            p #{friend.first_name} #{friend.last_name}
+                            a.friends-list-user(href=`/user/${friend._id}`)
+                                p #{friend.first_name} #{friend.last_name}
                             div.profile-user-stats-count 
                                 //p #{friend.post_count} Posts  create field in Users database for post count 
                                 a(href=`/users/${friend._id}/friends`) #{friend.friends_list.current_friends.length} Friends
