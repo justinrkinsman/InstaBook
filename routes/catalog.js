@@ -303,7 +303,7 @@ router.post('/posts/:id/edit-post', (req, res) => {
 })
 
 /* GET edit comment page */
-router.get('/comment/:id/edit-comment', (req, res) => {
+router.get('/posts/:postId/comment/:id/edit-comment', (req, res) => {
   const requestUrl = `http://localhost:3000/api/comment/${req.params.id}/edit-comment`
   fetch(requestUrl)
   .then(response => response.json())
@@ -313,7 +313,7 @@ router.get('/comment/:id/edit-comment', (req, res) => {
 })
 
 /* POST edit comment page */
-router.post(`/comment/:id/edit-comment`, (req, res) => {
+router.post(`/posts/:postId/comment/:id/edit-comment`, (req, res) => {
   const requestUrl = `http://localhost:3000/api/comment/${req.params.id}/edit-comment`
   fetch(requestUrl, {
     method: 'PUT',
@@ -327,7 +327,7 @@ router.post(`/comment/:id/edit-comment`, (req, res) => {
   .catch((error) => {
     console.log('Error', error)
   })
-  res.redirect('/')
+  res.redirect(`/posts/${req.params.postId}/comments`)
 })
 
 /* GET delete comment page */
@@ -355,7 +355,7 @@ router.post('/posts/:postId/comment/:id/delete-comment', (req, res, next) => {
   .catch((error) => {
     console.log('Error', error)
   })
-  res.redirect('/')
+  res.redirect(`/posts/${req.params.postId}/comments`)
 })
 
 /*router.post('/photos', upload.single('image'), (req, res, next) => {
