@@ -159,7 +159,7 @@ a {
   justify-content: center;
   gap: 50px;
   border-bottom: 1px solid rgba(0, 0, 0, .3);
-  width: 100%
+  width: 95%
 }
 
 .profile-user-stats, .profile-posts {
@@ -170,7 +170,8 @@ a {
 .profile-posts {
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 95%;
+  padding-right: 20px;
 }
 
 .profile-user-stats-name, .profile-user-stats-count  {
