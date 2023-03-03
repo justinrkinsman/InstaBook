@@ -95,6 +95,14 @@ router.get('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
     })
 })*/
 
+// GET friends list page
+router.get('/api/users/:userId/friends', (req, res) => {
+    User.find({_id: req.params.userId})
+    .populate('friends_list.current_friends')
+    .sort({'title': 1})
+    .then((found_users) => {res.json(found_users)})
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {

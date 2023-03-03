@@ -46,7 +46,7 @@ each user_info in parsed
                             p #{user_info.first_name} #{user_info.last_name}
                             div.profile-user-stats-count 
                                 //p #{user_info.post_count} Posts  create field in Users database for post count 
-                                p #{user_info.friends_list.current_friends.length} Friends
+                                a(href=`/users/${user_info._id}/friends`) #{user_info.friends_list.current_friends.length} Friends
                             //p #{user_info.bio} create field for Bio
                             for friend in current_user.friends_list.current_friends 
                                 if (user_info._id.toString() === friend.toString())

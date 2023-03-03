@@ -378,4 +378,13 @@ router.post('/posts/:postId/comment/:id/delete-comment', (req, res, next) => {
   })
 })*/
 
+router.get('/users/:userId/friends', (req, res) => {
+  const requestUrl = `http://localhost:3000/api/users/${req.params.userId}/friends`
+  fetch(requestUrl)
+    .then(response => response.json())
+    .then(data => {
+      res.render('friend_list.pug', {title: `${req.params.userId} Friends`, friends: data})
+    })
+})
+
 module.exports = router;
