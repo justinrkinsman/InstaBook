@@ -2,12 +2,12 @@ extends layout
 
 block content   
     div.edit-comment-page
-        a.cancel-edit-post(href='/') X
         fieldset.edit-comment-form
             h1 Edit Comment 
             - let str = JSON.stringify(comment)
             - let parsed = JSON.parse(str)
             each comment in parsed
+                a.cancel-edit-post(href=`/posts/${comment.post}/comments`) X
                 form.submit-comment-form(action='' method='POST' id='edit-comment-form')
                     textarea#comment_body.form-control.edit-comment-body(type='text', name='body' rows='8')
                         | #{comment.body}
