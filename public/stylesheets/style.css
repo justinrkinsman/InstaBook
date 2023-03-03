@@ -384,3 +384,41 @@ a>img{
 .post-new-comment-btn {
   background-color: cornflowerblue;
 }
+
+.delete-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.delete-post-form {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  width: 30vw;
+}
+
+.delete-post-header {
+  border-bottom: 1px solid rgba(0, 0, 0, .3);
+}
+
+.delete-confirmation {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.delete-confirmation-button {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.delete-button {
+  color: rgb(211, 5, 5)
+}
