@@ -32,9 +32,9 @@ each user_info in parsed
                                 img.icon(src='/icons/plus-box-outline.png')
                             a(href='/new-post') Create
                         div.homepage-left-link  
-                            a(href=`/user/${user._id}`)
+                            a(href=`/user/${user_info._id}`)
                                 img.icon(src='/icons/account-circle-outline.png')
-                            a(href=`/user/${user._id}`) Profile
+                            a(href=`/user/${user_info._id}`) Profile
                         a.logout-link(href='/logout') Logout
                 div.user-page-right    
                     div.profile-header
