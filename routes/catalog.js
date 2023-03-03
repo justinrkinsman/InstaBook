@@ -379,7 +379,7 @@ router.get('/users/:userId/friends', (req, res) => {
   fetch(requestUrl)
     .then(response => response.json())
     .then(data => {
-      res.render('friend_list.pug', {title: `${req.params.userId} Friends`, friends: data})
+      res.render('friend_list.pug', {title: `${req.params.userId} Friends`, friends: data, current_user: req.user})
     })
 })
 
