@@ -1,5 +1,7 @@
 body {
   padding: 0px;
+  margin: 0px;
+  border: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: white;
 }
@@ -323,6 +325,9 @@ a>img{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  height: 40vh;
+  width: 30vw;
 }
 
 .new-post-page {
@@ -330,7 +335,8 @@ a>img{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  height: 100vh;
+  background-color:rgba(0, 0, 0, .1)
 }
 
 .cancel-new-post {

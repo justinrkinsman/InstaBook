@@ -9,7 +9,7 @@ block content
             h1.new-post-header Create New Post 
             form.new-post-form(action='/new-post' method='POST' id='new-post-form')
                 div.form-group
-                    textarea#post_body.form-control(type='text', placeholder='Your post text here' name='post_body')
+                    textarea#post-body-form.form-control(type='text', placeholder='Your post text here' name='post_body' rows='8')
                 button.btn.btn-primary.new-post-submit(type='submit') Submit
             if errors 
                 ul 
