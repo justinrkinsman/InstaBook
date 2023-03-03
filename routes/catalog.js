@@ -199,7 +199,7 @@ router.post('/posts/:id/comments', (req, res, next) => {
   })
   .then(response => response.json())
   .then(data => {
-    return res.redirect('/')
+    return res.redirect('back')
   })
 })
 
