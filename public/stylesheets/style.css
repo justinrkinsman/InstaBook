@@ -535,3 +535,11 @@ a>img{
   align-items: center;
   gap: 10px;
 }
+
+.friend-list-card-name {
+  color: black;
+}
+
+.friends-list-cards>a {
+  text-decoration: none;
+}

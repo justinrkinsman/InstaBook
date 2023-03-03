@@ -53,7 +53,9 @@ each friend in parsed
                         div.friends-list-grid
                             each user in friend.friends_list.current_friends                        
                                 div.friends-list-cards
-                                    img.friend-profile(src='/icons/account-circle-outline.png')
-                                    div.friend-list-card-name
-                                        h3 #{user.username} 
-                                        p #{user.first_name} #{user.last_name}
+                                    a(href=`/user/${user._id}`)
+                                        img.friend-profile(src='/icons/account-circle-outline.png')
+                                    a(href=`/user/${user._id}`)
+                                        div.friend-list-card-name
+                                            h3 #{user.username} 
+                                            p #{user.first_name} #{user.last_name}
