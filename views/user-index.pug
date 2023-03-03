@@ -29,7 +29,6 @@ block content
                     a(href=`/user/${current_user._id}`) Profile
                 a.logout-link(href='/logout') Logout
         div.user-index-midpage
-            a(href='/') X
             h1 Search Users
             - let str = JSON.stringify(users)
             - let parsed = JSON.parse(str)
