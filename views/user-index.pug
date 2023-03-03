@@ -2,30 +2,33 @@ extends layout
 
 block content 
     div.user-index-page
-        a(href='/') X
-        h1 Search Users
-        - let str = JSON.stringify(users)
-        - let parsed = JSON.parse(str)
-        each user in parsed 
-            div(class='user-cards')
-                a.user-link(href=`/user/${user._id}`)
-                    h3 #{user.last_name}, #{user.first_name} 
-                    p #{user.username} 
-                div.user-friend-stats
-                    for friend in current_user.friends_list.current_friends 
-                        if (user._id.toString() === friend.toString())
-                            p Friend 
-                    for friend in current_user.friends_list.sent_requests
-                        if (user._id.toString() === friend.toString())
-                            p Friend Request Pending
-                    for friend in current_user.friends_list.received_requests    
-                        if (user._id.toString() === friend.toString()) 
-                            form(action=`/users/${user._id}/accept-friend` method='POST')
-                                button.btn.btn-primary.accept-friend-request-button(type='submit') Accept Friend Request
-                    - let friendStr = JSON.stringify(current_user.friends_list.current_friends)
-                    - let receivedStr = JSON.stringify(current_user.friends_list.received_requests)
-                    - let sentStr = JSON.stringify(current_user.friends_list.sent_requests)
-                        - if (!(friendStr.includes(user._id.toString())) && !(receivedStr.includes(user._id.toString())) && !(sentStr.includes(user._id.toString())) && current_user._id.toString() !== user._id.toString())
-                            form(action=`/users/${user._id}` method='POST')
-                                button.btn.btn-primary.add-friend-button(type='submit') Add Friend
-                    p #{user.friends_list.current_friends.length} Friends
+        div.homepage-left   
+            
+        div.user-index-midpage
+            a(href='/') X
+            h1 Search Users
+            - let str = JSON.stringify(users)
+            - let parsed = JSON.parse(str)
+            each user in parsed 
+                div(class='user-cards')
+                    a.user-link(href=`/user/${user._id}`)
+                        h3 #{user.last_name}, #{user.first_name} 
+                        p #{user.username} 
+                    div.user-friend-stats
+                        for friend in current_user.friends_list.current_friends 
+                            if (user._id.toString() === friend.toString())
+                                p Friend 
+                        for friend in current_user.friends_list.sent_requests
+                            if (user._id.toString() === friend.toString())
+                                p Friend Request Pending
+                        for friend in current_user.friends_list.received_requests    
+                            if (user._id.toString() === friend.toString()) 
+                                form(action=`/users/${user._id}/accept-friend` method='POST')
+                                    button.btn.btn-primary.accept-friend-request-button(type='submit') Accept Friend Request
+                        - let friendStr = JSON.stringify(current_user.friends_list.current_friends)
+                        - let receivedStr = JSON.stringify(current_user.friends_list.received_requests)
+                        - let sentStr = JSON.stringify(current_user.friends_list.sent_requests)
+                            - if (!(friendStr.includes(user._id.toString())) && !(receivedStr.includes(user._id.toString())) && !(sentStr.includes(user._id.toString())) && current_user._id.toString() !== user._id.toString())
+                                form(action=`/users/${user._id}` method='POST')
+                                    button.btn.btn-primary.add-friend-button(type='submit') Add Friend
+                        p #{user.friends_list.current_friends.length} Friends
