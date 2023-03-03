@@ -20,6 +20,10 @@ block content
                         img.icon(src='/icons/account-circle-outline.png')
                     p #{comment.user.username}
                     p #{comment.body}
+                    - if (comment.user._id.toString() == current_user._id.toString())
+                        div.comment-edit-delete
+                            a(href=`/comment/${comment._id}/edit-comment`) Edit
+                            a(href=`/comment/${comment._id}/delete-comment`) Delete
             div.comment-interaction
                 - let likedUsers = JSON.stringify(post.liked_users)
                     - if (likedUsers.includes(current_user._id.toString()))
