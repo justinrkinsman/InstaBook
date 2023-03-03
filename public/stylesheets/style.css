@@ -149,9 +149,35 @@ a {
   color: #00B7FF;
 }
 
+.user-index-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 20px;
+}
+
 .user-cards {
   border: 1px solid black;
   padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 50%;
+}
+
+.user-friend-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.accept-friend-request-button, .add-friend-button {
+  background-color: cornflowerblue;
+  margin-top: 13px;
+  margin-bottom: 13px;
 }
 
 .profile-header {
@@ -241,6 +267,11 @@ fieldset {
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+.user-link {
+  text-decoration: none;
+  color: black;
 }
 
 .heart-button {
