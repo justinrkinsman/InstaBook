@@ -476,3 +476,32 @@ a>img{
 .delete-button {
   color: rgb(211, 5, 5)
 }
+
+.edit-comment-page {
+  background-color: rgba(0, 0, 0, .1);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-comment-form {
+  height: 40vh;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-comment-submit {
+  background-color: cornflowerblue;
+}
+
+.submit-comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

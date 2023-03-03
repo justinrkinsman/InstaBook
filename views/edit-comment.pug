@@ -1,18 +1,18 @@
 extends layout 
 
 block content   
-    h1 Edit Comment 
-    - let str = JSON.stringify(comment)
-    - let parsed = JSON.parse(str)
-    each comment in parsed
-        form(action='' method='POST' id='edit-comment-form')
-            label(for='comment_body') Body: 
-            textarea#comment_body.form-control(type='text', name='body')
-                | #{comment.body}
-            button.btn.btn-primary(type='submit' ) Submit
-            a(href="/")
-                p Cancel
-        if errors 
-            ul 
-                for error in errors 
-                    li!= error.msg
+    div.edit-comment-page
+        a.cancel-edit-post(href='/') X
+        fieldset.edit-comment-form
+            h1 Edit Comment 
+            - let str = JSON.stringify(comment)
+            - let parsed = JSON.parse(str)
+            each comment in parsed
+                form.submit-comment-form(action='' method='POST' id='edit-comment-form')
+                    textarea#comment_body.form-control.edit-comment-body(type='text', name='body' rows='8')
+                        | #{comment.body}
+                    button.btn.btn-primary.edit-comment-submit(type='submit' ) Submit
+                if errors 
+                    ul 
+                        for error in errors 
+                            li!= error.msg
