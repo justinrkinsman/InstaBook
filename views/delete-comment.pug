@@ -12,10 +12,9 @@ block content
                 div.comment-layout 
                     p #{comment.body} 
                     p #{comment.timestamp} 
-                    p #{comment.user}
-            div.delete-confirmation
-                form.delete-confirmation(action='' method='POST' id='delete-comment-form')
-                    div.form-group 
-                        button.btn.btn-primary.delete-confirmation-button.delete-button(type='submit') Delete
-                    a(href='/')
+                div.delete-confirmation
+                    form(action='' method='POST' id='delete-comment-form')
+                        div.form-group 
+                            button.btn.btn-primary.delete-confirmation-button.delete-button(type='submit') Delete
+                    a(href=`/posts/${comment.post}/comments`)
                         button.delete-confirmation-button Cancel
