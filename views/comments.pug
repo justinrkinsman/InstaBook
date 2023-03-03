@@ -5,20 +5,22 @@ block content
     - let str = JSON.stringify(posts)
     - let parsedStr = JSON.parse(str)
     each post in parsedStr
-        a(href='/') X
-        fieldset 
+        a.cancel-edit-post(href='/') X
+        fieldset.full-post
             h1.post-content #{post.body}
             div.comment-user
-                a(href='/')
+                a(href=`/users/${post.author._id}`)
                     img.icon(src='/icons/account-circle-outline.png')
-                p #{post.author.username}
+                a.user-link(href=`/user/${post.author._id}`)
+                    p #{post.author.username}
             - let commentStr = JSON.stringify(comments)
             - let parsedComment = JSON.parse(commentStr)
             each comment in parsedComment 
                 div.commenter-info
-                    a(href='/')
+                    a(href=`/users/${comment.user._id}`)
                         img.icon(src='/icons/account-circle-outline.png')
-                    p #{comment.user.username}
+                    a.user-link(href=`/user/${comment.user._id}`)
+                        p #{comment.user.username}
                     p #{comment.body}
                     - if (comment.user._id.toString() == current_user._id.toString())
                         div.comment-edit-delete

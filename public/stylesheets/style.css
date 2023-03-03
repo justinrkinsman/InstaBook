@@ -548,3 +548,7 @@ a>img{
   text-decoration: none;
   color: black;
 }
+
+.full-post {
+  margin: 20px;
+}
