@@ -1,6 +1,11 @@
-extends layout 
+- let str = JSON.stringify(friends)
+- let parsed = JSON.parse(str) 
+each friend in parsed
 
-block content 
-
-    h1 Friends
-    p #{friends}
+    doctype html
+    html
+    head
+        title #{friend.username}'s Friends
+        link(rel='stylesheet', href='/stylesheets/style.css')
+    body
+        block content

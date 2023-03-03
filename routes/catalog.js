@@ -46,10 +46,6 @@ router.get('/new-post', function(req, res, next) {
   res.render('new-post.pug', {title: "New Post"})
 })
 
-router.get('/index-test', function(req, res, next) {
-  res.render('index1.pug')
-})
-
 /* POST new post */
 router.post('/new-post', upload.single('image'), (req, res, next) => {
   //if (req.body.image.length === 0) {
