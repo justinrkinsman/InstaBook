@@ -7,12 +7,30 @@ block content
     each post in parsedStr
         a.cancel-edit-post(href='/') X
         fieldset.full-post
-            h1.post-content #{post.body}
             div.comment-user
                 a(href=`/users/${post.author._id}`)
                     img.icon(src='/icons/account-circle-outline.png')
                 a.user-link(href=`/user/${post.author._id}`)
                     p #{post.author.username}
+            h1.post-content #{post.body}
+            div.comment-interaction
+                - let likedUsers = JSON.stringify(post.liked_users)
+                    - if (likedUsers.includes(current_user._id.toString()))
+                        form(action=`/posts/${post._id}/unlike-post` method='POST')
+                            div.form-group 
+                                button.btn.btn-primary.heart-button(type='submit')
+                                    img.icon(src='/icons/heart-outline-red.png')
+                    - else 
+                        form(action=`/posts/${post._id}/like-post` method='POST')
+                            div.form-group 
+                                button.btn.btn-primary.heart-button(type='submit')
+                                    img.icon(src='/icons/heart-outline.png')
+            p #{post.likes} Likes
+            p #{post.timestamp}
+            form.new-comment-form(action='' method='POST' id='new-comment-form')
+                div.form-group 
+                    textarea#comment.form-control(type='text', maxlength=100 name='comment' placeholder='Add a comment...')
+                button.btn.btn-primary.post-new-comment-btn(type='submit' ) Post
             - let commentStr = JSON.stringify(comments)
             - let parsedComment = JSON.parse(commentStr)
             each comment in parsedComment 
@@ -26,24 +44,6 @@ block content
                         div.comment-edit-delete
                             a(href=`/posts/${post._id}/comment/${comment._id}/edit-comment`) Edit
                             a(href=`/posts/${post._id}/comment/${comment._id}/delete-comment`) Delete
-            div.comment-interaction
-                - let likedUsers = JSON.stringify(post.liked_users)
-                    - if (likedUsers.includes(current_user._id.toString()))
-                        form(action=`/posts/${post._id}/unlike-post` method='POST')
-                            div.form-group 
-                                button.btn.btn-primary.heart-button(type='submit')
-                                    img.icon(src='/icons/heart-outline.png')
-                    - else 
-                        form(action=`/posts/${post._id}/like-post` method='POST')
-                            div.form-group 
-                                button.btn.btn-primary.heart-button(type='submit')
-                                    img.icon(src='/icons/heart-outline.png')
-            p #{post.likes} Likes
-            p #{post.timestamp}
-            form.new-post-form(action='' method='POST' id='new-comment-form')
-                div.form-group 
-                    textarea#comment.form-control(type='text', maxlength=100 name='comment' placeholder='Add a comment...')
-                button.btn.btn-primary.post-new-comment-btn(type='submit' ) Post
             if errors 
                 ul 
                     for error in errors 

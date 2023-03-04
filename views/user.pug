@@ -70,6 +70,6 @@ each user_info in parsed
                             - let postStr = JSON.stringify(posts)
                             - let postParsed = JSON.parse(postStr)
                                 each post in postParsed
-                                    div.profile-posts-grid
+                                    a.profile-posts-grid(href=`/posts/${post._id}/comments`)
                                         p #{post.body} 
                                         p #{post.timestamp}

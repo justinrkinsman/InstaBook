@@ -48,7 +48,7 @@ block content
                                     form(action=`/posts/${post._id}/unlike-post` method='POST')
                                         div.form-group 
                                             button.btn.btn-primary.heart-button(type='submit')
-                                                img.icon(src='icons/heart-outline.png')
+                                                img.icon(src='icons/heart-outline-red.png')
                                 - else 
                                     form(action=`/posts/${post._id}/like-post` method='POST')
                                         div.form-group 
@@ -79,7 +79,7 @@ block content
                                 form(action=`/posts/${post._id}/unlike-post` method='POST')
                                     div.form-group 
                                         button.btn.btn-primary.heart-button(type='submit')
-                                            img.icon(src='icons/heart-outline.png')
+                                            img.icon(src='icons/heart-outline-red.png')
                             - else 
                                 form(action=`/posts/${post._id}/like-post` method='POST')
                                     div.form-group 

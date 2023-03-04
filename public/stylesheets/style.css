@@ -351,6 +351,8 @@ a>img{
 
 .profile-posts-grid {
   border: 1px solid black;
+  text-decoration: none;
+  color: black;
 }
 
 .new-post, .edit-post {
@@ -394,6 +396,18 @@ a>img{
   align-items: center;
 }
 
+.new-comment-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#comment {
+  resize: none;
+  width: 500px;
+}
+
 .new-post-submit, .edit-post-submit {
   background: cornflowerblue;
 }
@@ -403,10 +417,6 @@ a>img{
 }
 
 .new-post-form {
-  border-top: 1px solid rgba(0, 0, 0, .3)
-}
-
-.comment-interaction {
   border-top: 1px solid rgba(0, 0, 0, .3)
 }
 
@@ -433,6 +443,10 @@ a>img{
 
 .comment-user {
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 .post-new-comment-btn {
