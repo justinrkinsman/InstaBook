@@ -94,6 +94,8 @@ passport.deserializeUser(function(id, done) {
   })
 })
 
+app.keys = [process.env.KEY1, process.env.KEY2]
+
 app.use(session({
   name: 'login_session',
   secret: process.env.SESSION_PASSWORD,
