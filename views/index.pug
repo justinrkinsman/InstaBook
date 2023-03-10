@@ -61,7 +61,7 @@ block content
                         p #{post.likes} Likes
                         if post.comments.length > 0
                             a(href=`posts/${post._id}/comments`) 
-                            p View all #{post.comments.length} comments 
+                                p View all #{post.comments.length} comments 
                         else 
                             p No Comments
                 - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
