@@ -38,7 +38,7 @@ block content
                         div.post-card-poster
                             a.username-link(href=`/user/${post.author._id}`)
                                 img.icon(src='icons/account-circle-outline.png')
-                            a(href=`/user/${post.author._id}`) 
+                            a.username-link(href=`/user/${post.author._id}`) 
                                 p #{post.author.username}
                             p #{post.timestamp}
                         p.post-body #{post.body}
