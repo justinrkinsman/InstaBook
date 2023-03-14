@@ -279,6 +279,10 @@ fieldset {
   color: black;
 }
 
+.sign-up-link {
+  text-decoration: none;
+}
+
 .heart-button {
   padding: 0px;
   cursor: pointer;
