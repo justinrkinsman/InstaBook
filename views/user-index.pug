@@ -40,7 +40,8 @@ block content
                     div.user-friend-stats
                         for friend in current_user.friends_list.current_friends 
                             if (user._id.toString() === friend.toString())
-                                p Friend 
+                                form(action=`/users/${user._id}/remove-friend` method='POST')
+                                    button.btn.btn-primary.remove-friend-button(type='submit') Remove Friend
                         for friend in current_user.friends_list.sent_requests
                             if (user._id.toString() === friend.toString())
                                 p Friend Request Pending

@@ -124,7 +124,7 @@ app.use('/', catalog);
 app.use('/users', usersRouter);
 
 app.post(
-  '/login', 
+  '/login',
   passport.authenticate("local", {
     successRedirect: '/',
     failureRedirect: '/failed-login'

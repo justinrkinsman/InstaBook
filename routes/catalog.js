@@ -270,6 +270,25 @@ router.post('/users/:id/accept-friend', function(req, res, next) {
   res.redirect('/users')
 })
 
+//api/users/:id/remove-friend
+/* POST remove friend */
+router.post(`/users/:id/remove-friend`, function(req, res, next) {
+  const requestUrl = `http://localhost:3000/api/users/${req.params.id}/remove-friend`
+  fetch(requestUrl, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({'user_id': req.user._id})
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Sucess", data)
+  })
+  .catch((error) => {
+    console.log("Error", error)
+  })
+  res.redirect('/users')
+})
+
 /* GET edit post page */
 router.get('/posts/:id/edit-post', (req, res) => {
   const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/edit-post`
