@@ -123,6 +123,8 @@ body {
 
 .homepage-right {
   margin-left: 20px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(0, 0, 0, .3);
 }
 
 .homepage-left-link {
