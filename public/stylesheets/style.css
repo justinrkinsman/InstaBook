@@ -127,6 +127,10 @@ body {
   border-left: 1px solid rgba(0, 0, 0, .3);
 }
 
+.profile-posts-grid:hover {
+  background-color: rgba(0, 0, 0, .05);
+}
+
 .homepage-left-link {
   display: flex;
   align-items: center;
