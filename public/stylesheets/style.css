@@ -288,6 +288,10 @@ fieldset {
   cursor: pointer;
 }
 
+.post-card.body:hover{
+  background-color: rgba(0, 0, 0, .05);
+}
+
 .comment-icon {
   height: 300px;
 }
