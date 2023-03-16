@@ -50,7 +50,9 @@ each user_info in parsed
                             //p #{user_info.bio} create field for Bio
                             for friend in current_user.friends_list.current_friends 
                                 if (user_info._id.toString() === friend.toString())
-                                    p Friend 
+                                    p Friend
+                                    form(action=`/users/${user_info._id}/remove-friend` method='POST')
+                                        button.btn.btn-primary.remove-friend-button(type='submit') Remove Friend
                             for friend in current_user.friends_list.sent_requests
                                 if (user_info._id.toString() === friend.toString())
                                     p Friend Request Pending

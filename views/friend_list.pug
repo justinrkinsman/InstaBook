@@ -49,7 +49,7 @@ each friend in parsed
                                 p #{friend.first_name} #{friend.last_name}
                             div.profile-user-stats-count 
                                 //p #{friend.post_count} Posts  create field in Users database for post count 
-                                a(href=`/users/${friend._id}/friends`) #{friend.friends_list.current_friends.length} Friends
+                                a.username-link(href=`/users/${friend._id}/friends`) #{friend.friends_list.current_friends.length} Friends
                             //p #{friend.bio} create field for Bio
                     div.profile-posts 
                         h2 Friends
