@@ -73,7 +73,7 @@ each user_info in parsed
                             - let postParsed = JSON.parse(postStr)
                                 each post in postParsed
                                     a.profile-posts-grid(href=`/posts/${post._id}/comments`)
-                                        p #{post.body} 
+                                        p.profile-post-body #{post.body} 
                                         div.hover-heart-comment
                                             div.hover-heart
                                                 img.icon(src='/icons/heart-outline.png')

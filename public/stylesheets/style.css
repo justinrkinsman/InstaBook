@@ -370,14 +370,18 @@ a>img{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 200px;
 }
 
 .profile-posts-grid:hover {
   background-color: rgba(0, 0, 0, .05);
+  color: rgba(0, 0, 0, .5)
 }
 
 .profile-posts-grid:hover > .hover-heart-comment {
   visibility: visible;
+  justify-self: center;
+  color: rgba(0, 0, 0, 1)
 }
 
 .hover-heart-comment {
@@ -393,6 +397,15 @@ a>img{
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.profile-post-body {
+  height: 3.5em; /* Set the maximum height to show 3 lines of text */
+  overflow: hidden; /* Hide any text beyond the maximum height */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .new-post, .edit-post {
