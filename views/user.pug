@@ -74,4 +74,11 @@ each user_info in parsed
                                 each post in postParsed
                                     a.profile-posts-grid(href=`/posts/${post._id}/comments`)
                                         p #{post.body} 
+                                        div.hover-heart-comment
+                                            div.hover-heart
+                                                img.icon(src='/icons/heart-outline.png')
+                                                p #{post.likes} 
+                                            div.hover-comment
+                                                img.icon(src='/icons/comment-outline.png')
+                                                p #{post.comments.length}
                                         p #{post.timestamp}

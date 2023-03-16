@@ -127,10 +127,6 @@ body {
   border-left: 1px solid rgba(0, 0, 0, .3);
 }
 
-.profile-posts-grid:hover {
-  background-color: rgba(0, 0, 0, .05);
-}
-
 .homepage-left-link {
   display: flex;
   align-items: center;
@@ -371,6 +367,32 @@ a>img{
   border: 1px solid black;
   text-decoration: none;
   color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-posts-grid:hover {
+  background-color: rgba(0, 0, 0, .05);
+}
+
+.profile-posts-grid:hover > .hover-heart-comment {
+  visibility: visible;
+}
+
+.hover-heart-comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  visibility: hidden;
+}
+
+.hover-heart, .hover-comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .new-post, .edit-post {
