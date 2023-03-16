@@ -34,7 +34,7 @@ each user_info in parsed
                         div.homepage-left-link  
                             a(href=`/user/${user_info._id}`)
                                 img.icon(src='/icons/account-circle.png')
-                            a.active-link(href=`/user/${user_info._id}`) Profile
+                            a.active-link(href=`/user/${current_user._id}`) Profile
                         a.logout-link(href='/logout') Logout
                 div.user-page-right    
                     div.profile-header
