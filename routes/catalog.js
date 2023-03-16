@@ -270,12 +270,11 @@ router.post('/users/:id/accept-friend', function(req, res, next) {
   res.redirect('/users')
 })
 
-//api/users/:id/remove-friend
 /* POST remove friend */
 router.post(`/users/:id/remove-friend`, function(req, res, next) {
   const requestUrl = `http://localhost:3000/api/users/${req.params.id}/remove-friend`
   fetch(requestUrl, {
-    method: 'PUT',
+    method: 'DELETE',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({'user_id': req.user._id})
   })

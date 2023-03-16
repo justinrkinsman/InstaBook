@@ -182,7 +182,7 @@ router.post('/api/users/:id', (req, res) => {
 })
 
 // POST remove friend
-router.post('/api/users/:id/remove-friend', (req, res) => { 
+router.delete('/api/users/:id/remove-friend', (req, res) => { 
     User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $pull: {"friends_list.current_friends": req.body.user_id}},
         function(err, docs) {
             if (err) {
