@@ -122,6 +122,12 @@ body {
   padding-top: 20px;
 }
 
+.context-menu {
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
 .homepage-right {
   margin-left: 20px;
   padding-left: 10px;
@@ -245,6 +251,12 @@ fieldset {
 
 .post-body {
   font-size: 20px;
+  height: 3.5em; /* Set the maximum height to show 3 lines of text */
+  overflow: hidden; /* Hide any text beyond the maximum height */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .post-card-poster {
