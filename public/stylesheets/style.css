@@ -294,6 +294,10 @@ fieldset {
   background-color: rgba(0, 0, 0, .05);
 }
 
+.post-card.body:hover .heart-button {
+  background-color: rgba(0, 0, 0, .005);
+}
+
 .comment-icon {
   height: 300px;
 }
@@ -378,7 +382,7 @@ a>img{
   color: rgba(0, 0, 0, .5)
 }
 
-.profile-posts-grid:hover > .hover-heart-comment {
+.profile-posts-grid:hover > .hover-heart-comment{
   visibility: visible;
   justify-self: center;
   color: rgba(0, 0, 0, 1)
@@ -387,7 +391,7 @@ a>img{
 .hover-heart-comment {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   visibility: hidden;
 }

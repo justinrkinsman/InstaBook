@@ -46,12 +46,12 @@ block content
                             - let likedUsers = JSON.stringify(post.liked_users)
                                 - if (likedUsers.includes(user._id.toString()))
                                     form(action=`/posts/${post._id}/unlike-post` method='POST')
-                                        div.form-group 
+                                        div.form-group
                                             button.btn.btn-primary.heart-button(type='submit')
                                                 img.icon(src='icons/heart-outline-red.png')
                                 - else 
                                     form(action=`/posts/${post._id}/like-post` method='POST')
-                                        div.form-group 
+                                        div.form-group
                                             button.btn.btn-primary.heart-button(type='submit')
                                                 img.icon(src='icons/heart-outline.png')
                             a(href=`/posts/${post._id}/comments`)
@@ -77,12 +77,12 @@ block content
                             - let likedUsers = JSON.stringify(post.liked_users)
                             - if (likedUsers.includes(user._id.toString()))
                                 form(action=`/posts/${post._id}/unlike-post` method='POST')
-                                    div.form-group 
+                                    div.form-group
                                         button.btn.btn-primary.heart-button(type='submit')
                                             img.icon(src='icons/heart-outline-red.png')
                             - else 
                                 form(action=`/posts/${post._id}/like-post` method='POST')
-                                    div.form-group 
+                                    div.form-group
                                         button.btn.btn-primary.heart-button(type='submit')
                                             img.icon(src='icons/heart-outline.png')
                             a(href=`/posts/${post._id}/comments`)
