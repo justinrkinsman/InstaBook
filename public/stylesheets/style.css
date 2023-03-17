@@ -131,6 +131,7 @@ body {
 .context-menu-link {
   text-decoration: none;
   color: rgba(0, 0, 0, .5);
+  cursor: pointer;
   /*font-size: 50px;
   justify-self: center;
   align-self: center;*/
@@ -316,7 +317,7 @@ fieldset {
   background-color: rgba(0, 0, 0, .05);
 }
 
-.post-card.body:hover .heart-button {
+.post-card.body:hover button {
   background-color: rgba(0, 0, 0, .005);
 }
 
