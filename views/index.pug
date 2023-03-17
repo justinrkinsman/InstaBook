@@ -41,6 +41,7 @@ block content
                             a.username-link(href=`/user/${post.author._id}`) 
                                 p #{post.author.username}
                             p #{post.timestamp}
+                            a.context-menu-link(href='/') ...
                         p.post-body #{post.body}
                         div.post-card-interaction
                             - let likedUsers = JSON.stringify(post.liked_users)
@@ -72,6 +73,7 @@ block content
                             a.username-link(href=`/user/${post.author._id}`) 
                                 p #{post.author.username}
                             p #{post.timestamp}
+                            a.context-menu-link(href='/') ...
                         p.post-body #{post.body}
                         div.post-card-interaction
                             - let likedUsers = JSON.stringify(post.liked_users)
