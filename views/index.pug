@@ -87,7 +87,7 @@ block content
                                 | ...
                                 script.
                                     var handleClick = function() {
-                                        var div = document.getElementById("contextMenu");
+                                        var div = document.getElementById("context-menu-id");
                                         if (div.style.display === "none") {
                                             div.style.display = "block";
                                         } else {
@@ -121,7 +121,7 @@ block content
                             div.post-edit-delete
                                 a(href=`/posts/${post._id}/delete-post`) Delete Post
                                 a(href=`/posts/${post._id}/edit-post`) Edit Post
-                div.context-menu#context-menu
+                div.context-menu#context-menu-id
                     p Unfriend
                     p Add to favorites 
                     p Go to Post 
