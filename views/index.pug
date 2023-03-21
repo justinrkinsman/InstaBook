@@ -128,7 +128,8 @@ block content
                 - let contextMenuID = post._id
                 div.context-menu(id=`context-menu-id-${post._id}`)
                     div.context-menu-links
-                        p Unfriend
+                        form(action=`/users/${post.author._id}/remove-friend` method='POST')
+                            button.btn.btn-primary.remove-friend-button(type='submit') Remove Friend
                         p Add to favorites 
                         p Go to Post 
                         p About this account 

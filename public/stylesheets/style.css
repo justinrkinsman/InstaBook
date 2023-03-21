@@ -147,8 +147,17 @@ body {
   align-items: center;
 }
 
-.context-menu-links > p {
-  border-bottom: 1px solid rgba(0, 0, 0, 1)
+.context-menu-links button{
+  background-color: rgba(255, 255, 255)
+}
+
+/*.context-menu-links > p {
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
+}*/
+
+.context-menu:hover button {
+  background-color: rgba(0, 0, 0, .005);
+  cursor: pointer;
 }
 
 .context-menu:hover {
