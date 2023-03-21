@@ -90,12 +90,12 @@ block content
                                     var handleClick = function(postID) {
                                         var contextMenu = document.getElementById(`context-menu-id-${postID}`);
                                         var post = document.getElementById(`post-card-${postID}`);
-                                        if (contextMenu.style.display === "none") {
-                                            contextMenu.style.display = "block";
-                                            post.style.display = 'none';
-                                        } else {
+                                        if (contextMenu.style.display === "flex") {
                                             contextMenu.style.display = "none";
-                                            post.style.display = 'block';
+                                            post.style.display = 'flex';
+                                        } else {
+                                            contextMenu.style.display = "flex";
+                                            post.style.display = 'none';
                                         }
                                     };
                         p.post-body #{post.body}
