@@ -126,7 +126,29 @@ body {
   padding: 10px;
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 307px;
+}
+
+/*.context-menu > p {
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}*/
+
+.context-menu-cancel-link {
+  color:rgb(211, 5, 5);
+  cursor: pointer;
+}
+
+.context-menu-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.context-menu-links > p {
+  border-bottom: 1px solid rgba(0, 0, 0, 1)
 }
 
 .context-menu:hover {

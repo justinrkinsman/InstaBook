@@ -127,11 +127,12 @@ block content
                                 a(href=`/posts/${post._id}/edit-post`) Edit Post
                 - let contextMenuID = post._id
                 div.context-menu(id=`context-menu-id-${post._id}`)
-                    p Unfriend
-                    p Add to favorites 
-                    p Go to Post 
-                    p About this account 
-                    p(onclick="handleClick('" + post._id + "')") Cancel 
+                    div.context-menu-links
+                        p Unfriend
+                        p Add to favorites 
+                        p Go to Post 
+                        p About this account 
+                    p.context-menu-cancel-link(onclick="handleClick('" + post._id + "')") Cancel 
         div.homepage-right
             // Add 'Users You Might Know' feature
             p People You May Know
