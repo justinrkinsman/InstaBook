@@ -132,7 +132,8 @@ block content
                             button.btn.btn-primary.remove-friend-button(type='submit') Remove Friend
                         form(action=`/posts/${post._id}/fav-post` method='POST')
                             button.btn.btn-primary.fav-post-button(type='submit') Add to favorites
-                        p Go to Post 
+                        form(action=`posts/${post._id}/comments`)
+                            button.btn.btn-primary.go-to-post-button(type='submit') Go to post 
                         p About this account 
                     p.context-menu-cancel-link(onclick="handleClick('" + post._id + "')") Cancel 
         div.homepage-right
