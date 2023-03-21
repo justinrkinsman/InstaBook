@@ -89,11 +89,13 @@ block content
                                 script.
                                     var handleClick = function(postID) {
                                         var contextMenu = document.getElementById(`context-menu-id-${postID}`);
-                                        var post = document.getElementById(``);
+                                        var post = document.getElementById(`post-card-${postID}`);
                                         if (contextMenu.style.display === "none") {
                                             contextMenu.style.display = "block";
+                                            post.style.display = 'none';
                                         } else {
                                             contextMenu.style.display = "none";
+                                            post.style.display = 'block';
                                         }
                                     };
                         p.post-body #{post.body}
@@ -129,7 +131,7 @@ block content
                     p Add to favorites 
                     p Go to Post 
                     p About this account 
-                    p Cancel
+                    p(onclick="handleClick('" + post._id + "')") Cancel 
         div.homepage-right
             // Add 'Users You Might Know' feature
             p People You May Know
