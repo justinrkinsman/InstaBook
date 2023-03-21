@@ -182,7 +182,7 @@ router.post('/api/users/:id', (req, res) => {
 })
 
 // POST remove friend
-router.delete('/api/users/:id/remove-friend', (req, res) => { 
+router.delete('/api/users/:id/', (req, res) => { 
     User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $pull: {"friends_list.current_friends": req.body.user_id}},
         function(err, docs) {
             if (err) {
@@ -201,9 +201,6 @@ router.delete('/api/users/:id/remove-friend', (req, res) => {
         })
     return res.redirect(`/api/users`)
 })
-
-// POST like post
-router.post('/api/post')
 
 // POST new photo THIS WILL BE MERGED WITH UPLOAD POST LATER
 
@@ -225,6 +222,19 @@ router.put('/api/posts/:id/like-post', (req, res) => {
 // PUT unlike post
 router.put('/api/posts/:id/unlike-post', (req, res) => {
     Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $inc: {"likes": -1}, $pull: {'liked_users': req.body.current_user}},
+    function(err, docs) {
+        if (err) {
+            console.log(err)
+        }else{
+            console.log('Update User :', docs)
+        }
+    })
+    return res.redirect('/api/homepage')
+})
+
+// PUT favorite post
+router.put('/api/posts/:id/fav-post/', (req, res) => {
+    User.findByIdAndUpdate(req.body.current_user, {_id: req.body.current_user, $push: {'favorites': req.params.id}},
     function(err, docs) {
         if (err) {
             console.log(err)
