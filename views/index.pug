@@ -134,7 +134,8 @@ block content
                             button.btn.btn-primary.fav-post-button(type='submit') Add to favorites
                         form(action=`posts/${post._id}/comments`)
                             button.btn.btn-primary.go-to-post-button(type='submit') Go to post 
-                        p About this account 
+                        form(action=`/user/${post.author._id}`)
+                            button.btn.btn-primary.about-this-account-button(type='submit') About this accountt  
                     p.context-menu-cancel-link(onclick="handleClick('" + post._id + "')") Cancel 
         div.homepage-right
             // Add 'Users You Might Know' feature

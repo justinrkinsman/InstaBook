@@ -233,7 +233,12 @@ a {
   align-items: flex-end;
 }
 
-.accept-friend-request-button, .add-friend-button, .remove-friend-button, .go-to-post-button, .fav-post-button {
+.accept-friend-request-button, 
+.add-friend-button, 
+.remove-friend-button, 
+.go-to-post-button, 
+.fav-post-button, 
+.about-this-account-button {
   background-color: cornflowerblue;
   margin-top: 13px;
   margin-bottom: 13px;
