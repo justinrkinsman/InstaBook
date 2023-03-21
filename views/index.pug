@@ -34,18 +34,19 @@ block content
             - let friendStr = JSON.stringify(user.friends_list.current_friends)
             each post in parsed
                 - if (user.username.toString() === "guest_user")
-                    div.post-card.body
+                    div.post-card.body(id=`post-card-${post._id}`)
                         div.post-card-poster
                             a.username-link(href=`/user/${post.author._id}`)
                                 img.icon(src='icons/account-circle-outline.png')
                             a.username-link(href=`/user/${post.author._id}`) 
                                 p #{post.author.username}
                             p #{post.timestamp}
-                            button.context-menu-link(type='submit' onclick='handleClick()')
+                            - var handleClickPostID = post._id
+                            button.context-menu-link(type='submit' onclick="handleClick(handleClickPostID)")
                                 | ...
                                 script.
                                     var handleClick = function() {
-                                        var div = document.getElementById("contextMenu");
+                                        var div = document.getElementById(`context-menu-id-${postID}`);
                                         if (div.style.display === "none") {
                                             div.style.display = "block";
                                         } else {
@@ -76,22 +77,23 @@ block content
                         else 
                             p No Comments
                 - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
-                    div.post-card.body
+                    div.post-card.body(id=`post-card-${post._id}`)
                         div.post-card-poster
                             a.username-link(href=`/user/${post.author._id}`)
                                 img.icon(src='icons/account-circle-outline.png')
                             a.username-link(href=`/user/${post.author._id}`) 
                                 p #{post.author.username}
                             p #{post.timestamp}
-                            button.context-menu-link(type='submit' onclick='handleClick()')
+                            button.context-menu-link(type='submit' onclick="handleClick('" + post._id + "')")
                                 | ...
                                 script.
-                                    var handleClick = function() {
-                                        var div = document.getElementById("context-menu-id");
-                                        if (div.style.display === "none") {
-                                            div.style.display = "block";
+                                    var handleClick = function(postID) {
+                                        var contextMenu = document.getElementById(`context-menu-id-${postID}`);
+                                        var post = document.getElementById(``);
+                                        if (contextMenu.style.display === "none") {
+                                            contextMenu.style.display = "block";
                                         } else {
-                                            div.style.display = "none";
+                                            contextMenu.style.display = "none";
                                         }
                                     };
                         p.post-body #{post.body}
@@ -121,7 +123,8 @@ block content
                             div.post-edit-delete
                                 a(href=`/posts/${post._id}/delete-post`) Delete Post
                                 a(href=`/posts/${post._id}/edit-post`) Edit Post
-                div.context-menu#context-menu-id
+                - let contextMenuID = post._id
+                div.context-menu(id=`context-menu-id-${post._id}`)
                     p Unfriend
                     p Add to favorites 
                     p Go to Post 
