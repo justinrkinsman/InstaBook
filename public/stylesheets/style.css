@@ -123,10 +123,14 @@ body {
 }
 
 .context-menu {
-  height: 100%;
-  width: 100%;
+  padding: 10px;
   display: none;
   flex-direction: column;
+  height: 307px;
+}
+
+.context-menu:hover {
+  background-color: rgba(0, 0, 0, .05);
 }
 
 .context-menu-link {
