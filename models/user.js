@@ -11,7 +11,8 @@ const UserSchema = new Schema({
         current_friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         sent_requests: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         received_requests: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-    }
+    },
+    favorites: [{ type: Schema.Types.ObjectId, ref: "Post" }]
     //profile_pic: {type: }
     //feed: [{type: }]
 })
