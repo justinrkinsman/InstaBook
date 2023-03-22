@@ -238,6 +238,15 @@ router.get('/users', function(req, res, next) {
   })
 })
 
+/*router.get('/users/:search', function(req, res, next) {
+  const requestUrl = `http://localhost:3000/api/users/${req.params.search}`
+  fetch(requestUrl)
+  .then(response => response.json())
+  .then(data => {
+    return res.render('user-index.pug', { title: "Users Index", users: data, current_user: req.user });
+  })
+})*/
+
 /* GET individual user page */
 router.get('/user/:id', (req, res, next) => {
   const requestUrl = `http://localhost:3000/api/user/${req.params.id}`

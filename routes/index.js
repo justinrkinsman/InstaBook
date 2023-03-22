@@ -103,6 +103,13 @@ router.get('/api/users/:userId/friends', (req, res) => {
     .then((found_users) => {res.json(found_users)})
 })
 
+// GET search results
+/*router.get('/api/users/:search/', (req, res) => {
+    User.find({first_name: req.params.search})
+    .sort({"title": 1})
+    .then((found_users) => {res.json(found_users)})
+})*/
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {

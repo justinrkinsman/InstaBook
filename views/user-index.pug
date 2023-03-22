@@ -30,8 +30,19 @@ block content
                 a.logout-link(href='/logout') Logout
         div.user-index-midpage
             h1 Search Users
+            form
+                input#search(type='text' placeholder='Search' oninput='handleSearchQuery(this.value)')
             - let str = JSON.stringify(users)
             - let parsed = JSON.parse(str)
+            script. 
+                var handleSearchQuery = function(query) {
+                    if (query && query.trim().length > 0){
+                        query = query.trim().toLowerCase()
+                        console.log(query)
+                    }else{
+                            
+                    }
+                }
             each user in parsed 
                 div(class='user-cards')
                     a.user-link(href=`/user/${user._id}`)
