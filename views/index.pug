@@ -121,21 +121,27 @@ block content
                                 p View all #{post.comments.length} comments 
                         else 
                             p No Comments                                    
-                        if (post.author._id.toString() === user._id.toString())
-                            div.post-edit-delete
-                                a(href=`/posts/${post._id}/delete-post`) Delete Post
-                                a(href=`/posts/${post._id}/edit-post`) Edit Post
                 - let contextMenuID = post._id
                 div.context-menu(id=`context-menu-id-${post._id}`)
                     div.context-menu-links
-                        form(action=`/users/${post.author._id}/remove-friend` method='POST')
-                            button.btn.btn-primary.remove-friend-button(type='submit') Remove Friend
-                        form(action=`/posts/${post._id}/fav-post` method='POST')
-                            button.btn.btn-primary.fav-post-button(type='submit') Add to favorites
-                        form(action=`posts/${post._id}/comments`)
-                            button.btn.btn-primary.go-to-post-button(type='submit') Go to post 
-                        form(action=`/user/${post.author._id}`)
-                            button.btn.btn-primary.about-this-account-button(type='submit') About this accountt  
+                        if (post.author._id.toString() === user._id.toString())
+                            form(action=`/posts/${post._id}/delete-post`)
+                                button.btn.btn-primary.delete-post-button(type='submit') Delete Post
+                            form(action=`/posts/${post._id}/edit-post`)
+                                button.btn.btn-primary.edit-post-button(type='submit') Edit Post
+                            form(action=`posts/${post._id}/comments`)
+                                button.btn.btn-primary.go-to-post-button(type='submit') Go to post 
+                            form(action=`/posts/${post._id}/fav-post` method='POST')
+                                button.btn.btn-primary.fav-post-button(type='submit') Add to favorites
+                        else
+                            form(action=`/users/${post.author._id}/remove-friend` method='POST')
+                                button.btn.btn-primary.remove-friend-button(type='submit') Remove Friend
+                            form(action=`/posts/${post._id}/fav-post` method='POST')
+                                button.btn.btn-primary.fav-post-button(type='submit') Add to favorites
+                            form(action=`posts/${post._id}/comments`)
+                                button.btn.btn-primary.go-to-post-button(type='submit') Go to post 
+                            form(action=`/user/${post.author._id}`)
+                                button.btn.btn-primary.about-this-account-button(type='submit') About this account  
                     p.context-menu-cancel-link(onclick="handleClick('" + post._id + "')") Cancel 
         div.homepage-right
             // Add 'Users You Might Know' feature

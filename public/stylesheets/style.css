@@ -128,7 +128,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 307px;
+  height: 270px;
 }
 
 /*.context-menu > p {
@@ -238,7 +238,9 @@ a {
 .remove-friend-button, 
 .go-to-post-button, 
 .fav-post-button, 
-.about-this-account-button {
+.about-this-account-button,
+.delete-post-button,
+.edit-post-button {
   background-color: cornflowerblue;
   margin-top: 13px;
   margin-bottom: 13px;
