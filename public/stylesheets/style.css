@@ -128,7 +128,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 270px;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  background-color: rgba(0, 0, 0, .5);
 }
 
 /*.context-menu > p {
@@ -155,14 +160,14 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 1);
 }*/
 
-.context-menu:hover button {
+/*.context-menu:hover button {
   background-color: rgba(0, 0, 0, .005);
   cursor: pointer;
-}
+}*/
 
-.context-menu:hover {
+/*.context-menu:hover {
   background-color: rgba(0, 0, 0, .05);
-}
+}*/
 
 .context-menu-link {
   text-decoration: none;

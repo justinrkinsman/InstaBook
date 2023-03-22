@@ -2,7 +2,7 @@ extends layout
 
 block content
     div.homepage-body   
-        div.homepage-left   
+        div.homepage-left#homepageLeft  
             img.text-logo(src="https://see.fontimg.com/api/renderfont4/JRzmB/eyJyIjoiZnMiLCJoIjo1MywidyI6MTAwMCwiZnMiOjUzLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiIzgyOEMzMCIsInQiOjF9/SW5zdGFCb29r/brilliant-mastaka.png" alt="Instagram fonts")
             div.homepage-links
                 div.homepage-left-link
@@ -47,10 +47,13 @@ block content
                                 script.
                                     var handleClick = function() {
                                         var div = document.getElementById(`context-menu-id-${postID}`);
-                                        if (div.style.display === "none") {
-                                            div.style.display = "block";
+                                        var leftMenu = document.getElementById('homepageLeft')
+                                        if (contextMenu.style.display === "flex") {
+                                            contextMenu.style.display = "none";
+                                            homepageLeft.style.display = 'flex';
                                         } else {
-                                            div.style.display = "none";
+                                            contextMenu.style.display = "flex";
+                                            homepageLeft.style.display = 'none';
                                         }
                                     };
                         p.post-body #{post.body}
@@ -89,13 +92,13 @@ block content
                                 script.
                                     var handleClick = function(postID) {
                                         var contextMenu = document.getElementById(`context-menu-id-${postID}`);
-                                        var post = document.getElementById(`post-card-${postID}`);
+                                        var leftMenu = document.getElementById('homepageLeft')
                                         if (contextMenu.style.display === "flex") {
                                             contextMenu.style.display = "none";
-                                            post.style.display = 'flex';
+                                            homepageLeft.style.display = 'flex';
                                         } else {
                                             contextMenu.style.display = "flex";
-                                            post.style.display = 'none';
+                                            homepageLeft.style.display = 'none';
                                         }
                                     };
                         p.post-body #{post.body}
