@@ -96,9 +96,11 @@ block content
                                         if (contextMenu.style.display === "flex") {
                                             contextMenu.style.display = "none";
                                             homepageLeft.style.display = 'flex';
+                                            document.documentElement.style.overflowY = 'scroll'
                                         } else {
                                             contextMenu.style.display = "flex";
                                             homepageLeft.style.display = 'none';
+                                            document.documentElement.style.overflowY = 'hidden'
                                         }
                                     };
                         p.post-body #{post.body}
@@ -145,7 +147,7 @@ block content
                                 button.btn.btn-primary.go-to-post-button(type='submit') Go to post 
                             form(action=`/user/${post.author._id}`)
                                 button.btn.btn-primary.about-this-account-button(type='submit') About this account  
-                    p.context-menu-cancel-link(onclick="handleClick('" + post._id + "')") Cancel 
+                        p.context-menu-cancel-link(onclick="handleClick('" + post._id + "')") Cancel 
         div.homepage-right
             // Add 'Users You Might Know' feature
             p People You May Know
