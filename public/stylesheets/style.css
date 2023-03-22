@@ -254,6 +254,10 @@ a {
   margin-bottom: 13px;
 }
 
+.delete-post-button, .edit-post-button, .remove-friend-button {
+  color:rgb(211, 5, 5);
+}
+
 .profile-header {
   display: flex;
   justify-content: center;
