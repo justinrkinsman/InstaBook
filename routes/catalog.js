@@ -239,14 +239,17 @@ router.get('/users', function(req, res, next) {
 })
 
 /* GET search results */
-router.get('/search/:query', function(req, res, next) {
-  const requestUrl = `http://localhost:3000/api/search/${req.params.query}`
-  fetch(requestUrl)
-  .then(response => response.json())
-  .then(data => {
-    return res.render('search-results.pug', { title: "Search Results", users: data, current_user: req.user });
-  })
-})
+router.get('/search/:query', (req, res) => {
+  const query = req.params.query;
+  User.find({$or: [{first_name: {$regex: query, $options: "i"}}, {last_name: {$regex: query, $options: "i"}}, {username: {$regex: query, $options: "i"}}]})
+    .then(users => {
+      res.json(users);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send("An error occurred while searching for users.");
+    });
+});
 
 /* GET individual user page */
 router.get('/user/:id', (req, res, next) => {

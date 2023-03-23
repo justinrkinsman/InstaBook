@@ -2,3 +2,20 @@ extends layout
 
 block content 
     h1 Search Results
+    input(type="text", name="search", id="search")
+    div(id="search-results")
+    script.
+        const searchInput = document.querySelector("#search");
+        const searchResults = document.querySelector("#search-results");
+        
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value;
+            console.log(query)
+            fetch(`/search/${query}`)
+            .then(response => response.json())
+            .then(data => {
+                return res.render('search-results.pug', { title: "Search Results", users: data, current_user: req.user });
+                // You can use Pug's iteration syntax to loop through the search results and generate HTML
+            })
+            .catch(error => console.error(error));
+        });
