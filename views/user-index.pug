@@ -32,6 +32,7 @@ block content
             h1 Search Users
             form
                 input#search(type='text' placeholder='Search' oninput='handleSearchQuery(this.value)')
+                a(href=`/search/test`) Search Page
             - let str = JSON.stringify(users)
             - let parsed = JSON.parse(str)
             script. 
@@ -39,7 +40,6 @@ block content
                     const userLink = document.querySelectorAll('.user-link')
                     if (query && query.trim().length > 0){
                         query = query.trim().toLowerCase()
-                        console.log(query)
                         console.log(userLink)
                     }else{
                     
