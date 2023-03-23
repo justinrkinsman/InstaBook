@@ -36,13 +36,15 @@ block content
             - let parsed = JSON.parse(str)
             script. 
                 var handleSearchQuery = function(query) {
+                    const userLink = document.querySelectorAll('.user-link')
                     if (query && query.trim().length > 0){
                         query = query.trim().toLowerCase()
                         console.log(query)
+                        console.log(userLink)
                     }else{
-                            
+                    
                     }
-                }
+                }  
             each user in parsed 
                 div(class='user-cards')
                     a.user-link(href=`/user/${user._id}`)
@@ -66,4 +68,4 @@ block content
                             - if (!(friendStr.includes(user._id.toString())) && !(receivedStr.includes(user._id.toString())) && !(sentStr.includes(user._id.toString())) && current_user._id.toString() !== user._id.toString())
                                 form(action=`/users/${user._id}` method='POST')
                                     button.btn.btn-primary.add-friend-button(type='submit') Add Friend
-                        p #{user.friends_list.current_friends.length} Friends
+                        p #{user.friends_list.current_friends.length} Friends      

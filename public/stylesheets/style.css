@@ -701,3 +701,10 @@ a>img{
 .full-post {
   margin: 20px;
 }
+
+#user-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}

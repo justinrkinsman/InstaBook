@@ -238,14 +238,15 @@ router.get('/users', function(req, res, next) {
   })
 })
 
-/*router.get('/users/:search', function(req, res, next) {
-  const requestUrl = `http://localhost:3000/api/users/${req.params.search}`
+/* GET search results */
+router.get('/search/:query', function(req, res, next) {
+  const requestUrl = `http://localhost:3000/api/search/${req.params.query}`
   fetch(requestUrl)
   .then(response => response.json())
   .then(data => {
-    return res.render('user-index.pug', { title: "Users Index", users: data, current_user: req.user });
+    return res.render('search-results.pug', { title: "Search Results", users: data, current_user: req.user });
   })
-})*/
+})
 
 /* GET individual user page */
 router.get('/user/:id', (req, res, next) => {
@@ -261,6 +262,7 @@ router.get('/user/:id', (req, res, next) => {
 router.get('/failed-login', function(req, res, next) {
   res.render('failure.pug', {title: 'Login Attempt Failed'})
 })
+
 
 /* POST send friend request*/
 router.post('/users/:id', function(req, res, next) {
