@@ -30,17 +30,52 @@ block content
                 a.logout-link(href='/logout') Logout
         div.user-index-midpage
             h1 Search Results
-            input(type="text", name="search", id="search")
-            div(id="search-results")
-                for user in users
-                    p #{user.username}
-            script.
+            form
+                input#search(type='text' placeholder='Search' oninput='handleSearchQuery(this.value)')
+                a(id="search-page-link" href=`/search/`) Search Page
+            - let str = JSON.stringify(users)
+            - let parsed = JSON.parse(str)
+            script. 
+                var handleSearchQuery = function(query) {
+                    const userLink = document.querySelectorAll('.user-link')
+                    const searchPageLink = document.getElementById('search-page-link')
+                    if (query && query.trim().length > 0){
+                        query = query.trim().toLowerCase()
+                        searchPageLink.href = `/search/${query}`
+                    }else{
+                    
+                    }
+                }  
+            for user in users
+                div(class='user-cards')
+                    a.user-link(href=`/user/${user._id}`)
+                        h3 #{user.last_name}, #{user.first_name} 
+                        p #{user.username} 
+                    div.user-friend-stats
+                        for friend in current_user.friends_list.current_friends 
+                            if (user._id.toString() === friend.toString())
+                                form(action=`/users/${user._id}/remove-friend` method='POST')
+                                    button.btn.btn-primary.remove-friend-button(type='submit') Remove Friend
+                        for friend in current_user.friends_list.sent_requests
+                            if (user._id.toString() === friend.toString())
+                                p Friend Request Pending
+                        for friend in current_user.friends_list.received_requests    
+                            if (user._id.toString() === friend.toString()) 
+                                form(action=`/users/${user._id}/accept-friend` method='POST')
+                                    button.btn.btn-primary.accept-friend-request-button(type='submit') Accept Friend Request
+                        - let friendStr = JSON.stringify(current_user.friends_list.current_friends)
+                        - let receivedStr = JSON.stringify(current_user.friends_list.received_requests)
+                        - let sentStr = JSON.stringify(current_user.friends_list.sent_requests)
+                            - if (!(friendStr.includes(user._id.toString())) && !(receivedStr.includes(user._id.toString())) && !(sentStr.includes(user._id.toString())) && current_user._id.toString() !== user._id.toString())
+                                form(action=`/users/${user._id}` method='POST')
+                                    button.btn.btn-primary.add-friend-button(type='submit') Add Friend
+                        p #{user.friends_list.current_friends.length} Friends     
+            //script.
                 const searchInput = document.querySelector("#search");
                 const searchResults = document.querySelector("#search-results");
                 
                 searchInput.addEventListener("input", () => {
                     const query = searchInput.value;
-                    console.log(query)
                     fetch(`/search/${query}`)
                     .then(response => response.json())
                     .then(data => {
