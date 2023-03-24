@@ -32,7 +32,8 @@ block content
             h1 Search Results
             form
                 input#search(type='text' placeholder='Search' oninput='handleSearchQuery(this.value)')
-                a(id="search-page-link" href=`/search/`) Search Page
+                a(id="search-page-link" href=`/search/`)
+                    img.search-results-icon(src='/icons/magnify.png')
             - let str = JSON.stringify(users)
             - let parsed = JSON.parse(str)
             script. 
