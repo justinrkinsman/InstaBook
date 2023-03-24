@@ -71,9 +71,7 @@ block content
                                                 img.icon(src='icons/heart-outline.png')
                             a(href=`/posts/${post._id}/comments`)
                                 img(src='icons/comment-outline.png')
-                            form(action=`/posts/${post._id}/fav-post` method='POST')
-                                button.btn.btn-primary.fav-post-icon(type='submit')
-                                    img.icon(src='icons/bookmark-outline.png')
+                            
                             //img.icon(src='icons/send-outline.png')
                             //img.icon(src='icons/bookmark-outline.png')
                         p #{post.likes} Likes
@@ -122,9 +120,14 @@ block content
                             a(href=`/posts/${post._id}/comments`)
                                 img(src='icons/comment-outline.png')
                             //img.icon(src='icons/send-outline.png')
-                            form(action=`/posts/${post._id}/fav-post` method='POST')
-                                button.btn.btn-primary.fav-post-icon(type='submit')
-                                    img.icon(src='icons/bookmark-outline.png')
+                            - if (user.favorites.includes(post._id.toString()))
+                                form(action=`/posts/${post._id}/unfav-post` method='POST')
+                                    button.btn.btn-primary.fav-post-icon(type='submit')
+                                        img.icon(src='icons/bookmark-filled-out.png')
+                            - else
+                                form(action=`/posts/${post._id}/fav-post` method='POST')
+                                    button.btn.btn-primary.fav-post-icon(type='submit')
+                                        img.icon(src='icons/bookmark-outline.png')
                         p #{post.likes} Likes
                         if post.comments.length > 0
                             a(href=`posts/${post._id}/comments`) 

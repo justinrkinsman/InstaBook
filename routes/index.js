@@ -262,6 +262,19 @@ router.put('/api/posts/:id/fav-post/', (req, res) => {
     return res.redirect('/api/homepage')
 })
 
+// PUT un-favorite post
+router.put('/api/posts/:id/unfav-post/', (req, res) => {
+    User.findByIdAndUpdate(req.body.current_user, {_id: req.body.current_user, $pull: {'favorites': req.params.id}},
+    function(err, docs) {
+        if (err) {
+            console.log(err)
+        }else{
+            console.log('Update User :', docs)
+        }
+    })
+    return res.redirect('/api/homepage')
+})
+
 // PUT accept friend request
 router.put(`/api/users/:id`, (req, res) => {
     User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {"friends_list.current_friends": req.body.user_id}, $pull: {"friends_list.sent_requests": req.body.user_id}},
