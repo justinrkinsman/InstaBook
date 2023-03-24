@@ -30,8 +30,8 @@ block content
                 a.logout-link(href='/logout') Logout
         div.user-index-midpage
             h1 Search Users
-            form
-                input#search(type='text' placeholder='Search' oninput='handleSearchQuery(this.value)')
+            form(onsubmit='handleSearchQuery(event)')
+                input#search(type='text' placeholder='Search' onkeypress='handleKeyPress(event)')
                 a(id="search-page-link" href=`/search/`)
                     img.search-results-icon(src='icons/magnify.png')
             - let str = JSON.stringify(users)
@@ -44,9 +44,16 @@ block content
                         query = query.trim().toLowerCase()
                         searchPageLink.href = `/search/${query}`
                     }else{
-                    
+                        searchPageLink.href = '/search/';
                     }
                 }  
+                var handleKeyPress = function(event) {
+                    if (event.keyCode === 13) {
+                        handleSearchQuery(event.target.value);
+                        console.log(event.target.value)
+                        event.preventDefault();
+                    }
+                }
             each user in parsed 
                 div(class='user-cards')
                     a.user-link(href=`/user/${user._id}`)

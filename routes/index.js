@@ -24,11 +24,14 @@ const upload = multer({ storage: storage })
 
 /// GET APIs ///
 // GET posts for home page
-router.get('/api/homepage', (req, res) => {
-    Post.find({})
+router.get('/api/homepage', async (req, res) => {
+    const data = {}
+    await Post.find({})
     .populate('author')
     .sort({db_timestamp: -1})
-    .then((post_count) => {res.json(post_count)})
+    .then((post_count) => {{data[0] = post_count}})
+    //await User.find({})
+    res.json(data)
 })
 
 // GET delete page
@@ -53,8 +56,9 @@ router.get('/api/posts/:id/comments', async (req, res) => {
 })
 
 // GET list of users
-router.get('/api/users', (req, res) => {
-    User.find({})
+router.get('/api/users', async (req, res) => {
+    const data = {}
+    await User.find({})
     .populate('friends_list.current_friends')
     .sort({last_name: 1})
     .then((user_count) => {res.json(user_count)})
