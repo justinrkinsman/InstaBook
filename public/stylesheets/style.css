@@ -642,6 +642,10 @@ a>img{
   align-items: center;
 }
 
+.delete-post-timestamp {
+  color: rgba(0, 0, 0, .5)
+}
+
 .edit-comment-form {
   height: 40vh;
   width: 30vw;

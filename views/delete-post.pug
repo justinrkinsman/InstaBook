@@ -11,7 +11,7 @@ block content
             each post in parsed 
                 div.post-layout 
                     p #{post.body} 
-                    p #{post.timestamp}
+                    p.delete-post-timestamp #{post.timestamp}
             div.delete-confirmation
                 form(action='' method='POST' id='delete-post-form')
                     div.form-group 
