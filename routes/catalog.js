@@ -134,8 +134,8 @@ router.post('/posts/:id/unlike-post', (req, res, next) => {
 })
 
 /* POST favorite post */
-router.post('/posts/:id/fav-post', (req, res, next) => {
-  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/fav-post`
+router.post('/posts/:id/fav-post/:userId', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/fav-post/${req.params.userId}`
   fetch(requestUrl, {
     method: 'PUT',
     // Try adding this later mode: 'cors'
@@ -153,8 +153,8 @@ router.post('/posts/:id/fav-post', (req, res, next) => {
 })
 
 /* POST un-fav post */
-router.post('/posts/:id/unfav-post', (req, res, next) => {
-  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/unfav-post`
+router.post('/posts/:id/unfav-post/:userId', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/posts/${req.params.id}/unfav-post/${req.params.userId}`
   fetch(requestUrl, {
     method: 'PUT',
     // Try adding this later mode: 'cors'

@@ -250,8 +250,8 @@ router.put('/api/posts/:id/unlike-post', (req, res) => {
 })
 
 // PUT favorite post
-router.put('/api/posts/:id/fav-post/', (req, res) => {
-    User.findByIdAndUpdate(req.body.current_user, {_id: req.body.current_user, $push: {'favorites': req.params.id}},
+router.put('/api/posts/:id/fav-post/:userId', (req, res) => {
+    User.findByIdAndUpdate(req.params.userId, {_id: req.params.userId, $push: {'favorites': req.params.id}},
     function(err, docs) {
         if (err) {
             console.log(err)
@@ -263,8 +263,8 @@ router.put('/api/posts/:id/fav-post/', (req, res) => {
 })
 
 // PUT un-favorite post
-router.put('/api/posts/:id/unfav-post/', (req, res) => {
-    User.findByIdAndUpdate(req.body.current_user, {_id: req.body.current_user, $pull: {'favorites': req.params.id}},
+router.put('/api/posts/:id/unfav-post/:userId', (req, res) => {
+    User.findByIdAndUpdate(req.params.userId, {_id: req.params.userId, $pull: {'favorites': req.params.id}},
     function(err, docs) {
         if (err) {
             console.log(err)

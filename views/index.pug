@@ -121,11 +121,11 @@ block content
                                 img(src='icons/comment-outline.png')
                             //img.icon(src='icons/send-outline.png')
                             - if (user.favorites.includes(post._id.toString()))
-                                form(action=`/posts/${post._id}/unfav-post` method='POST')
+                                form(action=`/posts/${post._id}/unfav-post/${user._id}` method='POST')
                                     button.btn.btn-primary.fav-post-icon(type='submit')
                                         img.icon(src='icons/bookmark-filled-out.png')
                             - else
-                                form(action=`/posts/${post._id}/fav-post` method='POST')
+                                form(action=`/posts/${post._id}/fav-post/${user._id}` method='POST')
                                     button.btn.btn-primary.fav-post-icon(type='submit')
                                         img.icon(src='icons/bookmark-outline.png')
                         p #{post.likes} Likes
@@ -144,12 +144,12 @@ block content
                                 button.btn.btn-primary.edit-post-button(type='submit') Edit Post
                             form(action=`posts/${post._id}/comments`)
                                 button.btn.btn-primary.go-to-post-button(type='submit') Go to post 
-                            form(action=`/posts/${post._id}/fav-post` method='POST')
+                            form(action=`/posts/${post._id}/fav-post/${user._id}` method='POST')
                                 button.btn.btn-primary.fav-post-button(type='submit') Add to favorites
                         else
                             form(action=`/users/${post.author._id}/remove-friend` method='POST')
                                 button.btn.btn-primary.remove-friend-button(type='submit') Remove Friend
-                            form(action=`/posts/${post._id}/fav-post` method='POST')
+                            form(action=`/posts/${post._id}/fav-post/${user._id}` method='POST')
                                 button.btn.btn-primary.fav-post-button(type='submit') Add to favorites
                             form(action=`posts/${post._id}/comments`)
                                 button.btn.btn-primary.go-to-post-button(type='submit') Go to post 
