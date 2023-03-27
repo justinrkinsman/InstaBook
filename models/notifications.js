@@ -3,10 +3,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const NotificationSchema = new Schema({
-    likes: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    received_friend_requests: {},
-    accepted_friend_requests: {},
-    comments: {}
+    user: { type: Schema.Types.ObjectedId, ref: "User"},
+    likes: { type: Schema.Types.ObjectId, ref: "User" },
+    accepted_friend_requests: {type: Schema.Types.ObjectId, ref: "User"},
+    comments: {type: Schema.Types.ObjectId, ref: "User"}
 })
 
 module.exports = mongoose.model("Notification", NotificationSchema)

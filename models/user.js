@@ -12,7 +12,8 @@ const UserSchema = new Schema({
         sent_requests: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         received_requests: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     },
-    favorites: [{ type: Schema.Types.ObjectId, ref: "Post" }]
+    favorites: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+    notifications: [{ type: Schema.Types.Objected, ref: "Notification" }]
     //profile_pic: {type: }
     //feed: [{type: }]
 })
