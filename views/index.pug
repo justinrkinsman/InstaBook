@@ -122,12 +122,14 @@ block content
                             //img.icon(src='icons/send-outline.png')
                             - if (user.favorites.includes(post._id.toString()))
                                 form(action=`/posts/${post._id}/unfav-post/${user._id}` method='POST')
-                                    button.btn.btn-primary.fav-post-icon(type='submit')
-                                        img.icon(src='icons/bookmark-filled-out.png')
+                                    div.form-group
+                                        button.btn.btn-primary.fav-post-icon(type='submit')
+                                            img.icon(src='icons/bookmark-filled-out.png')
                             - else
                                 form(action=`/posts/${post._id}/fav-post/${user._id}` method='POST')
-                                    button.btn.btn-primary.fav-post-icon(type='submit')
-                                        img.icon(src='icons/bookmark-outline.png')
+                                    div.form-group
+                                        button.btn.btn-primary.fav-post-icon(type='submit')
+                                            img.icon(src='icons/bookmark-outline.png')
                         p #{post.likes} Likes
                         if post.comments.length > 0
                             a(href=`posts/${post._id}/comments`) 

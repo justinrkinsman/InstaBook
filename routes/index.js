@@ -257,9 +257,9 @@ router.put('/api/posts/:id/fav-post/:userId', (req, res) => {
             console.log(err)
         }else{
             console.log('Update User :', docs)
+            return res.redirect('/api/homepage')
         }
     })
-    return res.redirect('/api/homepage')
 })
 
 // PUT un-favorite post
@@ -270,9 +270,9 @@ router.put('/api/posts/:id/unfav-post/:userId', (req, res) => {
             console.log(err)
         }else{
             console.log('Update User :', docs)
+            return res.redirect('/api/homepage')
         }
     })
-    return res.redirect('/api/homepage')
 })
 
 // PUT accept friend request

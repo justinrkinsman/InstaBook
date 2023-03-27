@@ -140,7 +140,6 @@ router.post('/posts/:id/fav-post/:userId', (req, res, next) => {
     method: 'PUT',
     // Try adding this later mode: 'cors'
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({"current_user": req.user._id})
   })
   .then(response => response.json())
   .then(data => {
@@ -159,7 +158,6 @@ router.post('/posts/:id/unfav-post/:userId', (req, res, next) => {
     method: 'PUT',
     // Try adding this later mode: 'cors'
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({"current_user": req.user._id})
   })
   .then(response => response.json())
   .then(data => {
