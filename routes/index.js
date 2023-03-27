@@ -225,7 +225,15 @@ router.delete('/api/users/:id/', (req, res) => {
 /// PUT APIs ///
 // PUT like post
 router.put('/api/posts/:id/like-post', (req, res) => {
-    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $inc: {"likes": 1}, $push: {'liked_users': req.body.current_user, 'notifications.likes': req.body.current_user + 'liked your post'}},
+    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $inc: {"likes": 1}, $push: {'liked_users': req.body.current_user}},
+    function(err, docs) {
+        if (err) {
+            console.log(err)
+        }else{
+            console.log('Update User :', docs)
+        }
+    })
+    User.findByIdAndUpdate(req.body.current_user, {_id: req.params.id, $push: {'notifications.likes': "User liked post"}},
     function(err, docs) {
         if (err) {
             console.log(err)
