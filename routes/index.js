@@ -277,7 +277,7 @@ router.put('/api/posts/:id/like-post', async (req, res) => {
             { new: true }
         );
 
-        return res.redirect('/api/homepage');
+        res.json({ message: 'Notification sent', user })
     } catch (error) {
         console.log(error);
         return res.status(500).send("Server error");
