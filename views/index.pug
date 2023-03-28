@@ -160,7 +160,13 @@ block content
                         p.context-menu-cancel-link(onclick="handleClick('" + post._id + "')") Cancel 
         div.homepage-right
             // Add 'Users You Might Know' feature
-            p People You May Know
+            div.homepage-right-notifications 
+                h4 Notifications
+                p #{user.notifications.likes}
+                p #{user.notifications.accepted_friend_requests}
+                p #{user.notifications.comments}
+            div.homepage-right-people 
+                h4 People You May Know
             // a(href='/new-post') New Post
             // a(href='/logout') Logout
             // a(href='/users') User Index
