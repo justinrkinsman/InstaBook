@@ -224,7 +224,7 @@ router.delete('/api/users/:id/', (req, res) => {
 
 /// PUT APIs ///
 // PUT like post
-router.put('/api/posts/:id/like-post', (req, res) => {
+/*router.put('/api/posts/:id/like-post', (req, res) => {
     Post.findByIdAndUpdate(
         req.params.id, 
         {_id: req.params.id, 
@@ -255,7 +255,34 @@ router.put('/api/posts/:id/like-post', (req, res) => {
         }
     })
     return res.redirect('/api/homepage')
-})
+})*/
+
+router.put('/api/posts/:id/like-post', async (req, res) => {
+    try {
+        const post = await Post.findByIdAndUpdate(
+            req.params.id, 
+            {
+                $inc: { "likes": 1 }, 
+                $push: { "liked_users": req.body.current_user }
+            },
+            { new: true }
+        )
+        .populate("author")
+        .exec();
+
+        // Update user notifications
+        await User.findByIdAndUpdate(
+            post.author._id,
+            { $push: { "notifications.likes": req.body.current_user } },
+            { new: true }
+        );
+
+        return res.redirect('/api/homepage');
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("Server error");
+    }
+});
 
 // PUT unlike post
 router.put('/api/posts/:id/unlike-post', (req, res) => {
