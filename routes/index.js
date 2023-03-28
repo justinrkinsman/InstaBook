@@ -144,37 +144,50 @@ router.post('/api/new-post', (req, res) => {
 
 // POST new comment
 router.post('/api/posts/:id/comments', async (req, res) => {
-    const date = new Date()
-    newTimestamp = DateTime.fromJSDate(date).toFormat('MMMM d yyyy h:mm a')
+    try{
+        const date = new Date()
+        newTimestamp = DateTime.fromJSDate(date).toFormat('MMMM d yyyy h:mm a')
 
-    const userId = await User.findOne({username: req.body.user})
+        const userId = await User.findOne({username: req.body.user})
 
-    commentDetail = {
-        body: req.body.body,
-        timestamp: newTimestamp,
-        db_timestamp: date,
-        user: userId,
-        post: req.params.id
-    }
-
-    let comment = new Comment(commentDetail)
-
-    comment.save(function (err) {
-        if (err) {
-            console.log(err)
-            return
+        commentDetail = {
+            body: req.body.body,
+            timestamp: newTimestamp,
+            db_timestamp: date,
+            user: userId,
+            post: req.params.id
         }
-    })
 
-    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {comments: comment}},
-        function(err, docs) {
+        let comment = new Comment(commentDetail)
+
+        comment.save(function (err) {
             if (err) {
                 console.log(err)
-            }else{
-                console.log('Update Post :', docs)
+                return
             }
         })
-    res.redirect(`/api/homepage`)
+
+        const post = await Post.findByIdAndUpdate(
+            req.params.id, 
+            {
+                $push: {comments: comment}
+            },
+            { new: true }
+        )
+        .populate("author")
+        .exec();
+
+        await User.findByIdAndUpdate(
+            post.author._id,
+            { $push: {"notifications.comments": userId} },
+            { new: true }
+        );
+
+        res.json({ message: "Notification sent", user: req.body.user})
+    }catch (error) {
+        console.log(error);
+        return res.status(500).send("Server error");
+    }
 })
 
 // POST send friend request
