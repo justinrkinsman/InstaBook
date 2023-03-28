@@ -271,7 +271,7 @@ router.put('/api/posts/:id/unlike-post', (req, res) => {
 })
 
 // PUT favorite post
-router.put('/api/posts/:id/fav-post/:userId', (req, res) => {
+/*router.put('/api/posts/:id/fav-post/:userId', (req, res) => {
     User.findByIdAndUpdate(req.params.userId, {_id: req.params.userId, $push: {'favorites': req.params.id}},
     function(err, docs) {
         if (err) {
@@ -281,10 +281,23 @@ router.put('/api/posts/:id/fav-post/:userId', (req, res) => {
             return res.redirect('/api/homepage')
         }
     })
+})*/
+
+router.put('/api/posts/:id/fav-post/:userId', async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.userId, { $push: { favorites: req.params.id } }, { new: true })
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+        res.json({ message: 'Post added to favorites', user })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: 'Server error' })
+    }
 })
 
 // PUT un-favorite post
-router.put('/api/posts/:id/unfav-post/:userId', (req, res) => {
+/*router.put('/api/posts/:id/unfav-post/:userId', (req, res) => {
     User.findByIdAndUpdate(req.params.userId, {_id: req.params.userId, $pull: {'favorites': req.params.id}},
     function(err, docs) {
         if (err) {
@@ -294,6 +307,18 @@ router.put('/api/posts/:id/unfav-post/:userId', (req, res) => {
             return res.redirect('/api/homepage')
         }
     })
+})*/
+router.put('/api/posts/:id/unfav-post/:userId', async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.userId, { $pull: {favorites: req.params.id} }, { new: true })
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+        res.json({ message: 'Post removed from favorites', user})
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: 'Server error'})
+    }
 })
 
 // PUT accept friend request

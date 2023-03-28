@@ -144,11 +144,11 @@ router.post('/posts/:id/fav-post/:userId', (req, res, next) => {
   .then(response => response.json())
   .then(data => {
     console.log('Sucess', data)
+    res.redirect('back')
   })
   .catch((error) => {
     console.log('Error', error)
   })
-  res.redirect('back')
 })
 
 /* POST un-fav post */
@@ -162,11 +162,11 @@ router.post('/posts/:id/unfav-post/:userId', (req, res, next) => {
   .then(response => response.json())
   .then(data => {
     console.log('Sucess', data)
+    res.redirect('back')
   })
   .catch((error) => {
     console.log('Error', error)
   })
-  res.redirect('back')
 })
 
 /* GET delete post page */

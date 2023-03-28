@@ -30,8 +30,8 @@ block content
                 a.logout-link(href='/logout') Logout
         div.user-index-midpage
             h1 Search Users
-            form(onsubmit='handleSearchQuery(event)')
-                input#search(type='text' placeholder='Search' onkeypress='handleKeyPress(event)')
+            form
+                input#search(type='text' placeholder='Search' oninput='handleSearchQuery(this.value)' onkeypress='handleKeyPress(event)')
                 a(id="search-page-link" href=`/search/`)
                     img.search-results-icon(src='icons/magnify.png')
             - let str = JSON.stringify(users)
