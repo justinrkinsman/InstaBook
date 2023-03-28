@@ -225,20 +225,33 @@ router.delete('/api/users/:id/', (req, res) => {
 /// PUT APIs ///
 // PUT like post
 router.put('/api/posts/:id/like-post', (req, res) => {
-    Post.findByIdAndUpdate(req.params.id, {_id: req.params.id, $inc: {"likes": 1}, $push: {'liked_users': req.body.current_user}},
-    function(err, docs) {
+    Post.findByIdAndUpdate(
+        req.params.id, 
+        {_id: req.params.id, 
+            $inc: {"likes": 1}, 
+            $push: {'liked_users': req.body.current_user}
+        },
+        { new: true }
+    )
+    .populate("author")
+    .exec(function (err, post) {
         if (err) {
-            console.log(err)
-        }else{
-            console.log('Update User :', docs)
-        }
-    })
-    User.findByIdAndUpdate(req.body.current_user, {_id: req.params.id, $push: {'notifications.likes': "User liked post"}},
-    function(err, docs) {
-        if (err) {
-            console.log(err)
-        }else{
-            console.log('Update User :', docs)
+            console.log(err);
+        } else {
+            //console.log("Updated Post: ", post);
+            console.log(post.author._id)
+
+            User.findByIdAndUpdate(
+                post.author._id,
+                { $push: {"notifications.likes": "user liked your post"}},
+                function(err, user) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log("Update User:", user)
+                    }
+                }
+            )
         }
     })
     return res.redirect('/api/homepage')

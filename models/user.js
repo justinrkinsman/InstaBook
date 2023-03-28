@@ -14,9 +14,9 @@ const UserSchema = new Schema({
     },
     favorites: [{ type: Schema.Types.ObjectId, ref: "Post" }],
     notifications: { 
-        likes: [{ type: String }],
-        comments: [{ type: String }],
-        accepted_friend_requests: [{ type: String }]  
+        likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        comments: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        accepted_friend_requests: [{ type: Schema.Types.ObjectId, ref: 'User' }]  
     }
     //profile_pic: {type: }
     //feed: [{type: }]
