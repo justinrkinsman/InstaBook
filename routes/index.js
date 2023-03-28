@@ -277,7 +277,7 @@ router.put('/api/posts/:id/like-post', async (req, res) => {
             { new: true }
         );
 
-        res.json({ message: 'Notification sent', user })
+        res.json({ message: 'Notification sent', User })
     } catch (error) {
         console.log(error);
         return res.status(500).send("Server error");
@@ -349,24 +349,31 @@ router.put('/api/posts/:id/unfav-post/:userId', async (req, res) => {
 })
 
 // PUT accept friend request
-router.put(`/api/users/:id`, (req, res) => {
-    User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {"friends_list.current_friends": req.body.user_id}, $pull: {"friends_list.sent_requests": req.body.user_id}},
-        function(err, docs) {
-            if (err) {
-                console.log(err)
-            }else{
-                console.log('Update User :', docs)
-            }
-        })
-    User.findByIdAndUpdate(req.body.user_id, {_id: req.body.user_id, $push: {"friends_list.current_friends": req.params.id}, $pull: {"friends_list.received_requests": req.params.id}},
-        function(err, docs) {
-            if (err) {
-                console.log(err)
-            }else{
-                console.log('Update User :', docs)
-            }
-        })
-    return res.redirect(`/api/users`)
+router.put(`/api/users/:id`, async (req, res) => {
+    try {
+        const user = User.findByIdAndUpdate(
+            req.params.id, 
+            {
+                $push: {"friends_list.current_friends": req.body.user_id, "notifications.accepted_friend_requests": req.body.user_id}, 
+                $pull: {"friends_list.sent_requests": req.body.user_id}
+            },
+            { new: true}
+        )
+        .exec();
+            
+        await User.findByIdAndUpdate(
+            req.body.user_id, 
+            {
+                $push: {"friends_list.current_friends": req.params.id}, 
+                $pull: {"friends_list.received_requests": req.params.id}
+            },
+            { new: true }
+        );
+        res.json({ message: "Notification sent", user})
+    }catch(error){
+        console.log(error);
+        return res.status(500).send("Server error");
+    }
 })
 
 // PUT Edit Post
