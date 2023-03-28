@@ -25,12 +25,19 @@ const upload = multer({ storage: storage })
 /// GET APIs ///
 // GET posts for home page
 router.get('/api/homepage', async (req, res) => {
+    const userId = req.query.userId;
     const data = {}
     await Post.find({})
     .populate('author')
     .sort({db_timestamp: -1})
     .then((post_count) => {{data[0] = post_count}})
-    //await User.find({})
+    await User.find({_id: userId})
+    .select("-username -password -friends_list -first_name -last_name -favorites")
+    .populate("notifications.likes")
+    .populate("notifications.accepted_friend_requests")
+    .populate("notifications.comments")
+    .sort({db_timestamp: -1})
+    .then((post_count) => {{data[1] = post_count}})
     res.json(data)
 })
 

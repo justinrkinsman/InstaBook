@@ -21,6 +21,9 @@ const upload = multer({ storage: storage })
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  if (!req.user) {
+    res.redirect('/login')
+  }
   return res.redirect('/homepage')
 })
 
@@ -28,14 +31,14 @@ router.get('/homepage', function(req, res, next) {
   if (!req.user) {
     res.redirect('/login')
   }
-  const requestUrl = `http://localhost:3000/api/homepage`
+  const requestUrl = `http://localhost:3000/api/homepage?userId=${req.user._id}`
   fetch(requestUrl)
   .then(response => response.json())
   .then(data => {
     if (!req.user) {
-      return res.render('index.pug', { title: "InstaBook", posts: data[0], user: null })
+      return res.render('index.pug', { title: "InstaBook", posts: data[0], notifications: data[1], user: null })
     }else{
-      return res.render('index.pug', { title: "InstaBook", posts: data[0], user: req.user });
+      return res.render('index.pug', { title: "InstaBook", posts: data[0], notifications: data[1], user: req.user });
     }
   })
   //res.render('index.pug', {title: "InstaBook", user: req.user.first_name})

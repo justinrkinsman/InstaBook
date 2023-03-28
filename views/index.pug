@@ -162,6 +162,11 @@ block content
             // Add 'Users You Might Know' feature
             div.homepage-right-notifications 
                 h4 Notifications
+                - let strNotes = JSON.stringify(notifications)
+                - let parsedNotes = JSON.parse(strNotes)
+                each note in parsedNotes
+                    p #{strNotes}
+                    p Notifications: #{note.notifications.username}
                 p #{user.notifications.likes}
                 p #{user.notifications.accepted_friend_requests}
                 p #{user.notifications.comments}
