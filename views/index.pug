@@ -166,12 +166,12 @@ block content
                 - let parsedNotes = JSON.parse(strNotes)
                 each note in parsedNotes
                     each like in note.notifications.likes
-                        p #{like.user} Liked your post
+                        p #{like.username} Liked your post
                     each friend in note.notifications.accepted_friend_requests
                         a(href=`/user/${friend._id}`)
                             p #{friend.username} Accepted your friend request 
                     each comment in note.notifications.comments     
-                        p #{comment.user} Commented on your post
+                        p #{comment.username} Commented on your post
             div.homepage-right-people 
                 h4 People You May Know
             // a(href='/new-post') New Post
