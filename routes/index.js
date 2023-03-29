@@ -35,6 +35,7 @@ router.get('/api/homepage', async (req, res) => {
     .select("-username -password -friends_list -first_name -last_name -favorites -_id")
     .populate("notifications.likes")
     .populate("notifications.accepted_friend_requests")
+    .populate("notifications.received_friend_requests")
     .populate("notifications.comments")
     .sort({db_timestamp: -1})
     .then((note_count) => {{data[1] = note_count}})
@@ -186,7 +187,7 @@ router.post('/api/posts/:id/comments', async (req, res) => {
 
         await User.findByIdAndUpdate(
             post.author._id,
-            { $push: {"notifications.comments.user": userId, "notifications.comments.post": post._id} },
+            { $push: {"notifications.comments": userId} },
             { new: true }
         );
 
@@ -198,24 +199,31 @@ router.post('/api/posts/:id/comments', async (req, res) => {
 })
 
 // POST send friend request
-router.post('/api/users/:id', (req, res) => { 
-    User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $push: {"friends_list.received_requests": req.body.user_id}},
-        function(err, docs) {
-            if (err) {
-                console.log(err)
-            }else{
-                console.log('Update User :', docs)
-            }
-        })
-    User.findByIdAndUpdate(req.body.user_id, {_id: req.body.user_id, $push: {"friends_list.sent_requests": req.params.id}},
-        function(err, docs) {
-            if (err) {
-                console.log(err)
-            }else{
-                console.log('Update User :', docs)
-            }
-        })
-    return res.redirect(`/api/users`)
+router.post('/api/users/:id', async (req, res) => { 
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                $push: {"friends_list.received_requests": req.body.user_id, "notifications.received_friend_requests": req.body.user_id},
+                $pull: {"friends_list.sent_requests": req.body.user_id}
+            },
+            {new: true}
+        )
+        .exec();
+
+        await User.findByIdAndUpdate(
+            req.body.user_id,
+            {
+                $push: {"friends_list.sent_requests": req.params.id},
+                $pull: {"friends_list.received_requests": req.params.id}
+            },
+            {new: true}
+        );
+        res.json({ message: "Notification sent", user})
+    }catch (error){
+        console.log(error);
+        return res.status(500).send("Server error");
+    }
 })
 
 // POST remove friend
@@ -293,7 +301,7 @@ router.put('/api/posts/:id/like-post', async (req, res) => {
         // Update user notifications
         await User.findByIdAndUpdate(
             post.author._id,
-            { $push: { "notifications.likes.user": req.body.current_user, "notifications.likes.post": post._id } },
+            { $push: { "notifications.likes": req.body.current_user } },
             { new: true }
         );
 
