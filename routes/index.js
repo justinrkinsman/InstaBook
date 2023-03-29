@@ -33,9 +33,9 @@ router.get('/api/homepage', async (req, res) => {
     .then((post_count) => {{data[0] = post_count}})
     await User.find({_id: userId})
     .select("-username -password -friends_list -first_name -last_name -favorites -_id")
-    .populate("notifications.likes")
+    .populate("notifications.likes.user")
     .populate("notifications.accepted_friend_requests")
-    .populate("notifications.comments")
+    .populate("notifications.comments.user")
     .sort({db_timestamp: -1})
     .then((note_count) => {{data[1] = note_count}})
     res.json(data)
@@ -186,7 +186,7 @@ router.post('/api/posts/:id/comments', async (req, res) => {
 
         await User.findByIdAndUpdate(
             post.author._id,
-            { $push: {"notifications.comments": userId} },
+            { $push: {"notifications.comments.user": userId, "notifications.comments.post": post._id} },
             { new: true }
         );
 
@@ -293,7 +293,7 @@ router.put('/api/posts/:id/like-post', async (req, res) => {
         // Update user notifications
         await User.findByIdAndUpdate(
             post.author._id,
-            { $push: { "notifications.likes": req.body.current_user } },
+            { $push: { "notifications.likes.user": req.body.current_user, "notifications.likes.post": post._id } },
             { new: true }
         );
 
