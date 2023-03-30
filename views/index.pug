@@ -163,29 +163,7 @@ block content
             // Add 'Users You Might Know' feature
             div.homepage-right-notifications 
                 h4 Notifications
-                - let strNotes = JSON.stringify(notifications)
-                - let parsedNotes = JSON.parse(strNotes)
-                each note in parsedNotes
-                    - let strLike = JSON.stringify(note.notifications.likes)
-                    - let parsedLike = JSON.parse(strLike)
-                    each like in parsedLike
-                        each post, index in like.post 
-                            if (post.author !== like.user[index]._id)
-                                a(href=`/posts/${post._id}/comments`)
-                                    p #{like.user[index].username} Liked your post
-                    each friend in note.notifications.accepted_friend_requests
-                        a(href=`/user/${friend._id}`)
-                            p #{friend.username} Accepted your friend request 
-                    - let strComment = JSON.stringify(note.notifications.comments)
-                    - let parsedComment = JSON.parse(strComment)
-                    each comment in parsedComment 
-                        each post, index in comment.post 
-                            if (post.author !== comment.user[index]._id)
-                                a(href=`/posts/${post._id}/comments`)
-                                    p #{comment.user[index].username} Commented on your post
-                    each friend in note.notifications.received_friend_requests 
-                        a(href=`/user/${friend._id}`)
-                            p #{friend.username} Sent a friend request
+                
             a(href=`/notifications/${user._id}`) See all notifications...
             div.homepage-right-people 
                 h4 People You May Know

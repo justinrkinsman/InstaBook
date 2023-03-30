@@ -273,39 +273,6 @@ router.delete('/api/users/:id/', (req, res) => {
 
 /// PUT APIs ///
 // PUT like post
-/*router.put('/api/posts/:id/like-post', (req, res) => {
-    Post.findByIdAndUpdate(
-        req.params.id, 
-        {_id: req.params.id, 
-            $inc: {"likes": 1}, 
-            $push: {'liked_users': req.body.current_user}
-        },
-        { new: true }
-    )
-    .populate("author")
-    .exec(function (err, post) {
-        if (err) {
-            console.log(err);
-        } else {
-            //console.log("Updated Post: ", post);
-            console.log(post.author._id)
-
-            User.findByIdAndUpdate(
-                post.author._id,
-                { $push: {"notifications.likes": "user liked your post"}},
-                function(err, user) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log("Update User:", user)
-                    }
-                }
-            )
-        }
-    })
-    return res.redirect('/api/homepage')
-})*/
-
 router.put('/api/posts/:id/like-post', async (req, res) => {
     try {
         const post = await Post.findByIdAndUpdate(
@@ -319,67 +286,38 @@ router.put('/api/posts/:id/like-post', async (req, res) => {
         .populate("author")
         .exec();
 
-        // Update user notifications
-        /*await User.findByIdAndUpdate(
-            post.author._id,
-            { $push: { "notifications.likes.user": req.body.current_user, "notifications.likes.post": req.params.id} },
-            { new: true }
-        );*/
         const date = new Date();
         newTimeStamp = DateTime.fromJSDate(date).toFormat('MMMM d yyyy h:mm a')
 
-        await Notification.findByIdAndUpdate(
-            post.author._id,
+        noteDetails = {
+            this_user: post.author._id,
+            user: req.body.current_user,
+            post: post._id,
+            likes: true,
+            timestamp: newTimeStamp,
+            db_timestamp: date,
+        }
 
-        )
+        let note = new Notification(noteDetails)
+        
+        note.save(function (err) {
+            if (err) {
+                console.log(err)
+                return;
+            }
+        })
+
+        await User.findByIdAndUpdate(
+            post.author._id,
+            { $push: { "notifications": note } },
+            { new: true }
+        );
 
         res.json({ message: 'Notification sent', User })
     } catch (error) {
         console.log(error);
         return res.status(500).send("Server error");
     }
-
-    /*  const userId = await User.findOne({username: req.body.user})
-
-        commentDetail = {
-            body: req.body.body,
-            timestamp: newTimestamp,
-            db_timestamp: date,
-            user: userId,
-            post: req.params.id
-        }
-
-        let comment = new Comment(commentDetail)
-
-        comment.save(function (err) {
-            if (err) {
-                console.log(err)
-                return
-            }
-        })
-
-        const post = await Post.findByIdAndUpdate(
-            req.params.id, 
-            {
-                $push: {comments: comment}
-            },
-            { new: true }
-        )
-        .populate("author")
-        .exec();
-
-        await User.findByIdAndUpdate(
-            post.author._id,
-            { $push: {"notifications.comments.user": userId, "notifications.comments.post": req.params.id} },
-            { new: true }
-        );
-
-        res.json({ message: "Notification sent", user: req.body.user})
-    }catch (error) {
-        console.log(error);
-        return res.status(500).send("Server error");
-    }
-    */
 });
 
 // PUT unlike post

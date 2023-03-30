@@ -13,18 +13,7 @@ const UserSchema = new Schema({
         received_requests: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     },
     favorites: [{ type: Schema.Types.ObjectId, ref: "Post" }],
-    notifications: { 
-        likes: [{ 
-            user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-            post: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
-        }],
-        comments: [{ 
-            user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-            post: [{ type: Schema.Types.ObjectId, ref: 'Post' }], 
-        }],
-        accepted_friend_requests: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-        received_friend_requests: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    }
+    notifications: [{ type: Schema.Types.ObjectId, ref: 'User'}]
     //profile_pic: {type: }
     //feed: [{type: }]
 })
