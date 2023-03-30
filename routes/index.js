@@ -8,6 +8,7 @@ const User = require("../models/user")
 const Post = require('../models/post')
 const Comment = require('../models/comment')
 const ImageModel = require('../models/image')
+const Notification = require('../models/notifications')
 
 // Multer object creation
 const multer = require('multer')
@@ -319,11 +320,13 @@ router.put('/api/posts/:id/like-post', async (req, res) => {
         .exec();
 
         // Update user notifications
-        await User.findByIdAndUpdate(
+        /*await User.findByIdAndUpdate(
             post.author._id,
             { $push: { "notifications.likes.user": req.body.current_user, "notifications.likes.post": req.params.id} },
             { new: true }
-        );
+        );*/
+
+        await Notification.findByIdAndUpdate
 
         res.json({ message: 'Notification sent', User })
     } catch (error) {

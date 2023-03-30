@@ -4,6 +4,7 @@ const { DateTime } = require('luxon')
 const Schema = mongoose.Schema
 
 const NotificationSchema = new Schema({
+    this_user: { type: Schema.Types.ObjectId, ref: 'User' },
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     post: { type: Schema.Types.ObjectId, ref: 'Post' },
     accepted_friend_requests: { type: Schema.Types.ObjectId, ref: 'User' },
