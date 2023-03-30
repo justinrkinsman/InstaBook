@@ -172,6 +172,9 @@ block content
                             p #{friend.username} Accepted your friend request 
                     each comment in note.notifications.comments     
                         p #{comment.username} Commented on your post
+                    each friend in note.notifications.received_friend_requests 
+                        a(href=`/user/${friend._id}`)
+                            p #{friend.username} Sent a friend request
             div.homepage-right-people 
                 h4 People You May Know
             // a(href='/new-post') New Post
