@@ -325,14 +325,61 @@ router.put('/api/posts/:id/like-post', async (req, res) => {
             { $push: { "notifications.likes.user": req.body.current_user, "notifications.likes.post": req.params.id} },
             { new: true }
         );*/
+        const date = new Date();
+        newTimeStamp = DateTime.fromJSDate(date).toFormat('MMMM d yyyy h:mm a')
 
-        await Notification.findByIdAndUpdate
+        await Notification.findByIdAndUpdate(
+            post.author._id,
+
+        )
 
         res.json({ message: 'Notification sent', User })
     } catch (error) {
         console.log(error);
         return res.status(500).send("Server error");
     }
+
+    /*  const userId = await User.findOne({username: req.body.user})
+
+        commentDetail = {
+            body: req.body.body,
+            timestamp: newTimestamp,
+            db_timestamp: date,
+            user: userId,
+            post: req.params.id
+        }
+
+        let comment = new Comment(commentDetail)
+
+        comment.save(function (err) {
+            if (err) {
+                console.log(err)
+                return
+            }
+        })
+
+        const post = await Post.findByIdAndUpdate(
+            req.params.id, 
+            {
+                $push: {comments: comment}
+            },
+            { new: true }
+        )
+        .populate("author")
+        .exec();
+
+        await User.findByIdAndUpdate(
+            post.author._id,
+            { $push: {"notifications.comments.user": userId, "notifications.comments.post": req.params.id} },
+            { new: true }
+        );
+
+        res.json({ message: "Notification sent", user: req.body.user})
+    }catch (error) {
+        console.log(error);
+        return res.status(500).send("Server error");
+    }
+    */
 });
 
 // PUT unlike post
