@@ -33,6 +33,7 @@ router.get('/api/homepage', async (req, res) => {
     .sort({db_timestamp: -1})
     .then((post_count) => {{data[0] = post_count}})
     await Notification.find({this_user: userId})
+    .populate('user')
     .sort({db_timestamp: -1})
     .then((note_count) => {{data[1] = note_count}})
     res.json(data)
