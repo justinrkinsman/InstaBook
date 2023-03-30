@@ -201,9 +201,14 @@ body {
   padding: 5px;
 }
 
-.homepage-notification:hover {
+.homepage-notification:hover, .notification-card:hover {
   background-color: rgba(0, 0, 0, .05);
   cursor: pointer;
+}
+
+.notification-card {
+  text-decoration: none;
+  color: black;
 }
 
 .homepage-left-link {

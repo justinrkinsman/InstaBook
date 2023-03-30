@@ -32,22 +32,18 @@ block content
         div.homepage-center 
             each note in JSON.parse(notifications)
                 if (note.likes)
-                    div.notification-card
-                        a(href=`/posts/${note.post}/comments`)
-                            p #{note.user.username} liked your post
+                    a.notification-card(href=`/posts/${note.post}/comments`)
+                        p #{note.user.username} liked your post
                         p #{note.timestamp}
                 if (note.comments)
-                    div.notification-card
-                        a(href=`/posts/${note.post}/comments`)
-                            p #{note.user.username} commented on your post
+                    a.notification-card(href=`/posts/${note.post}/comments`)
+                        p #{note.user.username} commented on your post
                         p #{note.timestamp}
                 if (note.received_friend_requests)
-                    div.notification-card
-                        a(href=`/user/${note.user._id}`)
-                            p #{note.user.username} sent a friend request
+                    a.notification-card(href=`/user/${note.user._id}`)
+                        p #{note.user.username} sent a friend request
                         p #{note.timestamp}
                 if (note.accepted_friend_requests)
-                    div.notification-card
-                        a(href=`/user/${note.user._id}`)
-                            p #{note.user.username} accepted your friend request
+                    a.notification-card(href=`/user/${note.user._id}`)
+                        p #{note.user.username} accepted your friend request
                         p #{note.timestamp}
