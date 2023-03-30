@@ -165,8 +165,11 @@ block content
                 - let strNotes = JSON.stringify(notifications)
                 - let parsedNotes = JSON.parse(strNotes)
                 each note in parsedNotes
-                    each like in note.notifications.likes
-                        p #{like.username} Liked your post
+                    - let strLike = JSON.stringify(note.notifications.likes)
+                    - let parsedLike = JSON.parse(strLike)
+                    each like in parsedLike
+                        each post, index in like.post 
+                            p #{like.user[index]} Liked your post #{post}
                     each friend in note.notifications.accepted_friend_requests
                         a(href=`/user/${friend._id}`)
                             p #{friend.username} Accepted your friend request 

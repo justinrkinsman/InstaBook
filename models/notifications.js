@@ -4,9 +4,7 @@ const Schema = mongoose.Schema
 
 const NotificationSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },
-    likes: { type: Schema.Types.ObjectId, ref: 'User' },
-    accepted_friend_requests: { type: Schema.Types.ObjectId, ref: 'User' },
-    comments: { type: Schema.Types.ObjectId, ref: 'User' }
+    accepted_friend_requests: {}
 })
 
 module.exports = mongoose.model("Notification", NotificationSchema)*/

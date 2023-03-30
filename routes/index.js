@@ -301,7 +301,7 @@ router.put('/api/posts/:id/like-post', async (req, res) => {
         // Update user notifications
         await User.findByIdAndUpdate(
             post.author._id,
-            { $push: { "notifications.likes": req.body.current_user } },
+            { $push: { "notifications.likes.user": req.body.current_user, "notifications.likes.post": req.params.id} },
             { new: true }
         );
 
