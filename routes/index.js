@@ -37,7 +37,8 @@ router.get('/api/homepage', async (req, res) => {
     .populate("notifications.likes.post")
     .populate("notifications.accepted_friend_requests")
     .populate("notifications.received_friend_requests")
-    .populate("notifications.comments")
+    .populate("notifications.comments.user")
+    .populate("notifications.comments.post")
     .sort({db_timestamp: -1})
     .then((note_count) => {{data[1] = note_count}})
     res.json(data)
@@ -188,7 +189,7 @@ router.post('/api/posts/:id/comments', async (req, res) => {
 
         await User.findByIdAndUpdate(
             post.author._id,
-            { $push: {"notifications.comments": userId} },
+            { $push: {"notifications.comments.user": userId, "notifications.comments.post": req.params.id} },
             { new: true }
         );
 

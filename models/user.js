@@ -18,7 +18,10 @@ const UserSchema = new Schema({
             user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
             post: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
         }],
-        comments: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        comments: [{ 
+            user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+            post: [{ type: Schema.Types.ObjectId, ref: 'Post' }], 
+        }],
         accepted_friend_requests: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         received_friend_requests: [{ type: Schema.Types.ObjectId, ref: "User" }],
     }
