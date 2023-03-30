@@ -188,8 +188,22 @@ body {
 }
 
 .homepage-right-notifications {
-  height: 14.5em;
+  height: 23em;
   overflow: hidden;
+}
+
+.homepage-notification a{
+  text-decoration: none;
+  color: black;
+}
+
+.homepage-notification {
+  padding: 5px;
+}
+
+.homepage-notification:hover {
+  background-color: rgba(0, 0, 0, .05);
+  cursor: pointer;
 }
 
 .homepage-left-link {
