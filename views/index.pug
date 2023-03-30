@@ -186,6 +186,7 @@ block content
                     each friend in note.notifications.received_friend_requests 
                         a(href=`/user/${friend._id}`)
                             p #{friend.username} Sent a friend request
+            a(href=`/notifications/${user._id}`) See all notifications...
             div.homepage-right-people 
                 h4 People You May Know
             // a(href='/new-post') New Post
