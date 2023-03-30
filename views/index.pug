@@ -180,8 +180,6 @@ block content
                         each post, index in comment.post 
                             a(href=`/posts/${post._id}/comments`)
                                 p #{comment.user[index].username} Commented on your post
-                    each comment in note.notifications.comments     
-                        p #{comment.username} Commented on your post
                     each friend in note.notifications.received_friend_requests 
                         a(href=`/user/${friend._id}`)
                             p #{friend.username} Sent a friend request
