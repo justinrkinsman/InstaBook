@@ -17,18 +17,16 @@ block content
                     img.icon(src='icons/send-outline.png')
                     p Messages
                 div.homepage-left-link
-                    // ADD user._id TO LINK
-                    a(href=`/notifications/`)
+                    a(href=`/notifications/${user._id}`)
                         img.icon(src='/icons/heart.png')
-                    a.active-link(href=`/notifications/`) Notifications
+                    a.active-link(href=`/notifications/${user._id}`) Notifications
                 div.homepage-left-link
                     a(href='/new-post')
                         img.icon(src='/icons/plus-box-outline.png')
                     a(href='/new-post') Create
                 div.homepage-left-link
-                    //ADD user._id TO LINKS
-                    a(href=`/user/`) 
+                    a(href=`/user/${user._id}`) 
                         img.icon(src='/icons/account-circle-outline.png')
-                    a(href=`/user/`) Profile
+                    a(href=`/user/${user._id}`) Profile
                 a.logout-link(href='/logout') Logout
         div.homepage-center 
