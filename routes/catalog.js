@@ -457,7 +457,8 @@ router.get('/notifications/:id', (req, res) => {
   fetch(requestUrl)
     .then(response => response.json())
     .then(data => {
-      res.render('notifications.pug', {title: `Your Notifications`, notifications: data, user: req.user})
+      let str = JSON.stringify(data);
+      res.render('notifications.pug', {title: `Your Notifications`, notifications: str, user: req.user})
     })
 })
 

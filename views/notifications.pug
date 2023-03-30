@@ -30,27 +30,16 @@ block content
                     a(href=`/user/${user._id}`) Profile
                 a.logout-link(href='/logout') Logout
         div.homepage-center 
-            - let str = JSON.stringify(notifications)
-            - let parsed = JSON.parse(str)
-            //- let friendStr = JSON.stringify(user.friends_list.current_friends)
-            each note in parsed
-                - let strLike = JSON.stringify(note.notifications.likes)
-                - let parsedLike = JSON.parse(strLike)
-                each like in parsedLike 
-                    each post, index in like.post
-                        if (post.author !== like.user[index]._id)
-                            a(href=`/posts/${post._id}/comments`)
-                                p #{like.user[index].username} Liked your post
-                    each friend in note.notifications.accepted_friend_requests
-                        a(href=`/user/${friend._id}`)
-                            p #{friend.username} Accepted your friend request 
-                    - let strComment = JSON.stringify(note.notifications.comments)
-                    - let parsedComment = JSON.parse(strComment)
-                    each comment in parsedComment 
-                        each post, index in comment.post 
-                            if (post.author !== comment.user[index]._id)
-                                a(href=`/posts/${post._id}/comments`)
-                                    p #{comment.user[index].username} Commented on your post
-                    each friend in note.notifications.received_friend_requests 
-                        a(href=`/user/${friend._id}`)
-                            p #{friend.username} Sent a friend request
+            each note in JSON.parse(notifications)
+                if (note.likes)
+                    a(href=`/posts/${note.post}/comments`)
+                        p #{note.user.username} liked your post
+                if (note.comments)
+                    a(href=`/posts/${note.post}/comments`)
+                        p #{note.user.username} commented on your post
+                if (note.received_friend_requests)
+                    a(href=`/user/${note.user._id}`)
+                        p #{note.user.username} sent a friend request
+                if (note.accepted_friend_requests)
+                    a(href=`/user/${note.user._id}`)
+                        p #{note.user.username} accepted your friend request

@@ -127,20 +127,10 @@ router.get('/api/search/:query', (req, res) => {
 
 // GET notifications page
 router.get('/api/notifications/:id', (req, res) => {
-    User.find({_id: req.params.id})
-    .select("-username -password -friends_list -first_name -last_name -favorites -_id")
-    .populate("notifications.likes.user")
-    .populate("notifications.likes.post")
-    .populate("notifications.accepted_friend_requests")
-    .populate("notifications.received_friend_requests")
-    .populate("notifications.comments.user")
-    .populate("notifications.comments.post")
+    Notification.find({this_user: req.params.id})
+    .populate('user')
     .sort({db_timestamp: -1})
     .then((note_count) => res.json(note_count))
-    .catch(error => {
-        console.log(error);
-        res.status(500).send("An error occurred while searching for notifications")
-    })
 })
 
 /// POST APIs ///
