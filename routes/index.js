@@ -405,10 +405,30 @@ router.put('/api/posts/:id/unfav-post/:userId', async (req, res) => {
 // PUT accept friend request
 router.put(`/api/users/:id`, async (req, res) => {
     try {
+        const date = new Date()
+        newTimeStamp = DateTime.fromJSDate(date).toFormat('MMMM d yyyy h:mm a')
+
+        noteDetails = {
+            this_user: req.params.id,
+            user: req.body.user_id,
+            accepted_friend_requests: true,
+            timestamp: newTimeStamp,
+            db_timestamp: date,
+        }
+
+        let note = new Notification(noteDetails)
+        
+        note.save(function (err) {
+            if (err) {
+                console.log(err)
+                return;
+            }
+        })
+        
         const user = User.findByIdAndUpdate(
             req.params.id, 
             {
-                $push: {"friends_list.current_friends": req.body.user_id, "notifications.accepted_friend_requests": req.body.user_id}, 
+                $push: {"friends_list.current_friends": req.body.user_id, "notifications": note}, 
                 $pull: {"friends_list.sent_requests": req.body.user_id}
             },
             { new: true}
