@@ -34,12 +34,16 @@ block content
                 if (note.likes)
                     a(href=`/posts/${note.post}/comments`)
                         p #{note.user.username} liked your post
+                    p #{note.timestamp}
                 if (note.comments)
                     a(href=`/posts/${note.post}/comments`)
                         p #{note.user.username} commented on your post
+                    p #{note.timestamp}
                 if (note.received_friend_requests)
                     a(href=`/user/${note.user._id}`)
                         p #{note.user.username} sent a friend request
+                    p #{note.timestamp}
                 if (note.accepted_friend_requests)
                     a(href=`/user/${note.user._id}`)
                         p #{note.user.username} accepted your friend request
+                    p #{note.timestamp}
