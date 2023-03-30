@@ -163,7 +163,8 @@ block content
             // Add 'Users You Might Know' feature
             div.homepage-right-notifications 
                 h4 Notifications
-                
+                each note in notifications 
+                    p #{note}
             a(href=`/notifications/${user._id}`) See all notifications...
             div.homepage-right-people 
                 h4 People You May Know

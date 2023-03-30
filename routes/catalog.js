@@ -38,7 +38,8 @@ router.get('/homepage', function(req, res, next) {
     if (!req.user) {
       return res.render('index.pug', { title: "InstaBook", posts: data[0], notifications: data[1], user: null })
     }else{
-      return res.render('index.pug', { title: "InstaBook", posts: data[0], notifications: data[1], user: req.user });
+      let str = JSON.stringify(data[1]);
+      return res.render('index.pug', { title: "InstaBook", posts: data[0], notifications: str, user: req.user });
     }
   })
   //res.render('index.pug', {title: "InstaBook", user: req.user.first_name})
