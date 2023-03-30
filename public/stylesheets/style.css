@@ -252,6 +252,7 @@ a {
   background-color: cornflowerblue;
   margin-top: 13px;
   margin-bottom: 13px;
+  cursor: pointer;
 }
 
 .fav-post-icon {
