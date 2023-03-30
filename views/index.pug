@@ -16,9 +16,10 @@ block content
                 //div.homepage-left-link  add this later
                     img.icon(src='icons/send-outline.png')
                     p Messages
-                //div.homepage-left-link   add this later
-                    img.icon(src='icons/heart-outline.png')
-                    p Notifications
+                div.homepage-left-link
+                    a(href=`/notifications/${user._id}`)
+                        img.icon(src='icons/heart-outline.png')
+                    a(href=`/notifications/${user._id}`) Notifications
                 div.homepage-left-link
                     a(href='/new-post')
                         img.icon(src='icons/plus-box-outline.png')

@@ -451,4 +451,9 @@ router.get('/users/:userId/friends', (req, res) => {
     })
 })
 
+router.get('/notifications/:id', (req, res) => {
+  const requestUrl = `http://localhost:3000/api/notifications/${req.params.id}`
+  res.render('notifications.pug')
+})
+
 module.exports = router;

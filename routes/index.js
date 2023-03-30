@@ -130,6 +130,11 @@ router.get('/api/search/:query', (req, res) => {
       });
   });
 
+// GET notifications page
+router.get('/api/user/:id', (req, res) => {
+    
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {
