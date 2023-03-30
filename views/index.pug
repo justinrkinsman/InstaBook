@@ -169,7 +169,8 @@ block content
                     - let parsedLike = JSON.parse(strLike)
                     each like in parsedLike
                         each post, index in like.post 
-                            p #{like.user[index]} Liked your post #{post}
+                            a(href=`/posts/${post._id}/comments`)
+                                p #{like.user[index].username} Liked your post
                     each friend in note.notifications.accepted_friend_requests
                         a(href=`/user/${friend._id}`)
                             p #{friend.username} Accepted your friend request 
