@@ -175,13 +175,13 @@ router.post('/api/new-post', (req, res) => {
 router.post('/api/posts/:id/comments', async (req, res) => {
     try{
         const date = new Date()
-        newTimestamp = DateTime.fromJSDate(date).toFormat('MMMM d yyyy h:mm a')
+        newTimeStamp = DateTime.fromJSDate(date).toFormat('MMMM d yyyy h:mm a')
 
         const userId = await User.findOne({username: req.body.user})
 
         commentDetail = {
             body: req.body.body,
-            timestamp: newTimestamp,
+            timestamp: newTimeStamp,
             db_timestamp: date,
             user: userId,
             post: req.params.id
@@ -206,9 +206,27 @@ router.post('/api/posts/:id/comments', async (req, res) => {
         .populate("author")
         .exec();
 
+        noteDetails = {
+            this_user: post.author._id,
+            user: userId,
+            post: post._id,
+            comments: true,
+            timestamp: newTimeStamp,
+            db_timestamp: date,
+        }
+
+        let note = new Notification(noteDetails)
+        
+        note.save(function (err) {
+            if (err) {
+                console.log(err)
+                return;
+            }
+        })
+
         await User.findByIdAndUpdate(
             post.author._id,
-            { $push: {"notifications.comments.user": userId, "notifications.comments.post": req.params.id} },
+            { $push: {"notifications": note} },
             { new: true }
         );
 
