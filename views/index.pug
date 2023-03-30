@@ -171,9 +171,11 @@ block content
                         a(href=`/posts/${note.post}/comments`)
                             p #{note.user.username} commented on your post
                     if (note.received_friend_requests)
-                        p #{note.user.username} sent a friend request
+                        a(href=`/user/${note.user._id}`)
+                            p #{note.user.username} sent a friend request
                     if (note.accepted_friend_requests)
-                        p #{note.user.username} accepted your friend request
+                        a(href=`/user/${note.user._id}`)
+                            p #{note.user.username} accepted your friend request
                     
             a(href=`/notifications/${user._id}`) See all notifications...
             div.homepage-right-people 
