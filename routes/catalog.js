@@ -463,4 +463,8 @@ router.get('/notifications/:id', (req, res) => {
     })
 })
 
+router.get('/people-you-may-know', (req, res) => {
+  res.render('people.pug')
+})
+
 module.exports = router;
