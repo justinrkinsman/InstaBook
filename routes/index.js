@@ -356,18 +356,6 @@ router.put('/api/posts/:id/unlike-post', (req, res) => {
 })
 
 // PUT favorite post
-/*router.put('/api/posts/:id/fav-post/:userId', (req, res) => {
-    User.findByIdAndUpdate(req.params.userId, {_id: req.params.userId, $push: {'favorites': req.params.id}},
-    function(err, docs) {
-        if (err) {
-            console.log(err)
-        }else{
-            console.log('Update User :', docs)
-            return res.redirect('/api/homepage')
-        }
-    })
-})*/
-
 router.put('/api/posts/:id/fav-post/:userId', async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.userId, { $push: { favorites: req.params.id } }, { new: true })

@@ -296,11 +296,11 @@ router.post('/users/:id', function(req, res, next) {
   .then(response => response.json())
   .then(data => {
     console.log('Sucess', data)
+    res.redirect('/users')
   })
   .catch((error) => {
     console.log('Error', error)
   })
-  res.redirect('/users')
 })
 
 /* POST accept friend request */
@@ -314,11 +314,11 @@ router.post('/users/:id/accept-friend', function(req, res, next) {
   .then(response => response.json())
   .then(data => {
     console.log('Success', data)
+    res.redirect('/users')
   })
   .catch((error) => {
     console.log('Error', error)
   })
-  res.redirect('/users')
 })
 
 /* POST remove friend */
@@ -332,11 +332,11 @@ router.post(`/users/:id/remove-friend`, function(req, res, next) {
   .then(response => response.json())
   .then(data => {
     console.log("Sucess", data)
+    res.redirect('/users')
   })
   .catch((error) => {
     console.log("Error", error)
   })
-  res.redirect('/users')
 })
 
 /* GET edit post page */
