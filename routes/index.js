@@ -36,7 +36,7 @@ router.get('/api/homepage', async (req, res) => {
     .populate('user')
     .sort({db_timestamp: -1})
     .then((note_count) => {{data[1] = note_count}})
-    await User.findById(req.query.UserId)
+    await User.find({_id: userId})
     .populate('friends_list.current_friends')
     .then((friend_count) => {{data[2] = friend_count}})
     res.json(data)

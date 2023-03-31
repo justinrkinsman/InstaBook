@@ -183,6 +183,15 @@ block content
             a(href=`/notifications/${user._id}`) See all notifications...
             div.homepage-right-people 
                 h4 People You May Know
+                div.people-you-may-know
+                    - const namesSet = new Set()
+                    each friend in JSON.parse(friends)
+                        each person in friend.friends_list.current_friends
+                            each name in person.friends_list.current_friends
+                                - let masterFriendsList = user.friends_list.current_friends
+                                - if (!masterFriendsList.includes(name) && name.toString() !== user._id.toString() && !namesSet.has(name))
+                                    - namesSet.add(name)
+                                    p #{name}
             // a(href='/new-post') New Post
             // a(href='/logout') Logout
             // a(href='/users') User Index
