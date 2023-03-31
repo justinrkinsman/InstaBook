@@ -193,8 +193,10 @@ block content
                                 - let masterFriendsList = user.friends_list.current_friends
                                 - if (!masterFriendsList.includes(name._id.toString()) && name._id.toString() !== user._id.toString() && !namesSet.has(name.username.toString()))
                                     - namesSet.add(name.username)
-                                    a(href=`/user/${name._id}`)
-                                        p #{name.username}
+                                    div.person-you-may-know
+                                        a(href=`/user/${name._id}`)
+                                            p #{name.username}
+            a(href=`/user/people-you-may-know`)
             // a(href='/new-post') New Post
             // a(href='/logout') Logout
             // a(href='/users') User Index

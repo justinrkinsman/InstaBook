@@ -187,21 +187,21 @@ body {
   border-left: 1px solid rgba(0, 0, 0, .3);
 }
 
-.homepage-right-notifications {
+.homepage-right-notifications, .homepage-right-people {
   height: 23em;
   overflow: hidden;
 }
 
-.homepage-notification a{
+.homepage-notification a, .person-you-may-know a{
   text-decoration: none;
   color: black;
 }
 
-.homepage-notification {
+.homepage-notification, .person-you-may-know {
   padding: 5px;
 }
 
-.homepage-notification:hover, .notification-card:hover {
+.homepage-notification:hover, .notification-card:hover, .person-you-may-know:hover {
   background-color: rgba(0, 0, 0, .05);
   cursor: pointer;
 }
