@@ -187,12 +187,14 @@ block content
                     - const namesSet = new Set()
                     each friend in JSON.parse(friends)
                         each person in friend.friends_list.current_friends
-                            each name in person.friends_list.current_friends
+                            - let personStr = JSON.stringify(person.friends_list.current_friends)
+                            - let personParse = JSON.parse(personStr)
+                            each name in personParse
                                 - let masterFriendsList = user.friends_list.current_friends
-                                - if (!masterFriendsList.includes(name) && name.toString() !== user._id.toString() && !namesSet.has(name))
-                                    - namesSet.add(name)
-                                    a(href=`/user/${name}`)
-                                        p #{name}
+                                - if (!masterFriendsList.includes(name._id.toString()) && name._id.toString() !== user._id.toString() && !namesSet.has(name.username.toString()))
+                                    - namesSet.add(name.username)
+                                    a(href=`/user/${name._id}`)
+                                        p #{name.username}
             // a(href='/new-post') New Post
             // a(href='/logout') Logout
             // a(href='/users') User Index
