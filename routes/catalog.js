@@ -36,10 +36,10 @@ router.get('/homepage', function(req, res, next) {
   .then(response => response.json())
   .then(data => {
     if (!req.user) {
-      return res.render('index.pug', { title: "InstaBook", posts: data[0], notifications: data[1], user: null })
+      return res.render('index.pug', { title: "InstaBook", posts: data[0], notifications: data[1], friends: data[2], user: null })
     }else{
       let str = JSON.stringify(data[1]);
-      return res.render('index.pug', { title: "InstaBook", posts: data[0], notifications: str, user: req.user });
+      return res.render('index.pug', { title: "InstaBook", posts: data[0], notifications: str, friends: data[2], user: req.user });
     }
   })
   //res.render('index.pug', {title: "InstaBook", user: req.user.first_name})

@@ -36,6 +36,9 @@ router.get('/api/homepage', async (req, res) => {
     .populate('user')
     .sort({db_timestamp: -1})
     .then((note_count) => {{data[1] = note_count}})
+    await User.findById(req.query.UserId)
+    .populate('friends_list.current_friends')
+    .then((friend_count) => {{data[2] = friend_count}})
     res.json(data)
 })
 
@@ -370,17 +373,6 @@ router.put('/api/posts/:id/fav-post/:userId', async (req, res) => {
 })
 
 // PUT un-favorite post
-/*router.put('/api/posts/:id/unfav-post/:userId', (req, res) => {
-    User.findByIdAndUpdate(req.params.userId, {_id: req.params.userId, $pull: {'favorites': req.params.id}},
-    function(err, docs) {
-        if (err) {
-            console.log(err)
-        }else{
-            console.log('Update User :', docs)
-            return res.redirect('/api/homepage')
-        }
-    })
-})*/
 router.put('/api/posts/:id/unfav-post/:userId', async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.userId, { $pull: {favorites: req.params.id} }, { new: true })
