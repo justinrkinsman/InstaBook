@@ -143,7 +143,7 @@ router.get('/api/notifications/:id', (req, res) => {
 
 // GET "People You May Know" page
 router.get('/people-you-may-know/:id', (req, res) => {
-    await User.find({_id: req.params.id})
+    User.find({_id: req.params.id})
     .populate({
         path: 'friends_list.current_friends',
         populate: {
