@@ -30,6 +30,7 @@ block content
                     a(href=`/user/${current_user._id}`) Profile
                 a.logout-link(href='/logout') Logout
         div.people-you-may-know.right
+            h1 People You May Know
             - const namesSet = new Set()
             each friend in JSON.parse(people)
                 each person in friend.friends_list.current_friends

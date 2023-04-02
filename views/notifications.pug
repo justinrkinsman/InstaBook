@@ -30,6 +30,7 @@ block content
                     a(href=`/user/${user._id}`) Profile
                 a.logout-link(href='/logout') Logout
         div.homepage-center 
+            h1 Notifications
             each note in JSON.parse(notifications)
                 if (note.likes)
                     a.notification-card(href=`/posts/${note.post}/comments`)
