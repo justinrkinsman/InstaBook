@@ -469,7 +469,7 @@ router.get('/people-you-may-know/:id', (req, res) => {
     .then(response => response.json())
     .then(data => {
       let str = JSON.stringify(data);
-      res.render('notifications.pug', {title: "People You May Know", people: str, current_user: req.user})
+      res.render('people.pug', {title: "People You May Know", people: str, current_user: req.user})
     })
 })
 

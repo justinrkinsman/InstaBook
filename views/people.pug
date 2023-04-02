@@ -1,4 +1,15 @@
 extends layout 
 
 block content   
-    p People
+    - const namesSet = new Set()
+    each friend in JSON.parse(people)
+        each person in friend.friends_list.current_friends
+            - let personStr = JSON.stringify(person.friends_list.current_friends)
+            - let personParse = JSON.parse(personStr)
+            each name in personParse
+                - let masterFriendsList = current_user.friends_list.current_friends
+                - if (!masterFriendsList.includes(name._id.toString()) && name._id.toString() !== current_user._id.toString() && !namesSet.has(name.username.toString()))
+                    - namesSet.add(name.username)
+                    div.person-you-may-know
+                        a(href=`/user/${name._id}`)
+                            p #{name.username}
