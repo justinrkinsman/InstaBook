@@ -141,6 +141,18 @@ router.get('/api/notifications/:id', (req, res) => {
     .then((note_count) => res.json(note_count))
 })
 
+// GET "People You May Know" page
+router.get('/people-you-may-know/:id', (req, res) => {
+    await User.find({_id: req.params.id})
+    .populate({
+        path: 'friends_list.current_friends',
+        populate: {
+          path: 'friends_list.current_friends'
+        }
+      })
+    .then((friend_count) => res.json(friend_count))
+})
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {

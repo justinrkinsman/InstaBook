@@ -463,8 +463,14 @@ router.get('/notifications/:id', (req, res) => {
     })
 })
 
-router.get('/people-you-may-know', (req, res) => {
-  res.render('people.pug')
+router.get('/people-you-may-know/:id', (req, res) => {
+  const requestUrl = `http://localhost:3000/api/people-you-may-know/${req.params.id}`
+  fetch(requestUrl)
+    .then(response => response.json())
+    .then(data => {
+      let str = JSON.stringify(data);
+      res.render('notifications.pug', {title: "People You May Know", people: str, current_user: req.user})
+    })
 })
 
 module.exports = router;
