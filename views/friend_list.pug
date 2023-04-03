@@ -54,7 +54,9 @@ each friend in parsed
                     div.profile-posts 
                         h2 Friends
                         div.friends-list-grid
-                            each user in friend.friends_list.current_friends                        
+                            - if (friend.friends_list.current_friends.length == 0)
+                                h3.no-friends-message No Friends Yet 
+                            each user in friend.friends_list.current_friends                       
                                 div.friends-list-cards
                                     a(href=`/user/${user._id}`)
                                         img.friend-profile(src='/icons/account-circle-outline.png')

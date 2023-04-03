@@ -211,7 +211,7 @@ body {
   color: black;
 }
 
-.no-post-message {
+.no-post-message, .no-friends-message {
   grid-column: 2;
   justify-self: center;
   align-self: center;
