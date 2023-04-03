@@ -72,6 +72,8 @@ each user_info in parsed
                         div.profile-post-layout
                             - let postStr = JSON.stringify(posts)
                             - let postParsed = JSON.parse(postStr)
+                                - if (postParsed.length == 0)
+                                    h3.no-post-message No Posts Yet
                                 each post in postParsed
                                     a.profile-posts-grid(href=`/posts/${post._id}/comments`)
                                         p.profile-post-body #{post.body} 

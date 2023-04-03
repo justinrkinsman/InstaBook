@@ -211,6 +211,12 @@ body {
   color: black;
 }
 
+.no-post-message {
+  grid-column: 2;
+  justify-self: center;
+  align-self: center;
+}
+
 .homepage-left-link {
   display: flex;
   align-items: center;
