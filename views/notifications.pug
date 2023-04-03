@@ -31,6 +31,8 @@ block content
                 a.logout-link(href='/logout') Logout
         div.homepage-center 
             h1 Notifications
+            if (JSON.parse(notifications).length == 0)
+                h3 No New Notifications
             each note in JSON.parse(notifications)
                 if (note.likes)
                     a.notification-card(href=`/posts/${note.post}/comments`)
