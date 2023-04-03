@@ -186,11 +186,14 @@ block content
                             div.homepage-notification
                                 a(href=`/user/${note.user._id}`)
                                     p #{note.user.username} accepted your friend request
-            a(href=`/notifications/${user._id}`) See all notifications...
+            - if (JSON.parse(notifications).length > 5)
+                a(href=`/notifications/${user._id}`) See all notifications...
             div.homepage-right-people 
+                - const namesSet = new Set()
                 h4 People You May Know
                 div.people-you-may-know
-                    - const namesSet = new Set()
+                    - if (namesSet.size == 0)
+                        p.not-enough-data Not Enough Data
                     each friend in JSON.parse(friends)
                         each person in friend.friends_list.current_friends
                             - let personStr = JSON.stringify(person.friends_list.current_friends)
@@ -199,10 +202,14 @@ block content
                                 - let masterFriendsList = user.friends_list.current_friends
                                 - if (!masterFriendsList.includes(name._id.toString()) && name._id.toString() !== user._id.toString() && !namesSet.has(name.username.toString()))
                                     - namesSet.add(name.username)
+                                    script. 
+                                        document.querySelector('.not-enough-data').textContent = ""
                                     div.person-you-may-know
                                         a(href=`/user/${name._id}`)
                                             p #{name.username}
-            a(href=`/people-you-may-know/${user._id}`) See more...
+            - if (namesSet.size > 5)
+                a(href=`/people-you-may-know/${user._id}`) See more...
+            
             // a(href='/new-post') New Post
             // a(href='/logout') Logout
             // a(href='/users') User Index
