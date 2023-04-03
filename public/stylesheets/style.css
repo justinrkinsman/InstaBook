@@ -217,6 +217,11 @@ body {
   align-self: center;
 }
 
+.no-feed-message {
+  justify-self: center;
+  align-self: center
+}
+
 .homepage-left-link {
   display: flex;
   align-items: center;

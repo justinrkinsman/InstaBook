@@ -136,7 +136,10 @@ block content
                             a(href=`posts/${post._id}/comments`) 
                                 p View all #{post.comments.length} comments 
                         else 
-                            p No Comments                                    
+                            p No Comments    
+                - else 
+                    h3.no-feed-message No New Posts   
+                    - break                             
                 - let contextMenuID = post._id
                 div.context-menu(id=`context-menu-id-${post._id}`)
                     div.context-menu-links
