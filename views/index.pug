@@ -33,8 +33,11 @@ block content
             - let str = JSON.stringify(posts)
             - let parsed = JSON.parse(str)
             - let friendStr = JSON.stringify(user.friends_list.current_friends)
+            h3.no-new-posts No New Posts
             each post in parsed
                 - if (user.username.toString() === "guest_user")
+                    script. 
+                        document.querySelector('.no-new-posts').style.display = "none"
                     div.post-card.body(id=`post-card-${post._id}`)
                         div.post-card-poster
                             a.username-link(href=`/user/${post.author._id}`)
@@ -82,6 +85,8 @@ block content
                         else 
                             p No Comments
                 - if (friendStr.includes(post.author._id.toString()) || user._id.toString() === post.author._id.toString())
+                    script. 
+                        document.querySelector('.no-new-posts').style.display = "none"
                     div.post-card.body(id=`post-card-${post._id}`)
                         div.post-card-poster
                             a.username-link(href=`/user/${post.author._id}`)
@@ -136,10 +141,7 @@ block content
                             a(href=`posts/${post._id}/comments`) 
                                 p View all #{post.comments.length} comments 
                         else 
-                            p No Comments    
-                - else 
-                    h3.no-feed-message No New Posts   
-                    - break                             
+                            p No Comments                       
                 - let contextMenuID = post._id
                 div.context-menu(id=`context-menu-id-${post._id}`)
                     div.context-menu-links
