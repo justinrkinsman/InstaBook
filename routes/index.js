@@ -517,5 +517,23 @@ router.delete('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
         res.json({ delete: req.params.id })
     })
     
+// DELETE notification
+router.delete('/api/post-notification/:id', async (req, res) => {
+    try {
+        await User.findOneAndUpdate(
+            { notifications: req.params.id },
+            { $pull: {"notifications": req.params.id}})
+        await Notification.findByIdAndDelete(req.params.id, (err, docs) => {
+            if (err) {
+                console.log(err)
+            }else{
+                console.log('Deleted: ', docs)
+            }
+        })
+    }catch(error){
+        console.log(error);
+        return res.status(500).send("Server Error");
+    }
+})
 
 module.exports = router

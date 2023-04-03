@@ -463,6 +463,37 @@ router.get('/notifications/:id', (req, res) => {
     })
 })
 
+router.post('/post-notification/:id')
+
+/*router.get('/people-you-may-know/:id', async (req, res) => {
+  try {
+    // Make API call to update database
+    const updateApiUrl = `http://localhost:3000/api/update-database/${req.params.id}`;
+    await fetch(updateApiUrl, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({  data to update the database  })
+    });
+
+    // Make API call to fetch data for pug file
+    const fetchDataApiUrl = `http://localhost:3000/api/fetch-data/${req.params.id}`;
+    const response = await fetch(fetchDataApiUrl);
+    const data = await response.json();
+
+    res.render('people.pug', {
+      title: 'People You May Know',
+      people: JSON.stringify(data),
+      current_user: req.user
+    });
+  } catch (error) {
+    // Handle error
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+})*/
+
 router.get('/people-you-may-know/:id', (req, res) => {
   const requestUrl = `http://localhost:3000/api/people-you-may-know/${req.params.id}`
   fetch(requestUrl)

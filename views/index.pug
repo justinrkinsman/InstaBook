@@ -174,7 +174,9 @@ block content
                     each note in JSON.parse(notifications)
                         if (note.likes)
                             div.homepage-notification
-                                a(href=`/posts/${note.post}/comments`)
+                                a(href=`/`)
+                                    p #{note.user.username} liked your post                               
+                                //a(href=`/posts/${note.post}/comments`)
                                     p #{note.user.username} liked your post
                         if (note.comments)
                             div.homepage-notification
