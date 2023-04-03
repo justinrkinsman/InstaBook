@@ -520,19 +520,17 @@ router.delete('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
 // DELETE notification
 router.delete('/api/post-notification/:id', async (req, res) => {
     try {
-        await User.findOneAndUpdate(
-            { notifications: req.params.id },
-            { $pull: {"notifications": req.params.id}})
-        await Notification.findByIdAndDelete(req.params.id, (err, docs) => {
-            if (err) {
-                console.log(err)
-            }else{
-                console.log('Deleted: ', docs)
-            }
-        })
-    }catch(error){
-        console.log(error);
-        return res.status(500).send("Server Error");
+        const notification = await Notification.findOne({ _id: req.params.id });
+        if (!notification) {
+            return res.status(404).json({ error: "Notification not found" });
+        }
+
+        await User.findByIdAndUpdate(notification.user, { $pull: { notifications: req.params.id } })
+        await notification.delete()
+        return res.json({ message: "Notification delete successfully" })
+    }catch (error) {
+        console.log(error)
+        return res.status(500).send('Server Error')
     }
 })
 

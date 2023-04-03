@@ -463,7 +463,25 @@ router.get('/notifications/:id', (req, res) => {
     })
 })
 
-router.post('/post-notification/:id')
+router.post('/post-notification/:id/:postId', (req, res) => {
+  const requestUrl = `http://localhost:3000/api/post-notification/${req.params.id}`
+  fetch(requestUrl, {
+    method: 'DELETE',
+    //Try adding this later - mode: 'cors'
+    headers: { 'Content-Type': 'application/json' },
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Success')
+      res.redirect(`/posts/${req.params.postId}/comments`)
+    }else{
+      console.log("Error", response.statusText)
+    }
+  })
+  .catch((error) => {
+    console.log('Error', error)
+})
+})
 
 /*router.get('/people-you-may-know/:id', async (req, res) => {
   try {
