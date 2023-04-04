@@ -525,7 +525,7 @@ router.delete('/api/post-notification/:id', async (req, res) => {
             return res.status(404).json({ error: "Notification not found" });
         }
 
-        await User.findByIdAndUpdate(notification.user, { $pull: { notifications: req.params.id } })
+        await User.findByIdAndUpdate(notification.this_user, { $pull: { notifications: req.params.id } })
         await notification.delete()
         return res.json({ message: "Notification delete successfully" })
     }catch (error) {
