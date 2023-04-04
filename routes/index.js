@@ -517,7 +517,7 @@ router.delete('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
         res.json({ delete: req.params.id })
     })
     
-// DELETE notification
+// DELETE like/comment notification
 router.delete('/api/post-notification/:id', async (req, res) => {
     try {
         const notification = await Notification.findOne({ _id: req.params.id });
