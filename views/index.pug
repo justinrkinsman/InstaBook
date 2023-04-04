@@ -181,18 +181,21 @@ block content
                                 //a(href=`/posts/${note.post}/comments`)
                                     p #{note.user.username} liked your post
                         if (note.comments)
-                            form(action=`/post-notification/${note._id}/${note.post}` method='POST')
-                                div.form-group
-                                    button.btn.btn-primary.heart-button(type='submit')
-                                        p #{note.user.username} commented your post 
+                            div.homepage-notification
+                                form(action=`/post-notification/${note._id}/${note.post}` method='POST')
+                                    div.form-group
+                                        button.btn.btn-primary.heart-button(type='submit')
+                                            p #{note.user.username} commented your post 
                         if (note.received_friend_requests)
                             div.homepage-notification
                                 a(href=`/user/${note.user._id}`)
                                     p #{note.user.username} sent a friend request
                         if (note.accepted_friend_requests)
                             div.homepage-notification
-                                a(href=`/user/${note.user._id}`)
-                                    p #{note.user.username} accepted your friend request
+                                form(action=`/accepted-notification/${note._id}/${note.user._id}` method='POST')
+                                    div.form-group
+                                        button.btn.btn-primary.heart-button(type='submit')
+                                            p #{note.user.username} accepted your friend request
             - if (JSON.parse(notifications).length > 5)
                 a(href=`/notifications/${user._id}`) See all notifications...
             div.homepage-right-people 

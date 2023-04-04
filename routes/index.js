@@ -517,14 +517,13 @@ router.delete('/api/posts/:postId/comment/:id/delete-comment', (req, res) => {
         res.json({ delete: req.params.id })
     })
     
-// DELETE like/comment notification
+// DELETE like/comment/accepted friend request notification
 router.delete('/api/post-notification/:id', async (req, res) => {
     try {
         const notification = await Notification.findOne({ _id: req.params.id });
         if (!notification) {
             return res.status(404).json({ error: "Notification not found" });
         }
-
         await User.findByIdAndUpdate(notification.this_user, { $pull: { notifications: req.params.id } })
         await notification.delete()
         return res.json({ message: "Notification delete successfully" })
