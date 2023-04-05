@@ -44,9 +44,11 @@ block content
                         p #{note.user.username} liked your post
                         p #{note.timestamp}
                 if (note.comments)
-                    a.notification-card(href=`/posts/${note.post}/comments`)
-                        p #{note.user.username} commented on your post
-                        p #{note.timestamp}
+                    form(action=`/post-notification/${note._id}/${note.post}` method='POST')
+                        div.form-group
+                            button.btn.btn-primary.heart-button(type='submit')
+                                p #{note.user.username} commented your post
+                                p #{note.timestamp}
                 if (note.received_friend_requests)
                     a.notification-card(href=`/user/${note.user._id}`)
                         p #{note.user.username} sent a friend request
