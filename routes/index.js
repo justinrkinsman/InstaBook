@@ -426,7 +426,9 @@ router.put(`/api/users/:id`, async (req, res) => {
             }
         })
         
-        const user = User.findByIdAndUpdate(
+        const note_to_delete = await Notification.findOneAndDelete({this_user: req.body.user_id, received_friend_requests: true})
+
+        const user = await User.findByIdAndUpdate(
             req.params.id, 
             {
                 $push: {"friends_list.current_friends": req.body.user_id, "notifications": note}, 
@@ -434,17 +436,18 @@ router.put(`/api/users/:id`, async (req, res) => {
             },
             { new: true}
         )
-        .exec();
-            
+
         await User.findByIdAndUpdate(
             req.body.user_id, 
             {
                 $push: {"friends_list.current_friends": req.params.id}, 
-                $pull: {"friends_list.received_requests": req.params.id}
+                $pull: {"friends_list.received_requests": req.params.id, "notifications": note_to_delete._id}
             },
             { new: true }
         );
-        res.json({ message: "Notification sent", user})
+    
+        res.json({ message: "Notification sent", note})
+        console.log(note_to_delete)
     }catch(error){
         console.log(error);
         return res.status(500).send("Server error");

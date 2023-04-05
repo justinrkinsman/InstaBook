@@ -307,6 +307,7 @@ router.post('/users/:id', function(req, res, next) {
 /* POST accept friend request */
 router.post('/users/:id/accept-friend', function(req, res, next) {
   const requestUrl = `http://localhost:3000/api/users/${req.params.id}`
+  // add to end of url ?noteId=${req.user._id}
   fetch(requestUrl, {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
