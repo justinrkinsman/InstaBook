@@ -35,27 +35,30 @@ block content
                 h3 No New Notifications
             each note in JSON.parse(notifications)
                 if (note.likes)
-                    form(action=`/post-notification/${note._id}/${note.post}` method='POST')
-                        div.form-group
-                            button.btn.btn-primary.heart-button(type='submit')
-                                p #{note.user.username} liked your post
-                                p #{note.timestamp}
+                    div.notification-page-link
+                        form(action=`/post-notification/${note._id}/${note.post}` method='POST')
+                            div.form-group
+                                button.btn.btn-primary.notification-button(type='submit')
+                                    p #{note.user.username} liked your post
+                                    p #{note.timestamp}
                     //a.notification-card(href=`/posts/${note.post}/comments`)
                         p #{note.user.username} liked your post
                         p #{note.timestamp}
                 if (note.comments)
-                    form(action=`/post-notification/${note._id}/${note.post}` method='POST')
-                        div.form-group
-                            button.btn.btn-primary.heart-button(type='submit')
-                                p #{note.user.username} commented your post
-                                p #{note.timestamp}
+                    div.notification-page-link
+                        form(action=`/post-notification/${note._id}/${note.post}` method='POST')
+                            div.form-group
+                                button.btn.btn-primary.notification-button(type='submit')
+                                    p #{note.user.username} commented your post
+                                    p #{note.timestamp}
                 if (note.received_friend_requests)
                     a.notification-card(href=`/user/${note.user._id}`)
                         p #{note.user.username} sent a friend request
                         p #{note.timestamp}
                 if (note.accepted_friend_requests)
-                    form(action=`/accepted-notification/${note._id}/${note.user._id}` method='POST')
-                        div.form-group
-                            button.btn.btn-primary.heart-button(type='submit')
-                                p #{note.user.username} accepted your friend request
-                                p #{note.timestamp}
+                    div.notification-page-link
+                        form(action=`/accepted-notification/${note._id}/${note.user._id}` method='POST')
+                            div.form-group
+                                button.btn.btn-primary.notification-button(type='submit')
+                                    p #{note.user.username} accepted your friend request
+                                    p #{note.timestamp}

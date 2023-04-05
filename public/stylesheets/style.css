@@ -197,11 +197,30 @@ body {
   color: black;
 }
 
+.notification-page-link {
+  display: flex;
+  justify-content: left;
+}
+
+.notification-page-link button {
+  display: flex;
+  gap: 0px;
+  flex-direction: column;
+}
+
+.notification-button p {
+  margin: 8px;
+}
+
+.notification-page-link:hover button {
+  background-color: rgba(0, 0, 0, .005);
+}
+
 .homepage-notification, .person-you-may-know {
   padding: 5px;
 }
 
-.homepage-notification:hover, .notification-card:hover, .person-you-may-know:hover {
+.homepage-notification:hover, .notification-card:hover, .person-you-may-know:hover, .notification-page-link:hover {
   background-color: rgba(0, 0, 0, .05);
   cursor: pointer;
 }
