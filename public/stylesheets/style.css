@@ -197,15 +197,20 @@ body {
   color: black;
 }
 
-.notification-page-link {
+.homepage-notification p {
+  margin-left: 0px;
+}
+
+.notification-page-link, .homepage-notification {
   display: flex;
   justify-content: left;
 }
 
-.notification-page-link button {
+.notification-page-link button, .homepage-notification button {
   display: flex;
   gap: 0px;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .notification-card p {
@@ -214,15 +219,17 @@ body {
 }
 
 .notification-button p {
-  margin: 8px;
+  margin-top: 14px;
+  margin-bottom: 14px;
   font-size: 14px;
 }
 
-.notification-button {
+.notification-button, .notification-button p {
   padding-left: 0px;
+  margin-left: 0px;
 }
 
-.notification-page-link:hover button {
+.notification-page-link:hover button, .homepage-notification:hover button {
   background-color: rgba(0, 0, 0, .005);
 }
 
