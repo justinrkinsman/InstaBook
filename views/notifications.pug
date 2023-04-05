@@ -54,6 +54,8 @@ block content
                         p #{note.user.username} sent a friend request
                         p #{note.timestamp}
                 if (note.accepted_friend_requests)
-                    a.notification-card(href=`/user/${note.user._id}`)
-                        p #{note.user.username} accepted your friend request
-                        p #{note.timestamp}
+                    form(action=`/accepted-notification/${note._id}/${note.user._id}` method='POST')
+                        div.form-group
+                            button.btn.btn-primary.heart-button(type='submit')
+                                p #{note.user.username} accepted your friend request
+                                p #{note.timestamp}
