@@ -464,6 +464,13 @@ router.get('/notifications/:id', (req, res) => {
     })
 })
 
+/*
+form(action=`/post-notification/${note._id}/${note.post}` method='POST')
+  div.form-group
+    button.btn.btn-primary.heart-button(type='submit')
+      p #{note.user.username} liked your post
+*/
+
 router.post('/post-notification/:id/:postId', (req, res) => {
   const requestUrl = `http://localhost:3000/api/post-notification/${req.params.id}`
   fetch(requestUrl, {

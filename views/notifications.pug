@@ -35,7 +35,12 @@ block content
                 h3 No New Notifications
             each note in JSON.parse(notifications)
                 if (note.likes)
-                    a.notification-card(href=`/posts/${note.post}/comments`)
+                    form(action=`/post-notification/${note._id}/${note.post}` method='POST')
+                        div.form-group
+                            button.btn.btn-primary.heart-button(type='submit')
+                                p #{note.user.username} liked your post
+                                p #{note.timestamp}
+                    //a.notification-card(href=`/posts/${note.post}/comments`)
                         p #{note.user.username} liked your post
                         p #{note.timestamp}
                 if (note.comments)
