@@ -208,8 +208,18 @@ body {
   flex-direction: column;
 }
 
+.notification-card p {
+  font-size: 14px;
+  margin-left: 8px;
+}
+
 .notification-button p {
   margin: 8px;
+  font-size: 14px;
+}
+
+.notification-button {
+  padding-left: 0px;
 }
 
 .notification-page-link:hover button {
