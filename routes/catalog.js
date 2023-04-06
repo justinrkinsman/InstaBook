@@ -325,7 +325,7 @@ router.post('/users/:id/accept-friend', function(req, res, next) {
 
 /* POST remove friend */
 router.post(`/users/:id/remove-friend`, function(req, res, next) {
-  const requestUrl = `http://localhost:3000/api/users/${req.params.id}/remove-friend`
+  const requestUrl = `http://localhost:3000/api/users/${req.params.id}`
   fetch(requestUrl, {
     method: 'DELETE',
     headers: {'Content-Type': 'application/json'},
@@ -463,13 +463,6 @@ router.get('/notifications/:id', (req, res) => {
       res.render('notifications.pug', {title: `Your Notifications`, notifications: str, user: req.user})
     })
 })
-
-/*
-form(action=`/post-notification/${note._id}/${note.post}` method='POST')
-  div.form-group
-    button.btn.btn-primary.heart-button(type='submit')
-      p #{note.user.username} liked your post
-*/
 
 router.post('/post-notification/:id/:postId', (req, res) => {
   const requestUrl = `http://localhost:3000/api/post-notification/${req.params.id}`

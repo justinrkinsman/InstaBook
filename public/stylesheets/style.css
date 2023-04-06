@@ -215,13 +215,13 @@ body {
 
 .notification-card p {
   font-size: 14px;
-  margin-left: 8px;
 }
 
 .notification-button p {
+  margin: 8px;
+  font-size: 14px;
   margin-top: 14px;
   margin-bottom: 14px;
-  font-size: 14px;
 }
 
 .notification-button, .notification-button p {
@@ -235,6 +235,7 @@ body {
 
 .homepage-notification, .person-you-may-know {
   padding: 5px;
+  padding-left: 0px;
 }
 
 .homepage-notification:hover, .notification-card:hover, .person-you-may-know:hover, .notification-page-link:hover {

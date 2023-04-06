@@ -290,24 +290,31 @@ router.post('/api/users/:id', async (req, res) => {
 })
 
 // POST remove friend
-router.delete('/api/users/:id/', (req, res) => { 
-    User.findByIdAndUpdate(req.params.id, {_id: req.params.id, $pull: {"friends_list.current_friends": req.body.user_id}},
-        function(err, docs) {
-            if (err) {
-                console.log(err)
-            }else{
-                console.log('Update User :', docs)
-            }
-        })
-    User.findByIdAndUpdate(req.body.user_id, {_id: req.body.user_id, $pull: {"friends_list.current_friends": req.params.id}},
-        function(err, docs) {
-            if (err) {
-                console.log(err)
-            }else{
-                console.log('Update User :', docs)
-            }
-        })
-    return res.redirect(`/api/users`)
+router.delete('/api/users/:id/', async (req, res) => { 
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id, 
+            {
+                _id: req.params.id, 
+                $pull: {"friends_list.current_friends": req.body.user_id}
+            },
+            { new: true }
+        ).exec()
+
+        await User.findByIdAndUpdate(
+            req.body.user_id, 
+            {   
+                _id: req.body.user_id, 
+                $pull: {"friends_list.current_friends": req.params.id}
+            },
+            { new: true }
+        )
+        
+        res.json({ message: "Friend Removed", user})
+    } catch(error) {
+        console.log(error)
+        return res.status(500).send("Server error")
+    }
 })
 
 // POST new photo THIS WILL BE MERGED WITH UPLOAD POST LATER
