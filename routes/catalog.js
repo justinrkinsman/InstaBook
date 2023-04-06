@@ -323,6 +323,24 @@ router.post('/users/:id/accept-friend', function(req, res, next) {
   })
 })
 
+/* POST reject friend request */
+router.post('/users/:id/reject-friend', function(req, res, next) {
+  const requestUrl = `http://localhost:3000/api/users/${req.params.id}/reject`
+  fetch(requestUrl, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({'user_id': req.user._id})
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success', data)
+    res.redirect('/users')
+  })
+  .catch((error) => {
+    console.log("Error", error)
+  })
+})
+
 /* POST remove friend */
 router.post(`/users/:id/remove-friend`, function(req, res, next) {
   const requestUrl = `http://localhost:3000/api/users/${req.params.id}`

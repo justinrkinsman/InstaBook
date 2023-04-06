@@ -543,4 +543,33 @@ router.delete('/api/post-notification/:id', async (req, res) => {
     }
 })
 
+// DELETE reject friend request
+router.delete(`/api/users/:id/reject`, async (req, res) => {
+    try {
+        const note_to_delete = await Notification.findOneAndDelete({this_user: req.body.user_id, received_friend_requests: true})
+
+        const user = await User.findByIdAndUpdate(
+            req.params.id, 
+            {
+                $pull: {"friends_list.sent_requests": req.body.user_id}
+            },
+            { new: true}
+        )
+
+        await User.findByIdAndUpdate(
+            req.body.user_id, 
+            {
+                $pull: {"friends_list.received_requests": req.params.id, "notifications": note_to_delete._id}
+            },
+            { new: true }
+        );
+    
+        res.json({ message: "Friend Request Denied"})
+        console.log(note_to_delete)
+    }catch(error){
+        console.log(error);
+        return res.status(500).send("Server error");
+    }
+})
+
 module.exports = router
