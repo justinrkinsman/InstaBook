@@ -1,4 +1,34 @@
 extends layout 
 
 block content 
-    h1 Messages
+    div.user-page-body 
+        div.user-page-left
+            img.text-logo(src="https://see.fontimg.com/api/renderfont4/JRzmB/eyJyIjoiZnMiLCJoIjo1MywidyI6MTAwMCwiZnMiOjUzLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiIzgyOEMzMCIsInQiOjF9/SW5zdGFCb29r/brilliant-mastaka.png" alt="Instagram fonts")
+            div.homepage-links
+                div.homepage-left-link
+                    a(href='/')
+                        img.icon(src="/icons/home-outline.png")
+                    a(href='/') Home
+                div.homepage-left-link
+                    a(href='/users')
+                        img.icon(src='/icons/magnify.png')
+                    a(href='/users') Search
+                div.homepage-left-link
+                    a(href='/messages')
+                        img.icon(src='/icons/send-outline.png')
+                    a.active-link(href='/messages') Messages
+                div.homepage-left-link
+                    a(href=`/notifications/${current_user._id}`)
+                        img.icon(src='/icons/heart-outline.png')
+                    a(href=`/notifications/${current_user._id}`) Notifications
+                div.homepage-left-link
+                    a(href='/new-post')
+                        img.icon(src='/icons/plus-box-outline.png')
+                    a(href='/new-post') Create
+                div.homepage-left-link  
+                    a(href=`/user/${current_user._id}._id}`)
+                        img.icon(src='/icons/account-circle.png')
+                    a(href=`/user/${current_user._id}`) Profile
+                a.logout-link(href='/logout') Logout
+        div.user-page-right    
+            h1 Messages

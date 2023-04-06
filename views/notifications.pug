@@ -14,9 +14,9 @@ block content
                         img.icon(src='/icons/magnify.png')
                     a(href='/users') Search
                 div.homepage-left-link
-                    a(href='/messages')
+                    a(href=`/messages/${user._id}`)
                         img.icon(src='/icons/send-outline.png')
-                    a(href='/messages') Messages
+                    a(href=`/messages/${user._id}`) Messages
                 div.homepage-left-link
                     a(href=`/notifications/${user._id}`)
                         img.icon(src='/icons/heart.png')

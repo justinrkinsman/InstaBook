@@ -22,9 +22,9 @@ each user_info in parsed
                                 img.icon(src='/icons/magnify.png')
                             a(href='/users') Search
                         div.homepage-left-link
-                            a(href='/messages')
+                            a(href=`/messages/${current_user._id}`)
                                 img.icon(src='/icons/send-outline.png')
-                            a(href='/messages') Messages
+                            a(href=`/messages/${current_user._id}`) Messages
                         div.homepage-left-link
                             a(href=`/notifications/${current_user._id}`)
                                 img.icon(src='/icons/heart-outline.png')
