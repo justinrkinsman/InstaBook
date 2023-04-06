@@ -13,7 +13,8 @@ const UserSchema = new Schema({
         received_requests: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     },
     favorites: [{ type: Schema.Types.ObjectId, ref: "Post" }],
-    notifications: [{ type: Schema.Types.ObjectId, ref: 'User'}]
+    notifications: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+    convos: [{ type: Schema.Types.ObjectId, ref: 'Conversation' }]
     //profile_pic: {type: }
     //feed: [{type: }]
 })

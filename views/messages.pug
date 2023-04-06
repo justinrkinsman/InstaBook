@@ -1,8 +1,8 @@
 extends layout 
 
 block content 
-    div.user-page-body 
-        div.user-page-left
+    div.homepage-body 
+        div.homepage-left
             img.text-logo(src="https://see.fontimg.com/api/renderfont4/JRzmB/eyJyIjoiZnMiLCJoIjo1MywidyI6MTAwMCwiZnMiOjUzLCJmZ2MiOiIjMDAwMDAwIiwiYmdjIjoiIzgyOEMzMCIsInQiOjF9/SW5zdGFCb29r/brilliant-mastaka.png" alt="Instagram fonts")
             div.homepage-links
                 div.homepage-left-link
@@ -30,5 +30,6 @@ block content
                         img.icon(src='/icons/account-circle.png')
                     a(href=`/user/${current_user._id}`) Profile
                 a.logout-link(href='/logout') Logout
-        div.user-page-right    
+        div.homepage-center    
             h1 Messages
+            
