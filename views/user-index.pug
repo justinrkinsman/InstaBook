@@ -64,6 +64,8 @@ block content
                             if (user._id.toString() === friend.toString()) 
                                 form(action=`/users/${user._id}/accept-friend` method='POST')
                                     button.btn.btn-primary.accept-friend-request-button(type='submit') Accept Friend Request
+                                form(action=`/users/${user._id}/reject-friend` method='POST')
+                                    button.btn.btn-primary.accept-friend-request-button(type='submit') Deny Friend Request
                         - let friendStr = JSON.stringify(current_user.friends_list.current_friends)
                         - let receivedStr = JSON.stringify(current_user.friends_list.received_requests)
                         - let sentStr = JSON.stringify(current_user.friends_list.sent_requests)
