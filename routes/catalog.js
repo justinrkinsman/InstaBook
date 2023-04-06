@@ -561,4 +561,8 @@ router.get('/people-you-may-know/:id', (req, res) => {
     })
 })
 
+router.get('/messages', (req, res) => {
+  res.render('messages.pug')
+})
+
 module.exports = router;
