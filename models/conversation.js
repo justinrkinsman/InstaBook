@@ -5,7 +5,8 @@ const Schema = mongoose.Schema
 
 const MessageSchema = new Schema({
     content: String,
-    sender: { type: Schema.Types.ObjectId, ref: 'User' }
+    sender: { type: Schema.Types.ObjectId, ref: 'User' },
+    convo: { type: Schema.Types.ObjectId, ref: 'Conversation' }
 });
 
 const ConversationSchema = new Schema({
@@ -24,5 +25,3 @@ const Conversation = mongoose.model('Conversation', ConversationSchema)
 const Message = mongoose.model('Message', MessageSchema)
 
 module.exports = {Conversation, Message}
-
-// to import const {Conversation, Message} = require('./conversation.js)

@@ -9,6 +9,7 @@ const Post = require('../models/post')
 const Comment = require('../models/comment')
 const ImageModel = require('../models/image')
 const Notification = require('../models/notifications')
+const {Message, Conversation} = require('../models/conversation')
 
 // Multer object creation
 const multer = require('multer')
@@ -314,6 +315,15 @@ router.delete('/api/users/:id/', async (req, res) => {
     } catch(error) {
         console.log(error)
         return res.status(500).send("Server error")
+    }
+})
+
+// POST send message
+router.post('/get-messages/:id', async (req, res) => {
+    try {
+        await Messages.find({})
+    }catch(error){
+
     }
 })
 
