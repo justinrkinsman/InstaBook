@@ -232,7 +232,7 @@ router.post('/posts/:id/comments', (req, res, next) => {
   fetch(requestUrl, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({"body": req.body.comment, "user": req.user.username})
+    body: JSON.stringify({"body": req.body.comment, "user": req.user})
   })
   .then(response => response.json())
   .then(data => {
@@ -284,7 +284,6 @@ router.get('/user/:id', (req, res, next) => {
 router.get('/failed-login', function(req, res, next) {
   res.render('failure.pug', {title: 'Login Attempt Failed'})
 })
-
 
 /* POST send friend request*/
 router.post('/users/:id', function(req, res, next) {
@@ -569,14 +568,34 @@ router.post('/send-message/:id', (req, res, next) => {
   const requestUrl = `http://localhost:3000/api/send-message/${req.params.id}`
   fetch(requestUrl, {
     method: 'POST',
-    header: {'Content-Type': 'application/json'},
-    body: JSON.stringify({"body": req.body.message_body, "sending_user": req.user.username})
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({"body": req.body.message_body, "sending_user": req.user._id})
   })
   .then(response => response.json())
   .then(data => {
-    return res.redirect('back')
+    console.log('Success', data)
   })
+  .catch((error) => {
+    console.log('Error', error)
+  })
+  res.redirect('back')
 })
+
+/*
+    fetch(requestUrl, {
+      method: 'POST',
+      // Try adding this later mode: 'cors'
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "content": req.body.post_body,
+        "author": req.user
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      return res.redirect('/')
+    })
+*/
 
 router.get('/new-message/:id', (req, res) => {
   res.render('new-message.pug', {title: "New Message", user: req.params.id})

@@ -4,16 +4,16 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const MessageSchema = new Schema({
-    content: String,
     sender: { type: Schema.Types.ObjectId, ref: 'User' },
-    convo: { type: Schema.Types.ObjectId, ref: 'Conversation' }
+    body: { type: String, required: true},
+    //convo: { type: Schema.Types.ObjectId, ref: 'Conversation' },
+    timestamp: { type: String, required: true },
+    db_timestamp: { type: Date, required: true },
 });
 
 const ConversationSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     messages: [MessageSchema],
-    timestamp: { type: String, required: true },
-    db_timestamp: { type: Date, required: true },
     //image: { type: Schema.Types.ObjectId, ref: 'Image' }
 })
 
