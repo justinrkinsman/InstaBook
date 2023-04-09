@@ -319,7 +319,7 @@ router.delete('/api/users/:id/', async (req, res) => {
 })
 
 // POST send message
-router.post('/get-messages/:id', async (req, res) => {
+router.post('/send-message/:id', async (req, res) => {
     try {
         await Messages.find({})
     }catch(error){

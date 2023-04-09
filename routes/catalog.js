@@ -565,12 +565,21 @@ router.get('/messages/:id', (req, res) => {
   res.render('messages.pug', {title: "Messages", current_user: req.user})
 })
 
-router.post('/send-message', (req, res) => {
-  
+router.post('/send-message/:id', (req, res, next) => {
+  const requestUrl = `http://localhost:3000/api/send-message/${req.params.id}`
+  fetch(requestUrl, {
+    method: 'POST',
+    header: {'Content-Type': 'application/json'},
+    body: JSON.stringify({"body": req.body.message_body, "sending_user": req.user.username})
+  })
+  .then(response => response.json())
+  .then(data => {
+    return res.redirect('back')
+  })
 })
 
 router.get('/new-message/:id', (req, res) => {
-  res.render('new-message.pug', {title: "New Message", current_user: req.user})
+  res.render('new-message.pug', {title: "New Message", user: req.params.id})
 })
 
 module.exports = router;
