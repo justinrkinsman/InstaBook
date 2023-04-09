@@ -1,0 +1,17 @@
+extends layout 
+
+block content 
+
+    div.new-message-page
+        a.cancel-new-message(href='/')
+            p X
+        fieldset.new-message 
+            h1.new-message-header Enter your message 
+            form.new-message-form(action='/new-message' method='POST' id='new-message-form')
+                div.form-group
+                    textarea#message-body-form.form-control(type='text', placeholder='Your text here' name='message_body' rows='8')
+                button.btn.btn-primary.new-message-submit(type='submit') Submit
+            if errors 
+                ul 
+                    for error in errors 
+                        li!= error.msg

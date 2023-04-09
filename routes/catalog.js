@@ -565,4 +565,12 @@ router.get('/messages/:id', (req, res) => {
   res.render('messages.pug', {title: "Messages", current_user: req.user})
 })
 
+router.post('/send-message', (req, res) => {
+  
+})
+
+router.get('/new-message/:id', (req, res) => {
+  res.render('new-message.pug', {title: "New Message", current_user: req.user})
+})
+
 module.exports = router;
