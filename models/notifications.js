@@ -11,7 +11,7 @@ const NotificationSchema = new Schema({
     received_friend_requests: { type: Boolean },
     likes: { type: Boolean },
     comments: { type: Boolean },
-    message: { type: Boolean },
+    messages: { type: Boolean },
     timestamp: { type: String, required: true },
     db_timestamp: { type: Date, required: true },
 })

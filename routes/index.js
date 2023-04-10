@@ -350,6 +350,32 @@ router.post('/api/send-message/:id', async (req, res) => {
             ],
         });
 
+        let noteDetails = {
+            this_user: req.params.id,
+            user: req.body.sending_user,
+            messages: true,
+            timestamp: newTimeStamp,
+            db_timestamp: date,
+        }
+
+        let note = new Notification(noteDetails)
+        
+        note.save(function (err) {
+            if (err) {
+                console.log(err)
+                return;
+            }
+        })
+
+        await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                $push: { "notifications": note }
+            },
+            { new: true }
+        )
+        .exec()
+
         if (!convo) {
             const convoDetail = {
                 user_1: req.body.sending_user,
@@ -379,8 +405,6 @@ router.post('/api/send-message/:id', async (req, res) => {
             convo.messages.push(messageDetail)
             convo.save()
         }
-
-        
 
         res.json({ message: 'Message sent', message })
     }catch(error){
