@@ -348,10 +348,30 @@ router.post('/api/send-message/:id', async (req, res) => {
             }
             const newConvo = new Conversation(convoDetail)
             newConvo.save()
+            await User.findByIdAndUpdate(
+                req.body.sending_user,
+                {
+                    $push: { "convos": newConvo }
+                },
+                { new: true }
+            )
+            .exec()
+            
+            await User.findByIdAndUpdate(
+                req.params.id,
+                {
+                    $push: { "convos": newConvo }
+                },
+                { new: true }
+            )
+            .exec()
         } else {
             convo.messages.push(messageDetail)
             convo.save()
         }
+
+        
+
         res.json({ message: 'Message sent', message })
     }catch(error){
         console.log(error)
