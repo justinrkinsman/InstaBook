@@ -32,6 +32,9 @@ block content
                 a.logout-link(href='/logout') Logout
         div.homepage-center    
             h1 Messages
-            for message in JSON.parse(messages)  
-                p #{message.user_1.username}
+            for message in JSON.parse(messages) 
+                if (message.user_1.username.toString() === current_user.username.toString())
+                    p #{message.user_2.username}
+                else 
+                    p #{message.user_1.username}
             
