@@ -590,7 +590,13 @@ router.get('/messages/:id', (req, res) => {
 })
 
 router.get('/conversation/:id', (req, res) => {
-  res.render('convo.pug', {title: "Conversation With", current_user: req.user})
+  const requestUrl = `http://localhost:3000/api/conversation/${req.params.id}`
+  fetch(requestUrl)
+    .then(response => response.json())
+    .then(data => {
+      let str = JSON.stringify(data)
+      res.render('convo.pug', {title: "Conversation With", messages: str, current_user: req.user})
+    })
 })
 
 router.post('/send-message/:id', (req, res, next) => {

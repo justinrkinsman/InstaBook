@@ -34,9 +34,9 @@ block content
             h1 Messages
             for message in JSON.parse(messages) 
                 if (message.user_1.username.toString() === current_user.username.toString())
-                    a(href=`/conversation/${message.user_2._id}`)
+                    a(href=`/conversation/${message._id}`)
                         p #{message.user_2.username}
                 else 
-                    a(href=`/conversation/${message.user_1._id}`)
+                    a(href=`/conversation/${message._id}`)
                         p #{message.user_1.username}
             

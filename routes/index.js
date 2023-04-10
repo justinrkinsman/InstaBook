@@ -165,24 +165,12 @@ router.get('/api/messages/:id', async (req, res) => {
     .populate("user_2")
     .then((convo_count) => res.json(convo_count))
 })
-/*await Post.find({})
-    .populate('author')
-    .sort({db_timestamp: -1})
-    .then((post_count) => {{data[0] = post_count}})
-    await Notification.find({this_user: userId})
-    .populate('user')
-    .sort({db_timestamp: -1})
-    await User.find({_id: userId})
-    .populate({
-        path: 'friends_list.current_friends',
-        populate: {
-          path: 'friends_list.current_friends'
-        }
-      })
-    .then((friend_count) => {{data[2] = friend_count}})
-    res.json(data)
+
+// GET convo page
+router.get('/api/conversation/:id', async (req, res) => {
+    await Conversation.findById(req.params.id)
+    .then((message_count) => res.json(message_count))
 })
-*/
 
 /// POST APIs ///
 // POST new post
