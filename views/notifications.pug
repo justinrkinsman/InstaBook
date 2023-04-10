@@ -63,3 +63,8 @@ block content
                                 button.btn.btn-primary.notification-button(type='submit')
                                     p #{note.user.username} accepted your friend request
                                     p #{note.timestamp}
+                if (note.messages)
+                    div.notification-page-link  
+                        a.notification-card(href='/')
+                            p #{note.user.username} sent a friend request
+                            p #{note.timestamp}
