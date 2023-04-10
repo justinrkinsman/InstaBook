@@ -65,6 +65,8 @@ block content
                                     p #{note.timestamp}
                 if (note.messages)
                     div.notification-page-link  
-                        a.notification-card(href='/')
-                            p #{note.user.username} sent a friend request
-                            p #{note.timestamp}
+                        form(action=`/message-notification/${note._id}/${note.this_user}` method='POST')
+                            div.form-group
+                                button.btn.btn-primary.notification-button(type='submit')
+                                    p #{note.user.username} sent you a message
+                                    p #{note.timestamp}
