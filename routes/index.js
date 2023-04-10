@@ -321,8 +321,6 @@ router.delete('/api/users/:id/', async (req, res) => {
 // POST send message
 router.post('/api/send-message/:id', async (req, res) => {
     try {
-        console.log(req.body)
-
         const date = new Date()
         const newTimeStamp = DateTime.fromJSDate(date).toFormat("MMMM d yyyy h:mm a")
         messageDetail = {
@@ -332,7 +330,7 @@ router.post('/api/send-message/:id', async (req, res) => {
             db_timestamp: date
         }
 
-        let message = new Message(messageDetail)
+        const message = new Message(messageDetail)
 
         message.save(function (err) {
             if (err) {
@@ -340,6 +338,20 @@ router.post('/api/send-message/:id', async (req, res) => {
                 return res.status(500).send("Server error")
             }
         })
+
+        const convo = await Conversation.findOne({user: req.params.id})
+
+        if (!convo) {
+            const convoDetail = {
+                user: req.params.id,
+                messages: [messageDetail]
+            }
+            const newConvo = new Conversation(convoDetail)
+            newConvo.save()
+        } else {
+            convo.messages.push(messageDetail)
+            convo.save()
+        }
         res.json({ message: 'Message sent', message })
     }catch(error){
         console.log(error)
