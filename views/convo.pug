@@ -32,7 +32,13 @@ block content
                 a.logout-link(href='/logout') Logout
         div.homepage-center    
             h1 Conversation
-            each message in messages.messages
-                p #{message.body}
-                p #{message.sender.username}
-                p #{message.timestamp}
+            div.convo-grid
+                each message in messages.messages
+                    div.convo-layout(class=message.sender.username)            
+                        p #{message.body}
+                        p #{message.sender.username}
+                        p #{message.timestamp}
+                    script. 
+                        document.querySelectorAll('.#{current_user.username}').forEach(element => {
+                            element.style['align-items'] = 'flex-end'
+                        })

@@ -789,3 +789,15 @@ a>img{
   width: 100%;
   gap: 20px;
 }
+
+.convo-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.convo-grid {
+  display: flex;
+  flex-direction: column;
+}
