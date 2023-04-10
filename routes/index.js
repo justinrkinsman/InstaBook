@@ -339,11 +339,21 @@ router.post('/api/send-message/:id', async (req, res) => {
             }
         })
 
-        const convo = await Conversation.findOne({user: req.params.id})
+        const convo = await Conversation.findOne({
+            $and: [
+                {
+                    $or: [{ user_1: req.params.id }, { user_2: req.params.id }],
+                },
+                {
+                    $or: [{ user_1: req.body.sending_user }, { user_2: req.body.sending_user }],
+                },
+            ],
+        });
 
         if (!convo) {
             const convoDetail = {
-                user: req.params.id,
+                user_1: req.body.sending_user,
+                user_2: req.params.id,
                 messages: [messageDetail]
             }
             const newConvo = new Conversation(convoDetail)

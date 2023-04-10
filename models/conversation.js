@@ -12,7 +12,8 @@ const MessageSchema = new Schema({
 });
 
 const ConversationSchema = new Schema({
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    user_1: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    user_2: { type: Schema.Types.ObjectId, ref: "User", required: true },
     messages: [MessageSchema],
     //image: { type: Schema.Types.ObjectId, ref: 'Image' }
 })
