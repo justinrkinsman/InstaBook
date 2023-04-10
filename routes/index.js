@@ -173,8 +173,8 @@ router.get('/api/conversation/:id', async (req, res) => {
             .populate({
                 path: 'messages.sender',
                 model: 'User',
-                select: 'username email'
-            });
+                select: 'username'
+            })
     
         res.json(conversation);
     } catch (error) {
