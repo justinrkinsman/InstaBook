@@ -580,7 +580,13 @@ router.get('/people-you-may-know/:id', (req, res) => {
 })
 
 router.get('/messages/:id', (req, res) => {
-  res.render('messages.pug', {title: "Messages", current_user: req.user})
+  const requestUrl = `http://localhost:3000/api/messages/${req.params.id}`
+  fetch(requestUrl)
+    .then(response => response.json())
+    .then(data => {
+      let str = JSON.stringify(data)
+      res.render('messages.pug', {title: "Messages", messages: str, current_user: req.user})
+    })
 })
 
 router.post('/send-message/:id', (req, res, next) => {

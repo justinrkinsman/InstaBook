@@ -154,6 +154,36 @@ router.get('/api/people-you-may-know/:id', (req, res) => {
     .then((friend_count) => res.json(friend_count))
 })
 
+// GET messages page
+router.get('/api/messages/:id', async (req, res) => {
+    await Conversation.find({
+        $or: [
+            { user_1: req.params.id }, { user_2: req.params.id }
+        ],
+    })
+    .populate("user_1")
+    .populate("user_2")
+    .then((convo_count) => res.json(convo_count))
+})
+/*await Post.find({})
+    .populate('author')
+    .sort({db_timestamp: -1})
+    .then((post_count) => {{data[0] = post_count}})
+    await Notification.find({this_user: userId})
+    .populate('user')
+    .sort({db_timestamp: -1})
+    await User.find({_id: userId})
+    .populate({
+        path: 'friends_list.current_friends',
+        populate: {
+          path: 'friends_list.current_friends'
+        }
+      })
+    .then((friend_count) => {{data[2] = friend_count}})
+    res.json(data)
+})
+*/
+
 /// POST APIs ///
 // POST new post
 router.post('/api/new-post', (req, res) => {
