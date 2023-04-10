@@ -32,4 +32,7 @@ block content
                 a.logout-link(href='/logout') Logout
         div.homepage-center    
             h1 Conversation
-            p #{messages}
+            each message in messages.messages
+                p #{message.body}
+                p #{message.sender.username}
+                p #{message.timestamp}

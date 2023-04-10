@@ -168,9 +168,20 @@ router.get('/api/messages/:id', async (req, res) => {
 
 // GET convo page
 router.get('/api/conversation/:id', async (req, res) => {
-    await Conversation.findById(req.params.id)
-    .then((message_count) => res.json(message_count))
-})
+    try {
+        const conversation = await Conversation.findById(req.params.id)
+            .populate({
+                path: 'messages.sender',
+                model: 'User',
+                select: 'username email'
+            });
+    
+        res.json(conversation);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
 
 /// POST APIs ///
 // POST new post
