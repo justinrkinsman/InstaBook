@@ -501,6 +501,25 @@ router.post('/post-notification/:id/:postId', (req, res) => {
 })
 })
 
+router.post('/message-notification/:id/:userId', (req, res) => {
+  const requestUrl = `http://localhost:3000/api/post-notification/${req.params.id}`
+  fetch(requestUrl, {
+    method: "DELETE",
+    header: { 'Content-Type': 'application/json' },
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Success')
+      res.redirect(`/messages/${req.params.userId}`)
+    }else{
+      console.log("Error", response.statusText)
+    }
+  })
+  .catch((error) => {
+    console.log('Error', error)
+  })
+})
+
 router.post('/accepted-notification/:id/:userId', (req, res) => {
   const requestUrl = `http://localhost:3000/api/post-notification/${req.params.id}`
   fetch(requestUrl, {

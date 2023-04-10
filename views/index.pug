@@ -198,9 +198,11 @@ block content
                                         button.btn.btn-primary.notification-button(type='submit')
                                             p #{note.user.username} accepted your friend request
                         if (note.messages)
-                            div.homepage-notification 
-                                a(href='/')
-                                    p #{note.user.username} sent you a message
+                            div.homepage-notification
+                                form(action=`/message-notification/${note._id}/${note.this_user}` method='POST')
+                                    div.form-group
+                                        button.btn.btn-primary.notification-button(type='submit')
+                                            p #{note.user.username} sent you a message
             - if (JSON.parse(notifications).length > 5)
                 a(href=`/notifications/${user._id}`) See all notifications...
             div.homepage-right-people 
