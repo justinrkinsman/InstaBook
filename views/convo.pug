@@ -16,7 +16,7 @@ block content
                 div.homepage-left-link
                     a(href='/messages')
                         img.icon(src='/icons/send.png')
-                    a.active-link(href='/messages') Messages
+                    a.active-link(href=`/messages/${current_user._id}`) Messages
                 div.homepage-left-link
                     a(href=`/notifications/${current_user._id}`)
                         img.icon(src='/icons/heart-outline.png')
