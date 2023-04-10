@@ -31,12 +31,4 @@ block content
                     a(href=`/user/${current_user._id}`) Profile
                 a.logout-link(href='/logout') Logout
         div.homepage-center    
-            h1 Messages
-            for message in JSON.parse(messages) 
-                if (message.user_1.username.toString() === current_user.username.toString())
-                    a(href=`/conversation/${message.user_2._id}`)
-                        p #{message.user_2.username}
-                else 
-                    a(href=`/conversation/${message.user_1._id}`)
-                        p #{message.user_1.username}
-            
+            h1 Conversation
