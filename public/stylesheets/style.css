@@ -795,9 +795,22 @@ a>img{
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  background-color: skyblue;
+  color: black;
+  border-radius: 500px;
+  padding: 10px;
+}
+
+.convo-layout p {
+  margin: 4px;
+}
+
+.message-body {
+  font-size: 20px;
 }
 
 .convo-grid {
   display: flex;
   flex-direction: column;
+  gap: 20px;
 }

@@ -35,10 +35,11 @@ block content
             div.convo-grid
                 each message in messages.messages
                     div.convo-layout(class=message.sender.username)            
-                        p #{message.body}
+                        p.message-body #{message.body}
                         p #{message.sender.username}
                         p #{message.timestamp}
                     script. 
                         document.querySelectorAll('.#{current_user.username}').forEach(element => {
                             element.style['align-items'] = 'flex-end'
+                            element.style['background-color'] = 'rgba(50, 205, 50, 1)'
                         })
