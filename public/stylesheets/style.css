@@ -591,6 +591,16 @@ a>img{
   background-color:rgba(0, 0, 0, .1)
 }
 
+#new-message {
+  margin-bottom: 20px;
+}
+
+
+#message-input {
+  line-height: 28px;
+  width: 100%;
+}
+
 .cancel-new-post, .cancel-edit-post, .cancel-delete-comment, .cancel-new-message {
   position: fixed;
   top: 0;
