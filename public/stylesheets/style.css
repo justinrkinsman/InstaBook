@@ -181,6 +181,11 @@ body {
   align-self: center;*/
 }
 
+.convo-link {
+  text-decoration: none;
+  color: black;
+}
+
 .homepage-right {
   margin-left: 20px;
   padding-left: 10px;
@@ -238,7 +243,7 @@ body {
   padding-left: 0px;
 }
 
-.homepage-notification:hover, .notification-card:hover, .person-you-may-know:hover, .notification-page-link:hover {
+.homepage-notification:hover, .notification-card:hover, .person-you-may-know:hover, .notification-page-link:hover, .convo-link:hover {
   background-color: rgba(0, 0, 0, .05);
   cursor: pointer;
 }
