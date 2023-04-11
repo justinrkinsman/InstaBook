@@ -36,7 +36,17 @@ block content
                 if (message.user_1.username.toString() === current_user.username.toString())
                     a(href=`/conversation/${message._id}`)
                         p #{message.user_2.username}
+                        - const lastMessage = message.messages.slice(-1)[0]
+                        - if (lastMessage.sender.toString() === current_user._id.toString())
+                            p You: #{lastMessage.body}
+                        - else 
+                            p #{lastMessage.body}
                 else 
                     a(href=`/conversation/${message._id}`)
                         p #{message.user_1.username}
+                        - const lastMessage = message.messages.slice(-1)[0]
+                        - if (lastMessage.sender.toString() === current_user._id.toString())
+                            p You: #{lastMessage.body}
+                        - else 
+                            p #{lastMessage.body}
             
