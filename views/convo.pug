@@ -43,3 +43,14 @@ block content
                             element.style['align-items'] = 'flex-end'
                             element.style['background-color'] = 'rgba(50, 205, 50, 1)'
                         })
+                form#new-message(action="") 
+                    input#message-input 
+
+                script. 
+                    window.addEventListener('load', function() {
+                        let element = document.getElementById("#{scrollTo}")
+                        if (element) {
+                            element.scrollIntoView();
+                        }
+                    })
+                        

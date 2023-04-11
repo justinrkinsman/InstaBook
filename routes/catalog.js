@@ -595,7 +595,7 @@ router.get('/conversation/:id', (req, res) => {
     .then(response => response.json())
     .then(data => {
       let str = JSON.stringify(data)
-      res.render('convo.pug', {title: "Conversation With", messages: data, current_user: req.user})
+      res.render('convo.pug', {title: "Conversation With", messages: data, current_user: req.user, scrollTo: 'message-input'})
     })
 })
 
